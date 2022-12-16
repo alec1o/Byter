@@ -57,16 +57,16 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
   
   // Read data
   int     _int      = r.Read<int>();             // Output: 1024
-  byte    _byte     = r.Read<int>();             // Output: 255
+  byte    _byte     = r.Read<byte>();            // Output: 255
   string  _string   = r.Read<string>();          // Output: "Byter"
   byte[]  _bytes    = r.Read<byte[]>();          // Output: [ 1, 1, 1, 1 ]
   
   // Output
-  bool Success    = r.Success;                     // Returns success if there was no error retrieving the data
+  bool success    = r.Success;                   // Returns success if there was no error retrieving the data
   
   // Other
-  int position  = w.Position;                    // Return the read pointer position 
-  int length    = w.Length;                      // Returns the length of buffer
+  int position  = r.Position;                    // Return the read pointer position 
+  int length    = r.Length;                      // Returns the length of buffer
   r.Seek(position);                              // Moves the read pointer to any existing index
   r.Dispose();                                   // Destroy the Reader object
   ```
