@@ -34,9 +34,7 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
   List<byte>  list  = w.GetList();               // Get writes in List<byte>
   
   // Other
-  int position  = w.Position;                    // Return the write pointer position 
-  int length    = w.Length;                      // Returns the length of bytes written
-  w.Seek(position);                              // Moves the write pointer to any existing index
+  int length = w.Length;                         // Returns the length of bytes written
   w.Dispose();                                   // Destroy the Writer object
   ```
 
