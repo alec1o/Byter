@@ -78,6 +78,36 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
 
 #### Sample
 ```csharp
+using Byter;
+
+#region Writer
+
+var w = new Writer();
+
+w.Write((string) "Byter Library");  // e.g. Name
+w.Write((byte) 1);                  // e.g. Old
+w.Write((int) 0);                   // e.g. Start
+w.Write((long) 1024);               // e.g. Id
+w.Write(new byte[]{ 1, 1, 1, 1 });  // e.g. Pdf
+byte[] data = w.GetBytes();         // e.g. File
+
+w.Dispose();                        // Destroy Writer
+
+#endregion
+
+#region Reader
+
+var r = new Reader(data);
+
+string name = r.Read<string>();     // Output: Byter Library
+byte old = r.Read<byte>();          // Output: 1
+int star = r.Read<int>();           // Start : 0
+long id = r.Read<long>();           // Id    : 1024
+byte[] pdf = r.Read<byte[]>();      // Pdf   : [ 1, 1, 1, 1 ]
+
+r.Dispose();                        // Destroy Reader
+
+#endregion
 ```
 
 ## Install
