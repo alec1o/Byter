@@ -12,5 +12,6 @@ namespace Byter.Core.Interface
         byte[] GetBytes();
         List<byte> GetList();
         void Write<T>(T value);
+        void Seek(int position);
     }
 }
