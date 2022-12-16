@@ -42,7 +42,39 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
 
 - #### Reader
   ```csharp
+  using Byter;
+  using System.Text;
+  
+  // Create sample input
+  var w = new Writer();
+  // Write sample datas
+  w.Write((int) 1024);
+  w.Write((byte) 255);
+  w.Write((string) "Byter");
+  w.Write((byte[]) new byte[] { 1, 1, 1, 1 }); 
+  
+  // Create instance      
+  var r = new Reader(ref w);                     // Create instance and copy buffer from existing Writer
+  _     = new Reader(new byte[] { 1, 1, 1, 1 }); // Create instance with bytes (byte[])
+  
+  // Read data
+  int     _int      = r.Read<int>();             // Output: 1024
+  byte    _byte     = r.Read<int>();             // Output: 255
+  string  _string   = r.Read<string>();          // Output: "Byter"
+  byte[]  _bytes    = r.Read<byte[]>();          // Output: [ 1, 1, 1, 1 ]
+  
+  // Output
+  bool sucess    = r.Sucess;                     // Returns success if there was no error retrieving the data
+  
+  // Other
+  int position  = w.Position;                    // Return the read pointer position 
+  int length    = w.Length;                      // Returns the length of buffer
+  w.Seek(position);                              // Moves the read pointer to any existing index
+  w.Dispose();                                   // Destroy the Reader object
   ```
+
+- #### Warning
+  Internally, before data is written a prefix is added in front of it, so when reading it always compares the prefix of the (data type) you want to read with the strings in the read buffer. if the prefixes do not match then o (Reader. Success = False), eg. If you write an (int) and try to read a float (Reader.Success = False) because the prefix of an (int) is different from that of a (float), it is recommended to read all the data and at the end check the success, if it is (Reader.Success = False) then one or more data is corrupt. This means that Writer and Reader add dipping to your write and read data.
 
 #### Sample
 ```csharp
