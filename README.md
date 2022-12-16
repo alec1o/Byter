@@ -69,8 +69,8 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
   // Other
   int position  = w.Position;                    // Return the read pointer position 
   int length    = w.Length;                      // Returns the length of buffer
-  w.Seek(position);                              // Moves the read pointer to any existing index
-  w.Dispose();                                   // Destroy the Reader object
+  r.Seek(position);                              // Moves the read pointer to any existing index
+  r.Dispose();                                   // Destroy the Reader object
   ```
 
 - #### Warning
@@ -99,11 +99,18 @@ w.Dispose();                        // Destroy Writer
 
 var r = new Reader(data);
 
-string name = r.Read<string>();     // Output: Byter Library
-byte old = r.Read<byte>();          // Output: 1
+string name = r.Read<string>();     // Name  : Byter Library
+byte old = r.Read<byte>();          // Old   : 1
 int star = r.Read<int>();           // Start : 0
 long id = r.Read<long>();           // Id    : 1024
 byte[] pdf = r.Read<byte[]>();      // Pdf   : [ 1, 1, 1, 1 ]
+                                    /*
+WARNING: 
+if you reverse the reading order or try to read more data than added (Reader.Succes = False),
+Remembering does not return exception when trying to read data that does not exist it just
+returns the default construction, and (Reader.Success) will be assigned (False)
+                                    */
+bool sucess = r.Sucess;             // Sucess: True
 
 r.Dispose();                        // Destroy Reader
 
