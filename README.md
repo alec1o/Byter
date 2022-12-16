@@ -64,7 +64,7 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
   byte[]  _bytes    = r.Read<byte[]>();          // Output: [ 1, 1, 1, 1 ]
   
   // Output
-  bool sucess    = r.Sucess;                     // Returns success if there was no error retrieving the data
+  bool Success    = r.Success;                     // Returns success if there was no error retrieving the data
   
   // Other
   int position  = w.Position;                    // Return the read pointer position 
@@ -110,7 +110,7 @@ if you reverse the reading order or try to read more data than added (Reader.Suc
 Remembering does not return exception when trying to read data that does not exist it just
 returns the default construction, and (Reader.Success) will be assigned (False)
                                     */
-bool sucess = r.Sucess;             // Sucess: True
+bool success = r.Success;             // Success: True
 
 r.Dispose();                        // Destroy Reader
 
