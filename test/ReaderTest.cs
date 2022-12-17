@@ -191,6 +191,7 @@ public class ReaderTest
         Assert.Equal(target, result);
 
         var result2 = reader.Read<long>();
-        Assert.Equal(target, result);
+        Assert.NotEqual(2, result2);
+        Assert.Equal((long)default, result2);
     }
 }
