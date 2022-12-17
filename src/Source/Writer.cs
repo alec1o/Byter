@@ -7,7 +7,7 @@ using Byter.Core.Interface;
 
 namespace Byter
 {
-    public class Writer : IWriter
+    public class Writer : IWriter, IDisposable
     {
         private List<byte[]> _list;
         private int _length;
@@ -137,7 +137,49 @@ namespace Byter
 
         #endregion
 
+        #region Dispose
+
+        // Track whether Dispose has been called.
+        private bool disposed = false;
+
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Check to see if Dispose has already been called.
+            if(!this.disposed)
+            {
+                // If disposing equals true, dispose all managed and unmanaged resources.
+                if(disposing)
+                {
+                    // Dispose managed resources.
+
+                    // <instance>.Dispose();
+                    _list.Clear();
+                }
+
+                // Call the appropriate methods to clean up unmanaged resources here.
+                // If disposing is false, only the following code is executed.
+
+                // <instance>.Dispose();
+
+                // Note disposing has been done.
+                disposed = true;
+            }
+        }        
+
+        ~Writer()
+        {
+            Dispose(disposing: false);
+        }        
         
+        #endregion
+
         private void Save(char prefix, byte[] value)
         {
             if (value == null || value.Length <= 0) return;
