@@ -10,7 +10,7 @@ namespace Byter
     public class Reader : IReader, IDisposable
     {
         private bool _success;
-        private int _position;
+        private int _position = 0;
         private byte[] _buffer;
 
         public int Length => _buffer.Length;
@@ -79,7 +79,7 @@ namespace Byter
 
             // byte
             if (typeof(T) == typeof(byte))
-            {               
+            {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
 
@@ -93,7 +93,7 @@ namespace Byter
             }
 
             // byte[]
-            if (typeof(T) == typeof(byte))
+            else if (typeof(T) == typeof(byte[]))
             {               
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;
@@ -118,7 +118,7 @@ namespace Byter
             }
 
             // short
-            if(typeof(T) == typeof(short))
+            else if (typeof(T) == typeof(short))
             {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -133,7 +133,7 @@ namespace Byter
             }
 
             // ushort
-            if(typeof(T) == typeof(ushort))
+            else if (typeof(T) == typeof(ushort))
             {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -148,7 +148,7 @@ namespace Byter
             }
             
             // int
-            if(typeof(T) == typeof(int))
+            else if(typeof(T) == typeof(int))
             {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -163,7 +163,7 @@ namespace Byter
             }
 
             // uint
-            if(typeof(T) == typeof(uint))
+            else if(typeof(T) == typeof(uint))
             {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -178,7 +178,7 @@ namespace Byter
             }
 
             // long
-            if(typeof(T) == typeof(long))
+            else if(typeof(T) == typeof(long))
             {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -193,7 +193,7 @@ namespace Byter
             }
 
             // ulong
-            if(typeof(T) == typeof(ulong))
+            else if(typeof(T) == typeof(ulong))
             {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -208,7 +208,7 @@ namespace Byter
             }
 
             // float
-            if(typeof(T) == typeof(float))
+            else if(typeof(T) == typeof(float))
             {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -223,7 +223,7 @@ namespace Byter
             }
 
             // double
-            if(typeof(T) == typeof(double))
+            else if(typeof(T) == typeof(double))
             {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -238,7 +238,7 @@ namespace Byter
             }
 
             // char
-            if (typeof(T) == typeof(char))
+            else if (typeof(T) == typeof(char))
             {               
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;  
@@ -253,13 +253,16 @@ namespace Byter
             }
 
             // string
-            if (typeof(T) == typeof(string))
+            else if (typeof(T) == typeof(string))
             {
                 return Read<T>(Encoding.UTF8);
             }
 
-            _success = false;
-            return default;
+            else
+            {
+                _success = false;
+                return default;
+            }
         }
 
         public T Read<T>(Encoding encode)
@@ -267,7 +270,7 @@ namespace Byter
             char prefix = Writer.GetPrefix(typeof(T));
 
             // string
-            if (typeof(T) == typeof(byte))
+            if (typeof(T) == typeof(string))
             {               
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;
@@ -302,17 +305,16 @@ namespace Byter
 
         private bool ValidPrefix(char prefix)
         {
-            // compare (buffer prefix) to (type prefix)
+            // get char from buffer
             char signal = BitConverter.ToChar(_buffer, _position);
-
+            
+            // compare (buffer prefix) to (type prefix)
             if (prefix == signal)
             {
                 // skip bytes read
-                _position += sizeof(char);
-
-                return true;
+                _position += sizeof(char);return true;
             }
-
+            
             _success = false;
             return false;
         }

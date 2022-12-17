@@ -1,12 +1,16 @@
 using System;
-using Xunit;
 using Byter;
-
+using Xunit;
+using Xunit.Abstractions;
 namespace ByterTest;
 
 public class ReaderTest
 {
+    public ReaderTest()
+    {
 
+    }
+    
     [Fact]
     public void ReadByte()
     {

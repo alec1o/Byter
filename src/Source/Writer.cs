@@ -196,11 +196,11 @@ namespace Byter
             }
             _length += p.Length + value.Length;
         }
+        
+        internal static char GetPrefix(object obj)=> GetPrefix(obj.GetType());
 
-        internal static char GetPrefix(object value)
+        internal static char GetPrefix(Type type)
         {
-            var type = value.GetType();
-
             if (type == typeof(byte))       /*  byte    */ return 'A';
             else if(type == typeof(byte[])) /*  byte[]  */ return 'B';
             else if(type == typeof(short))  /*  short   */ return 'C';
