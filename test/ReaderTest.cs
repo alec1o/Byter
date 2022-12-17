@@ -6,23 +6,170 @@ namespace ByterTest;
 
 public class ReaderTest
 {
+
     [Fact]
-    public void Read()
+    public void ReadByte()
     {
-        Writer w = new();
-        WriterTest.Load(ref w);
-        Reader r = new(ref w);
+        Writer writer = new();
+        writer.Write((byte)255);
 
-        string name = r.Read<string>();     // Name  : Byter Library
-        byte old = r.Read<byte>();          // Old   : 1
-        int star = r.Read<int>();           // Start : 2048
-        long id = r.Read<long>();           // Id    : 1024
-        byte[] pdf = r.Read<byte[]>();      // Pdf   : [ 1, 1, 1, 1 ]
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<byte>(); 
+        Assert.Equal((byte)255, result);
+    }
 
-        Assert.Equal("Byter Library", name);
-        Assert.Equal((byte)1, old);
-        Assert.Equal((int)2048, star);
-        Assert.Equal((long)1024, id);
-        Assert.Equal(new byte[]{ 1, 1, 1, 1 }, pdf);
+    [Fact]
+    public void ReadBytes()
+    {
+        var target = new byte[] { 8, 16, 32, 64 };
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<byte[]>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadShort()
+    {
+        var target = (short) -255;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<short>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadUShort()
+    {
+        var target = (ushort) 255;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<ushort>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadInt()
+    {
+        var target = (int) -255;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<int>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadUInt()
+    {
+        var target = (uint) 255;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<uint>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadLong()
+    {
+        var target = (long) -255;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<long>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadULong()
+    {
+        var target = (ulong) 255;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<ulong>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadFloat()
+    {
+        var target = (float) 255.255f;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<float>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadDouble()
+    {
+        var target = (double) 255.255d;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<double>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadChar()
+    {
+        var target = (char) 'A';
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<char>(); 
+        Assert.Equal(target, result);
+    }
+
+    [Fact]
+    public void ReadString()
+    {
+        var target = (string) "1234.1234.1234.1234";
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+        
+        var result = reader.Read<string>(); 
+        Assert.Equal(target, result);
     }
 }
