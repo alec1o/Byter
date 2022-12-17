@@ -27,7 +27,7 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
   w.Write((int) 1024);                           // Write int 
   w.Write((string) "Byter");                     // Write string
   w.Write((string) "Byter", Encoding.ASCII);     // Write string
-  w.Write((byte[]), new byte[] { 1, 1, 1, 1 });  // Write bytes
+  w.Write((byte[]) new byte[] { 1, 1, 1, 1 });  // Write bytes
   
   // Output
   byte[]      bytes = w.GetBytes();              // Get writes in Byte[]
