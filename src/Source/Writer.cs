@@ -67,7 +67,7 @@ namespace Byter
         public void Write(byte[] value)
         {
             char prefix = GetPrefix(value);
-            Save(prefix, value);
+            Save(prefix, BitConverter.GetBytes(value.Length), value);
         }
 
         public void Write(short value)
@@ -132,7 +132,8 @@ namespace Byter
         public void Write(string value, Encoding encoding)
         {
             char prefix = GetPrefix(value);
-            Save(prefix, encoding.GetBytes(value));
+            byte[] bytes = encoding.GetBytes(value);
+            Save(prefix, BitConverter.GetBytes(bytes.Length), bytes);
         }
 
         #endregion
@@ -180,7 +181,7 @@ namespace Byter
         
         #endregion
 
-        private void Save(char prefix, byte[] value)
+        private void Save(char prefix, byte[] value, byte[] value2 = null)
         {
             if (value == null || value.Length <= 0) return;
 
@@ -188,6 +189,7 @@ namespace Byter
             
             _list.Add(p);
             _list.Add(value);
+            if (value2 != null) _list.Add(value2);
             _length += p.Length + value.Length;
         }
 

@@ -10,8 +10,8 @@ namespace Byter.Core.Interface
         int Position { get; }
         bool Success { get; }
 
-        T Read<T>(T type);
-        string Read<T>(Encoding encode, T type);
+        T Read<T>();
+        T Read<T>(Encoding encode);
         void Seek(int position);
     }
 }
