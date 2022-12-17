@@ -176,4 +176,21 @@ public class ReaderTest
         var result = reader.Read<string>(); 
         Assert.Equal(target, result);
     }
+
+    [Fact]
+    public void TryMakeError()
+    {
+        var target = 1;
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(writer.GetBytes());
+
+        var result = reader.Read<int>(); 
+        Assert.Equal(target, result);
+
+        var result2 = reader.Read<long>();
+        Assert.Equal(target, result);
+    }
 }
