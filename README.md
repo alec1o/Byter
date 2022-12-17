@@ -21,21 +21,29 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
   var w = new Writer();                          // Create default instance
   _     = new Writer(new byte[] { 1, 1, 1, 1 }); // Create instance with default data
   _     = new Writer(new Writer());              // Create instance and copy from existing Writer
-  
+
   // Write data
   w.Write((char) 'A');                           // Write char
   w.Write((int) 1024);                           // Write int 
   w.Write((string) "Byter");                     // Write string
   w.Write((string) "Byter", Encoding.ASCII);     // Write string
-  w.Write((byte[]) new byte[] { 1, 1, 1, 1 });  // Write bytes
-  
+  w.Write((byte[]) new byte[] { 1, 1, 1, 1 });   // Write bytes
+
   // Output
   byte[]      bytes = w.GetBytes();              // Get writes in Byte[]
   List<byte>  list  = w.GetList();               // Get writes in List<byte>
-  
+
   // Other
   int length = w.Length;                         // Returns the length of bytes written
   w.Dispose();                                   // Destroy the Writer object
+
+  // Console output
+  Console.WriteLine($"Write length: {length}");
+  Console.WriteLine($"Write bytes[] length: {bytes.Length}");
+  Console.WriteLine($"Write List<byte> length: {list.Count}");
+  w.Clear();
+  Console.WriteLine($"Clear writer...");
+  Console.WriteLine($"Write length: {w.Length}");
   ```
 
 - #### Reader
@@ -50,25 +58,34 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
   w.Write((byte) 255);
   w.Write((string) "Byter");
   w.Write((byte[]) new byte[] { 1, 1, 1, 1 }); 
-  
+
   // Create instance      
   var r = new Reader(ref w);                     // Create instance and copy buffer from existing Writer
   _     = new Reader(new byte[] { 1, 1, 1, 1 }); // Create instance with bytes (byte[])
-  
+
   // Read data
   int     _int      = r.Read<int>();             // Output: 1024
   byte    _byte     = r.Read<byte>();            // Output: 255
   string  _string   = r.Read<string>();          // Output: "Byter"
   byte[]  _bytes    = r.Read<byte[]>();          // Output: [ 1, 1, 1, 1 ]
-  
+
   // Output
   bool success    = r.Success;                   // Returns success if there was no error retrieving the data
-  
+
   // Other
   int position  = r.Position;                    // Return the read pointer position 
   int length    = r.Length;                      // Returns the length of buffer
   r.Seek(position);                              // Moves the read pointer to any existing index
   r.Dispose();                                   // Destroy the Reader object
+
+  // Console output
+  Console.WriteLine($"Int -> {_int}");
+  Console.WriteLine($"Byte -> {_byte}");
+  Console.WriteLine($"String -> {_string}");
+  Console.WriteLine($"Byte[] -> {_bytes}");
+  Console.WriteLine($"Success -> {success}");
+  Console.WriteLine($"Position -> {position}");
+  Console.WriteLine($"Length -> {length}");
   ```
 
 - #### Warning
