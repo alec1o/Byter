@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Byter</PackageId>
+    <Version>1.0</Version>
+    <Authors>Alec1o</Authors>
+    <Company>Kezero</Company>
+    <PackageDescription>Byte parse. Convert byte to object and object to byte</PackageDescription>
+    <RepositoryUrl>https://github.com/alec1o/byter</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
