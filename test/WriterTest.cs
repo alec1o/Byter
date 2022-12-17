@@ -1,4 +1,8 @@
 using System;
+using System.Text;
+using System.Collections;
+using System.Collections.Generic;
+
 using Xunit;
 using Byter;
 
@@ -15,16 +19,25 @@ public class WriterTest
     public void Write()
     {
         Writer w = new();
-        Load(ref w);
-    }
 
-    public static void Load(ref Writer w)
-    {
-       w.Write((string) "Byter Library");   // e.g. Name
-        w.Write((byte) 1);                  // e.g. Old
-        w.Write((int) 2048);                // e.g. Start
-        w.Write((long) 1024);               // e.g. Id
-        w.Write(new byte[]{ 1, 1, 1, 1 });  // e.g. Pdf
-    }
+        w.Write((byte) 255);
+        w.Write((byte[]) new byte[] { 1, 1, 1, 1 });
+        w.Write((short) -1024);
+        w.Write((ushort) 1024);
+        w.Write((int) -2048);
+        w.Write((uint) 2048);
+        w.Write((long) -4096);
+        w.Write((ulong) 4096);
+        w.Write((float) 255.255f);
+        w.Write((double) 255.255d);
+        w.Write((char) 'A');
+        w.Write((string) "UTF8");
+        w.Write((string) "ASCII", Encoding.ASCII);
 
+        byte[] a = w.GetBytes();
+        List<byte> b = w.GetList();
+
+        Assert.Equal(a.Length, w.Length);
+        Assert.Equal(b.Count, w.Length);
+    }
 }
