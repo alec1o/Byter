@@ -189,7 +189,11 @@ namespace Byter
             
             _list.Add(p);
             _list.Add(value);
-            if (value2 != null) _list.Add(value2);
+            if (value2 != null)
+            {
+                _list.Add(value2);
+                _length += value2.Length;
+            }
             _length += p.Length + value.Length;
         }
 
