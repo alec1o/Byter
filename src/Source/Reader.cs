@@ -9,7 +9,7 @@ namespace Byter
 {
     public class Reader : IReader, IDisposable
     {
-        private bool _success;
+        private bool _success = true;
         private int _position = 0;
         private byte[] _buffer;
 
@@ -59,6 +59,7 @@ namespace Byter
                 return;
             }
 
+            _success = true;
             _buffer = new byte[buffer.Length - offset];
             Buffer.BlockCopy(buffer, offset,  _buffer, 0, _buffer.Length);
         }
@@ -76,7 +77,7 @@ namespace Byter
         public T Read<T>()
         {
             try
-                {
+            {
                 char prefix = Writer.GetPrefix(typeof(T));
 
                 // byte
@@ -313,7 +314,8 @@ namespace Byter
             if (prefix == signal)
             {
                 // skip bytes read
-                _position += sizeof(char);return true;
+                _position += sizeof(char);
+                return true;
             }
             
             _success = false;

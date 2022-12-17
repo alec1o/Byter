@@ -21,6 +21,7 @@ public class ReaderTest
         
         var result = reader.Read<byte>(); 
         Assert.Equal((byte)255, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -35,6 +36,7 @@ public class ReaderTest
         
         var result = reader.Read<byte[]>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -49,6 +51,7 @@ public class ReaderTest
         
         var result = reader.Read<short>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -63,6 +66,7 @@ public class ReaderTest
         
         var result = reader.Read<ushort>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -77,6 +81,7 @@ public class ReaderTest
         
         var result = reader.Read<int>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -91,6 +96,7 @@ public class ReaderTest
         
         var result = reader.Read<uint>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -105,6 +111,7 @@ public class ReaderTest
         
         var result = reader.Read<long>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -119,6 +126,7 @@ public class ReaderTest
         
         var result = reader.Read<ulong>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -133,6 +141,7 @@ public class ReaderTest
         
         var result = reader.Read<float>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -147,6 +156,7 @@ public class ReaderTest
         
         var result = reader.Read<double>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -161,6 +171,7 @@ public class ReaderTest
         
         var result = reader.Read<char>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -175,6 +186,7 @@ public class ReaderTest
         
         var result = reader.Read<string>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
     }
 
     [Fact]
@@ -189,9 +201,12 @@ public class ReaderTest
 
         var result = reader.Read<int>(); 
         Assert.Equal(target, result);
+        Assert.True(reader.Success);
 
         var result2 = reader.Read<long>();
         Assert.NotEqual(2, result2);
         Assert.Equal((long)default, result2);
+        Assert.False(reader.Success);
+
     }
 }
