@@ -160,4 +160,24 @@ reader.Dispose(); // Destroy Reader
 
   # Update submodule - Update and load new repository updates
   git submodule update --remote
+
+  # *** MY PATH TREE ***
+  # vendor
+  #   | -- byter
+  #     | -- src
+  #         | -- Byter.csproj
+  # app
+  #   | -- app.csproj
+  # app.sln
+  # .git
+  # .gitmodules
+  # .gitignore
+
+  # .NET link Byter.csproj -> app.csproj
+  cd app/
+  dotnet add reference ../vendor/byter/src/Byter.csproj
+
+  # .NET link Byter.csproj -> app.sln
+  cd ../
+  dotnet sln add vendor/byter/src/Byter.csproj
   ```
