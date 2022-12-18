@@ -150,6 +150,18 @@ reader.Dispose(); // Destroy Reader
 
 ## Install
 
+- #### Submodule
+  ```bash
+  # Install - recommend a stable branch e.g. "1.x" or use a fork repository
+  git submodule add --name byter --branch main https://github.com/alec1o/byter vendor/byter
+
+  # Rebuilding - Upload files to file location, must add this step in dotnet.yaml if using 
+  git submodule update --init
+
+  # Update submodule - Update and load new repository updates
+  git submodule update --remote
+  ```
+
 - #### Nuget
-  ```csharp
+  ```bash
   ```
