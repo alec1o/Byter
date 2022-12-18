@@ -161,7 +161,3 @@ reader.Dispose(); // Destroy Reader
   # Update submodule - Update and load new repository updates
   git submodule update --remote
   ```
-
-- #### Nuget
-  ```bash
-  ```
