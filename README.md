@@ -79,13 +79,13 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
   r.Dispose();                                   // Destroy the Reader object
 
   // Console output
-  Console.WriteLine($"Int -> {_int}");
-  Console.WriteLine($"Byte -> {_byte}");
-  Console.WriteLine($"String -> {_string}");
-  Console.WriteLine($"Byte[] -> {_bytes}");
-  Console.WriteLine($"Success -> {success}");
-  Console.WriteLine($"Position -> {position}");
-  Console.WriteLine($"Length -> {length}");
+  Console.WriteLine($"Int       -> {_int}     ");
+  Console.WriteLine($"Byte      -> {_byte}    ");
+  Console.WriteLine($"String    -> {_string}  ");
+  Console.WriteLine($"Byte[]    -> {_bytes}   ");
+  Console.WriteLine($"Success   -> {success}  ");
+  Console.WriteLine($"Position  -> {position} ");
+  Console.WriteLine($"Length    -> {length}   ");
   ```
 
 - #### Warning
@@ -104,7 +104,7 @@ writer.Write(new byte[]{ 1, 1, 1, 1 }); // image
 
 // geting buffer
 byte[] buffer = writer.GetBytes();
-writer.Dispose(); // Destroy Reader
+writer.Dispose(); // Destroy Writer
 
 // reading
 Reader reader = new(buffer);
@@ -166,6 +166,7 @@ reader.Dispose(); // Destroy Reader
   # |   |__ byter
   # |      |__ src
   # |        |__ Byter.csproj
+  # |
   # |__ app
   # |   |__ app.csproj
   # |
