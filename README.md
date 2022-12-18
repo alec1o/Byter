@@ -95,41 +95,57 @@ byte, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
 ```csharp
 using Byter;
 
-#region Writer
+// writing
+Writer writer = new();
 
-var w = new Writer();
+writer.Write(1000); // index
+writer.Write("{JSON}"); // content
+writer.Write(new byte[]{ 1, 1, 1, 1 }); // image
 
-w.Write((string) "Byter Library");  // e.g. Name
-w.Write((byte) 1);                  // e.g. Old
-w.Write((int) 0);                   // e.g. Start
-w.Write((long) 1024);               // e.g. Id
-w.Write(new byte[]{ 1, 1, 1, 1 });  // e.g. Pdf
-byte[] data = w.GetBytes();         // e.g. File
+// geting buffer
+byte[] buffer = writer.GetBytes();
+writer.Dispose(); // Destroy Reader
 
-w.Dispose();                        // Destroy Writer
+// reading
+Reader reader = new(buffer);
 
-#endregion
+int index = reader.Read<int>();
+string json = reader.Read<string>();
+byte[] image = reader.Read<byte[]>();
 
-#region Reader
+// Check error
+if (!reader.Success) // IS FALSE
+{
+    Console.WriteLine("*** ERROR ****");
+    return;
+}
 
-var r = new Reader(data);
+// Check success
+Console.WriteLine("*** SUCCESS ****");      
 
-string name = r.Read<string>();     // Name  : Byter Library
-byte old = r.Read<byte>();          // Old   : 1
-int star = r.Read<int>();           // Start : 0
-long id = r.Read<long>();           // Id    : 1024
-byte[] pdf = r.Read<byte[]>();      // Pdf   : [ 1, 1, 1, 1 ]
-                                    /*
-WARNING: 
+// Output
+Console.WriteLine($"Index: {index}");           // output: 1000
+Console.WriteLine($"JSON : {json }");           // output: JSON
+Console.WriteLine($"Image: {image.Length}");    // output: 4
+Console.WriteLine($"Status: {reader.Success}"); // output: True
+
+// Making error
+float delay = reader.Read<float>();
+                                                                                            /*
+WARNING:                
 if you reverse the reading order or try to read more data than added (Reader.Succes = False),
 Remembering does not return exception when trying to read data that does not exist it just
-returns the default construction, and (Reader.Success) will be assigned (False)
-                                    */
-bool success = r.Success;             // Success: True
+returns the default construction, and (Reader.Success) will be assigned (False)             */
 
-r.Dispose();                        // Destroy Reader
+if (reader.Success)  // IS FALSE, THE IS NOT WRITED IN BUFFER
+    Console.WriteLine($"Delay: {delay}");
+else                // IS TRUE, THE DELAY NOT EXIST
+    Console.WriteLine($"Delay not exist");
 
-#endregion
+// Output of status
+Console.WriteLine($"Status: {reader.Success}"); // output: False
+
+reader.Dispose(); // Destroy Reader
 ```
 
 ## Install
