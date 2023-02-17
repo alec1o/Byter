@@ -155,7 +155,7 @@ reader.Dispose(); // Destroy Reader
   # Install - recommend a stable branch e.g. "1.x" or use a fork repository
   git submodule add --name byter --branch main https://github.com/alec1o/byter vendor/byter
 
-  # Rebuilding - Upload files to file location, must add this step in dotnet.yaml if using 
+  # Rebuilding - Download repository and link it in file location, must add this step in dotnet.yaml if using
   git submodule update --init
 
   # Update submodule - Update and load new repository updates
@@ -182,4 +182,7 @@ reader.Dispose(); // Destroy Reader
   # .NET link on .csproj
   cd app/
   dotnet add reference ../vendor/byter/src/Byter.csproj
+  
+  # Rebuild dependencies to be linked in the project
+  dotnet restore
   ```
