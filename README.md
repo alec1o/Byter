@@ -149,9 +149,14 @@ reader.Dispose(); // Destroy Reader
 ```
 
 ## Install
-
+- #### Nuget [SEE HERE](https://www.nuget.org/packages/Byter)
+  ###### .NET CLI
+  ```rb
+  dotnet add package Byter --version 1.0.0
+  ```
+  
 - #### Submodule
-  ```bash
+  ```rb
   # Install - recommend a stable branch e.g. "1.x" or use a fork repository
   git submodule add --name byter --branch main https://github.com/alec1o/byter vendor/byter
 
