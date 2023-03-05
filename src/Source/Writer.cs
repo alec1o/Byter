@@ -31,13 +31,13 @@ namespace Byter
         {
             _list = new List<byte[]>();
             _list.Add(writer.GetBytes());
-            _length = writer.Length;            
+            _length = writer.Length;
         }
 
         #endregion
-    
+
         #region Other
-        
+
         public byte[] GetBytes()
         {
             return _list.SelectMany(x => x).ToArray();
@@ -52,7 +52,7 @@ namespace Byter
         {
             _list.Clear();
             _length = 0;
-        }        
+        }
 
         #endregion
 
@@ -62,6 +62,12 @@ namespace Byter
         {
             char prefix = GetPrefix(value);
             Save(prefix, new byte[1] { value });
+        }
+
+        public void Write(bool value)
+        {
+            char prefix = GetPrefix(value);
+            Save(prefix, new byte[1] { (byte)(value ? 1 : 0) });
         }
 
         public void Write(byte[] value)
@@ -153,10 +159,10 @@ namespace Byter
         protected virtual void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
-            if(!this.disposed)
+            if (!this.disposed)
             {
                 // If disposing equals true, dispose all managed and unmanaged resources.
-                if(disposing)
+                if (disposing)
                 {
                     // Dispose managed resources.
 
@@ -172,13 +178,13 @@ namespace Byter
                 // Note disposing has been done.
                 disposed = true;
             }
-        }        
+        }
 
         ~Writer()
         {
             Dispose(disposing: false);
-        }        
-        
+        }
+
         #endregion
 
         private void Save(char prefix, byte[] value, byte[] value2 = null)
@@ -186,7 +192,7 @@ namespace Byter
             if (value == null || value.Length <= 0) return;
 
             byte[] p = BitConverter.GetBytes(prefix);
-            
+
             _list.Add(p);
             _list.Add(value);
             if (value2 != null)
@@ -196,24 +202,25 @@ namespace Byter
             }
             _length += p.Length + value.Length;
         }
-        
-        internal static char GetPrefix(object obj)=> GetPrefix(obj.GetType());
+
+        internal static char GetPrefix(object obj) => GetPrefix(obj.GetType());
 
         internal static char GetPrefix(Type type)
         {
-            if (type == typeof(byte))       /*  byte    */ return 'A';
-            else if(type == typeof(byte[])) /*  byte[]  */ return 'B';
-            else if(type == typeof(short))  /*  short   */ return 'C';
-            else if(type == typeof(ushort)) /*  ushort  */ return 'D';
-            else if(type == typeof(int))    /*  int     */ return 'E';
-            else if(type == typeof(uint))   /*  uint    */ return 'F';
-            else if(type == typeof(long))   /*  long    */ return 'G';
-            else if(type == typeof(ulong))  /*  ulong   */ return 'H';
-            else if(type == typeof(float))  /*  float   */ return 'I';
-            else if(type == typeof(double)) /*  double  */ return 'J';
-            else if(type == typeof(char))   /*  char    */ return 'K';
-            else if(type == typeof(string)) /*  string  */ return 'L';
-            else                            /*  null    */ return '0';
+            if (type == typeof(byte))        /*  byte    */ return 'A';
+            else if (type == typeof(byte[])) /*  byte[]  */ return 'B';
+            else if (type == typeof(short))  /*  short   */ return 'C';
+            else if (type == typeof(ushort)) /*  ushort  */ return 'D';
+            else if (type == typeof(int))    /*  int     */ return 'E';
+            else if (type == typeof(uint))   /*  uint    */ return 'F';
+            else if (type == typeof(long))   /*  long    */ return 'G';
+            else if (type == typeof(ulong))  /*  ulong   */ return 'H';
+            else if (type == typeof(float))  /*  float   */ return 'I';
+            else if (type == typeof(double)) /*  double  */ return 'J';
+            else if (type == typeof(char))   /*  char    */ return 'K';
+            else if (type == typeof(string)) /*  string  */ return 'L';
+            else if (type == typeof(bool))   /*  bool    */ return 'M';
+            else                             /*  null    */ return '0';
         }
 
     }
