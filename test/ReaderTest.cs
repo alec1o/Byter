@@ -25,6 +25,27 @@ public class ReaderTest
     }
 
     [Fact]
+    public void ReadBool()
+    {
+        Writer writer = new();
+        writer.Write(true);  // value 1
+        writer.Write(false); // value 2
+        writer.Write(true);  // value 3
+
+        Reader reader = new(ref writer);
+
+        var value1 = reader.Read<bool>();
+        var value2 = reader.Read<bool>();
+        var value3 = reader.Read<bool>();
+
+        Assert.True(value1);
+        Assert.False(value2);
+        Assert.True(value3);
+
+        Assert.True(reader.Success);
+    }
+
+    [Fact]
     public void ReadBytes()
     {
         var target = new byte[] { 8, 16, 32, 64 };
