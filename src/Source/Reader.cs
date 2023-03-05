@@ -21,9 +21,9 @@ namespace Byter
 
         // private for IDisposable
         private Reader() { }
-        
+
         public Reader(byte[] buffer, int offset = 0)
-        {           
+        {
             Init(buffer, offset);
         }
 
@@ -40,7 +40,7 @@ namespace Byter
         }
 
         public Reader(Writer writer)
-        {           
+        {
             if (writer == null || writer.Length <= 0)
             {
                 Init(null, 0);
@@ -61,13 +61,13 @@ namespace Byter
 
             _success = true;
             _buffer = new byte[buffer.Length - offset];
-            Buffer.BlockCopy(buffer, offset,  _buffer, 0, _buffer.Length);
+            Buffer.BlockCopy(buffer, offset, _buffer, 0, _buffer.Length);
         }
 
         #endregion
 
         #region Other
-        
+
         public void Seek(int position)
         {
             if (position <= 0) _position = 0;
@@ -84,7 +84,7 @@ namespace Byter
                 if (typeof(T) == typeof(byte))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = _buffer[_position];
@@ -92,12 +92,27 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(byte);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
+                }
+
+                // bool
+                if (typeof(T) == typeof(bool))
+                {
+                    // compare (buffer prefix) to (type prefix)
+                    if (!ValidPrefix(prefix)) return default;
+
+                    // get encoded value
+                    var value = _buffer[_position];
+
+                    // skip bytes read
+                    _position += sizeof(byte);
+
+                    return (T)(object)(value == 1 ? true : false);
                 }
 
                 // byte[]
                 else if (typeof(T) == typeof(byte[]))
-                {               
+                {
                     // compare (buffer prefix) to (type prefix)
                     if (!ValidPrefix(prefix)) return default;
 
@@ -117,14 +132,14 @@ namespace Byter
                     // skip bytes read
                     _position += value.Length;
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // short
                 else if (typeof(T) == typeof(short))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToInt16(_buffer, _position);
@@ -132,14 +147,14 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(short);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // ushort
                 else if (typeof(T) == typeof(ushort))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToUInt16(_buffer, _position);
@@ -147,14 +162,14 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(ushort);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
-                
+
                 // int
-                else if(typeof(T) == typeof(int))
+                else if (typeof(T) == typeof(int))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToInt32(_buffer, _position);
@@ -162,14 +177,14 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(int);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // uint
-                else if(typeof(T) == typeof(uint))
+                else if (typeof(T) == typeof(uint))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToUInt32(_buffer, _position);
@@ -177,14 +192,14 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(uint);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // long
-                else if(typeof(T) == typeof(long))
+                else if (typeof(T) == typeof(long))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToInt64(_buffer, _position);
@@ -192,14 +207,14 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(long);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // ulong
-                else if(typeof(T) == typeof(ulong))
+                else if (typeof(T) == typeof(ulong))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToUInt64(_buffer, _position);
@@ -207,14 +222,14 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(ulong);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // float
-                else if(typeof(T) == typeof(float))
+                else if (typeof(T) == typeof(float))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToSingle(_buffer, _position);
@@ -222,14 +237,14 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(float);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // double
-                else if(typeof(T) == typeof(double))
+                else if (typeof(T) == typeof(double))
                 {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToDouble(_buffer, _position);
@@ -237,14 +252,14 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(double);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // char
                 else if (typeof(T) == typeof(char))
-                {               
+                {
                     // compare (buffer prefix) to (type prefix)
-                    if (!ValidPrefix(prefix)) return default;  
+                    if (!ValidPrefix(prefix)) return default;
 
                     // get encoded value
                     var value = BitConverter.ToChar(_buffer, _position);
@@ -252,7 +267,7 @@ namespace Byter
                     // skip bytes read
                     _position += sizeof(char);
 
-                    return (T)(object) value;
+                    return (T)(object)value;
                 }
 
                 // string
@@ -273,7 +288,7 @@ namespace Byter
 
             // string
             if (typeof(T) == typeof(string))
-            {               
+            {
                 // compare (buffer prefix) to (type prefix)
                 if (!ValidPrefix(prefix)) return default;
 
@@ -288,15 +303,15 @@ namespace Byter
 
                 // get encoded value
                 byte[] bytes = new byte[length];
-                Buffer.BlockCopy(_buffer, _position, bytes, 0, bytes.Length);               
-                
+                Buffer.BlockCopy(_buffer, _position, bytes, 0, bytes.Length);
+
                 // skip bytes read
                 _position += bytes.Length;
 
                 // convert bytes to string
                 string value = encode.GetString(bytes);
 
-                return (T)(object) value;
+                return (T)(object)value;
             }
 
             _success = false;
@@ -309,7 +324,7 @@ namespace Byter
         {
             // get char from buffer
             char signal = BitConverter.ToChar(_buffer, _position);
-            
+
             // compare (buffer prefix) to (type prefix)
             if (prefix == signal)
             {
@@ -317,7 +332,7 @@ namespace Byter
                 _position += sizeof(char);
                 return true;
             }
-            
+
             _success = false;
             return false;
         }
@@ -338,10 +353,10 @@ namespace Byter
         protected virtual void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
-            if(!this.disposed)
+            if (!this.disposed)
             {
                 // If disposing equals true, dispose all managed and unmanaged resources.
-                if(disposing)
+                if (disposing)
                 {
                     // Dispose managed resources.
 
@@ -357,13 +372,13 @@ namespace Byter
                 // Note disposing has been done.
                 disposed = true;
             }
-        }        
+        }
 
         ~Reader()
         {
             Dispose(disposing: false);
-        }        
-        
+        }
+
         #endregion
 
     }
