@@ -21,6 +21,7 @@ public class WriterTest
         Writer w = new();
 
         w.Write((byte) 255);
+        w.Write((bool) true);
         w.Write((byte[]) new byte[] { 1, 1, 1, 1 });
         w.Write((short) -1024);
         w.Write((ushort) 1024);
