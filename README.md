@@ -152,7 +152,7 @@ reader.Dispose(); // Destroy Reader
 - #### Nuget [SEE HERE](https://www.nuget.org/packages/Byter)
   ###### .NET CLI
   ```rb
-  dotnet add package Byter --version 1.0.0
+  dotnet add package Byter --version 1.1.0
   ```
   
 - #### Submodule
