@@ -1,16 +1,14 @@
 using System;
 using Byter;
+using System.Numerics;
 using Xunit;
 using Xunit.Abstractions;
 namespace ByterTest;
 
 public class ReaderTest
 {
-    public ReaderTest()
-    {
+    public ReaderTest() { }
 
-    }
-    
     [Fact]
     public void ReadByte()
     {
@@ -18,8 +16,8 @@ public class ReaderTest
         writer.Write((byte)255);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<byte>(); 
+
+        var result = reader.Read<byte>();
         Assert.Equal((byte)255, result);
         Assert.True(reader.Success);
     }
@@ -28,9 +26,9 @@ public class ReaderTest
     public void ReadBool()
     {
         Writer writer = new();
-        writer.Write(true);  // value 1
+        writer.Write(true); // value 1
         writer.Write(false); // value 2
-        writer.Write(true);  // value 3
+        writer.Write(true); // value 3
 
         Reader reader = new(ref writer);
 
@@ -54,8 +52,8 @@ public class ReaderTest
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<byte[]>(); 
+
+        var result = reader.Read<byte[]>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -63,14 +61,14 @@ public class ReaderTest
     [Fact]
     public void ReadShort()
     {
-        var target = (short) -255;
+        var target = (short)-255;
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<short>(); 
+
+        var result = reader.Read<short>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -78,14 +76,14 @@ public class ReaderTest
     [Fact]
     public void ReadUShort()
     {
-        var target = (ushort) 255;
+        var target = (ushort)255;
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<ushort>(); 
+
+        var result = reader.Read<ushort>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -93,14 +91,14 @@ public class ReaderTest
     [Fact]
     public void ReadInt()
     {
-        var target = (int) -255;
+        var target = (int)-255;
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<int>(); 
+
+        var result = reader.Read<int>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -108,14 +106,14 @@ public class ReaderTest
     [Fact]
     public void ReadUInt()
     {
-        var target = (uint) 255;
+        var target = (uint)255;
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<uint>(); 
+
+        var result = reader.Read<uint>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -123,14 +121,14 @@ public class ReaderTest
     [Fact]
     public void ReadLong()
     {
-        var target = (long) -255;
+        var target = (long)-255;
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<long>(); 
+
+        var result = reader.Read<long>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -138,14 +136,14 @@ public class ReaderTest
     [Fact]
     public void ReadULong()
     {
-        var target = (ulong) 255;
+        var target = (ulong)255;
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<ulong>(); 
+
+        var result = reader.Read<ulong>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -153,14 +151,14 @@ public class ReaderTest
     [Fact]
     public void ReadFloat()
     {
-        var target = (float) 255.255f;
+        var target = (float)255.255f;
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<float>(); 
+
+        var result = reader.Read<float>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -168,14 +166,14 @@ public class ReaderTest
     [Fact]
     public void ReadDouble()
     {
-        var target = (double) 255.255d;
+        var target = (double)255.255d;
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<double>(); 
+
+        var result = reader.Read<double>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -183,14 +181,14 @@ public class ReaderTest
     [Fact]
     public void ReadChar()
     {
-        var target = (char) 'A';
+        var target = (char)'A';
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<char>(); 
+
+        var result = reader.Read<char>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -198,14 +196,14 @@ public class ReaderTest
     [Fact]
     public void ReadString()
     {
-        var target = (string) "1234.1234.1234.1234";
+        var target = (string)"1234.1234.1234.1234";
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
-        
-        var result = reader.Read<string>(); 
+
+        var result = reader.Read<string>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -220,7 +218,7 @@ public class ReaderTest
 
         Reader reader = new(writer.GetBytes());
 
-        var result = reader.Read<int>(); 
+        var result = reader.Read<int>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
 
@@ -228,6 +226,20 @@ public class ReaderTest
         Assert.NotEqual(2, result2);
         Assert.Equal((long)default, result2);
         Assert.False(reader.Success);
+    }
 
+    [Fact]
+    public void ReadVector2()
+    {
+        var target = new Vector2(1, 2);
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+
+        var result = reader.Read<Vector2>();
+        Assert.Equal(target * MathF.PI, result * MathF.PI);
+        Assert.True(reader.Success);
     }
 }
