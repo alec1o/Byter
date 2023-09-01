@@ -1,9 +1,9 @@
 using System;
 using System.Text;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using Byter.Core.Interface;
+using System.Numerics;
 
 namespace Byter
 {
@@ -142,6 +142,12 @@ namespace Byter
             Save(prefix, BitConverter.GetBytes(bytes.Length), bytes);
         }
 
+        public void Write(Vector2 value)
+        {
+            char prefix = GetPrefix(value);
+            Save(prefix, BitConverter.GetBytes(value.X), BitConverter.GetBytes(value.Y));
+        }
+
         #endregion
 
         #region Dispose
@@ -207,20 +213,21 @@ namespace Byter
 
         internal static char GetPrefix(Type type)
         {
-            if (type == typeof(byte))        /*  byte    */ return 'A';
-            else if (type == typeof(byte[])) /*  byte[]  */ return 'B';
-            else if (type == typeof(short))  /*  short   */ return 'C';
-            else if (type == typeof(ushort)) /*  ushort  */ return 'D';
-            else if (type == typeof(int))    /*  int     */ return 'E';
-            else if (type == typeof(uint))   /*  uint    */ return 'F';
-            else if (type == typeof(long))   /*  long    */ return 'G';
-            else if (type == typeof(ulong))  /*  ulong   */ return 'H';
-            else if (type == typeof(float))  /*  float   */ return 'I';
-            else if (type == typeof(double)) /*  double  */ return 'J';
-            else if (type == typeof(char))   /*  char    */ return 'K';
-            else if (type == typeof(string)) /*  string  */ return 'L';
-            else if (type == typeof(bool))   /*  bool    */ return 'M';
-            else                             /*  null    */ return '0';
+            if (type == typeof(byte))           /*  byte    */ return 'A';
+            else if (type == typeof(byte[]))    /*  byte[]  */ return 'B';
+            else if (type == typeof(short))     /*  short   */ return 'C';
+            else if (type == typeof(ushort))    /*  ushort  */ return 'D';
+            else if (type == typeof(int))       /*  int     */ return 'E';
+            else if (type == typeof(uint))      /*  uint    */ return 'F';
+            else if (type == typeof(long))      /*  long    */ return 'G';
+            else if (type == typeof(ulong))     /*  ulong   */ return 'H';
+            else if (type == typeof(float))     /*  float   */ return 'I';
+            else if (type == typeof(double))    /*  double  */ return 'J';
+            else if (type == typeof(char))      /*  char    */ return 'K';
+            else if (type == typeof(string))    /*  string  */ return 'L';
+            else if (type == typeof(bool))      /*  bool    */ return 'M';
+            else if (type == typeof(Vector2))   /*  Vector2 */ return 'N';
+            else                                /*  null    */ return '0';
         }
 
     }
