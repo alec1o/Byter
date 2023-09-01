@@ -1,9 +1,7 @@
 using System;
 using System.Text;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using Byter.Core.Interface;
+using System.Numerics;
 
 namespace Byter
 {
@@ -275,6 +273,27 @@ namespace Byter
                 {
                     return Read<T>(Encoding.UTF8);
                 }
+
+                // Vector2
+                else if (typeof(T) == typeof(Vector2))
+                {
+                    // compare (buffer prefix) to (type prefix)
+                    if (!ValidPrefix(prefix)) return default;
+
+                    // get encoded value
+                    var x = BitConverter.ToSingle(_buffer, _position);
+
+                    // skip x bytes read
+                    _position += sizeof(float);
+
+                    // get encoded value
+                    var y = BitConverter.ToSingle(_buffer, _position);
+
+                    // skip y bytes read
+                    _position += sizeof(float);
+
+                    return (T)(object)new Vector2(x, y);
+                }
             }
             catch { }
 
@@ -380,6 +399,5 @@ namespace Byter
         }
 
         #endregion
-
     }
 }
