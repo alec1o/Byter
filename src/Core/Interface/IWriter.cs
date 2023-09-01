@@ -1,6 +1,5 @@
-using System;
 using System.Text;
-using System.Collections;
+using System.Numerics;
 using System.Collections.Generic;
 
 namespace Byter.Core.Interface
@@ -25,6 +24,7 @@ namespace Byter.Core.Interface
         void Write(char a);
         void Write(string a);        
         void Write(string a, Encoding b);
+        void Write(Vector2 a);
 
         void Clear();
     }
