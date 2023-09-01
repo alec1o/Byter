@@ -9,7 +9,7 @@ using Byter
 ```
 #### Types
 ```css
-byte, bool, byte[], short, ushort, int, uint, long, ulong, float, double, char, string
+byte, bool, byte[], short, ushort, int, uint, long, ulong, float, double, char, string, Vector2
 ```
 
 - #### Writer
