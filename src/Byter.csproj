@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\"/>
-		<None Include="..\LICENSE.md" Pack="true" PackagePath="\"/>
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\LICENSE.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>netstandard2.1</TargetFramework>
 		<PackageId>Byter</PackageId>
-		<Version>1.1.0</Version>
+		<Version>1.2.0</Version>
 		<Authors>alec1o</Authors>
 		<Company>alec1o</Company>
 		<Copyright>alec1o</Copyright>
@@ -19,8 +19,9 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageReleaseNotes>
-			+ Reader bool type
-			+ Writer bool type
+			+ Read Vector2 type
+			+ Write Vector2 type
+			+ Improve .NET standard 2.0 to 2.1
 		</PackageReleaseNotes>
 		<Description>
 			Byte parse. Convert byte to object and object to byte
@@ -29,6 +30,7 @@
 			Sample: https://github.com/alec1o/Byter/blob/main/README.md
 			Fork me: https://github.com/alec1o/Byter
 		</Description>
+		<Title>Byter</Title>
 	</PropertyGroup>
 
 </Project>
