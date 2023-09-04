@@ -1,6 +1,5 @@
 using System;
 using Byter;
-using System.Numerics;
 using Xunit;
 using Xunit.Abstractions;
 namespace ByterTest;
@@ -229,16 +228,16 @@ public class ReaderTest
     }
 
     [Fact]
-    public void ReadVector2()
+    public void ReadFloat2()
     {
-        var target = new Vector2(1, 2);
+        var target = new Float2(1, 2);
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
 
-        var result = reader.Read<Vector2>();
+        var result = reader.Read<Float2>();
         Assert.Equal(target * MathF.PI, result * MathF.PI);
         Assert.True(reader.Success);
     }
