@@ -1,7 +1,6 @@
 using System;
 using System.Text;
 using Byter.Core.Interface;
-using System.Numerics;
 
 namespace Byter
 {
@@ -274,8 +273,8 @@ namespace Byter
                     return Read<T>(Encoding.UTF8);
                 }
 
-                // Vector2
-                else if (typeof(T) == typeof(Vector2))
+                // Float2
+                else if (typeof(T) == typeof(Float2))
                 {
                     // compare (buffer prefix) to (type prefix)
                     if (!ValidPrefix(prefix)) return default;
@@ -292,7 +291,7 @@ namespace Byter
                     // skip y bytes read
                     _position += sizeof(float);
 
-                    return (T)(object)new Vector2(x, y);
+                    return (T)(object)new Float2(x, y);
                 }
             }
             catch { }
