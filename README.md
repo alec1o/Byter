@@ -8,8 +8,25 @@
 using Byter
 ```
 #### Types
-```css
-byte, bool, byte[], short, ushort, int, uint, long, ulong, float, double, char, string, Vector2
+```ts
+[
+  `byte`,
+  `bool`,
+  `byte[]`,
+  `short`,
+  `ushort`,
+  `int`,
+  `uint`,
+  `long`,
+  `ulong`,
+  `float`,
+  `double`,
+  `char`,
+  `string`,
+  `Float2` (Vector2),
+  `Float3` (Vector3),
+  `Float4` (Vector4 / Quaternion),
+]
 ```
 
 - #### Writer
