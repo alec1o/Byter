@@ -12,7 +12,7 @@ namespace Byter
             this.W = w;
         }
     
-        public override ToString()
+        public override string ToString()
         {
             return $"({X}, {Y}, {Z}, {W})";
         }
