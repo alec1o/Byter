@@ -1,6 +1,19 @@
 # Byter
 Byter is a bytes serializer. It can serialize and deserialize from primitive type.
 
+<br><hr><br>
+
+## Install
+- #### Nuget [SEE HERE](https://www.nuget.org/packages/Byter)
+  ###### .NET CLI
+  ```rb
+  dotnet add package Byter --version 1.2.0
+  ```
+  ###### Git submodule
+  See how add as git submodule? See on bottom of this docs
+
+<br><hr/>
+
 ## Usage
 
 #### Namespace
@@ -31,7 +44,18 @@ using Byter
 
 <hr/>
 
+
 ## Writer
+> Constructor
+-
+  ```cs
+  _ = new Writer();                          // Create default instance
+  _ = new Writer(new Writer());              // Create instance and copy from existing Writer
+  _ = new Writer(ref new Writer());          // Create instance and copy from existing Writer (using ref)
+  ```
+
+<br>
+
 > Proprietary
   - #### ``Length``
     ```cs
@@ -104,6 +128,16 @@ using Byter
 <hr>
 
 ## Reader
+> Constructor
+-
+  ```cs
+  _ = new Reader(new Writer());               // Create instance and copy buffer from existing Writer
+  _ = new Reader(ref new Writer());           // Create instance and copy buffer from existing Writer (ref Writer)
+  _ = new Reader(new byte[] { 1, 1, 1, 1 });  // Create instance from buffer (bytes (byte[]))
+  ```
+
+<br/>
+
 > Proprietary
   - #### ``Length``
     ```cs
@@ -116,7 +150,7 @@ using Byter
     int lenght = r.Length; 
     ```
 
-  - #### ``Position ``
+  - #### ``Position``
     ```cs
     using Byter;
 
@@ -127,7 +161,7 @@ using Byter
     int position = r.Position; 
     ```
     
-- #### ``Successs ``
+- #### ``Success``
     ```cs
     using Byter;
 
@@ -140,9 +174,13 @@ using Byter
     // return false when have any error on read values;
     bool success = r.Success; 
     ```
+    - ###### WARNING
+      Internally, before data is written a prefix is added in front of it, so when reading it always compares the prefix of the (data type) you want to read with the strings in the read buffer. if the prefixes do not match then o (Reader. Success = False), eg. If you write an (int) and try to read a float (Reader.Success = False) because the prefix of an (int) is different from that of a (float), it is recommended to read all the data and at the end check the success, if it is (Reader.Success = False) then one or more data is corrupt. This means that Writer and Reader add dipping to your write and read data.
+
+<br/>
 
 > Methods
-  - #### ``Read<T>()``, ``Read<string>(Encoding encoding)``;
+  - #### ``Read<T>()`` ``Read<string>(Encoding encoding)``;
     ```cs
     using Byter;
   
@@ -193,86 +231,9 @@ using Byter
     // NEED READ LAST INT
     r.Seek(r.Position - sizeof(int) /* int size is 4 */);    
     int age3 = r.Read<int>(); age: 1024 (because i return 4bytes before old current value)
-    ``
+    ```
 
-- #### Writer
-  ```csharp
-  using Byter;
-  using System.Text;
-  
-  // Create instance
-  var w = new Writer();                          // Create default instance
-  _     = new Writer(new byte[] { 1, 1, 1, 1 }); // Create instance with default data
-  _     = new Writer(new Writer());              // Create instance and copy from existing Writer
-
-  // Write data
-  w.Write((char) 'A');                           // Write char
-  w.Write((int) 1024);                           // Write int 
-  w.Write((string) "Byter");                     // Write string
-  w.Write((string) "Byter", Encoding.ASCII);     // Write string
-  w.Write((byte[]) new byte[] { 1, 1, 1, 1 });   // Write bytes
-
-  // Output
-  byte[]      bytes = w.GetBytes();              // Get writes in Byte[]
-  List<byte>  list  = w.GetList();               // Get writes in List<byte>
-
-  // Other
-  int length = w.Length;                         // Returns the length of bytes written
-  w.Dispose();                                   // Destroy the Writer object
-
-  // Console output
-  Console.WriteLine($"Write length: {length}");
-  Console.WriteLine($"Write bytes[] length: {bytes.Length}");
-  Console.WriteLine($"Write List<byte> length: {list.Count}");
-  w.Clear();
-  Console.WriteLine($"Clear writer...");
-  Console.WriteLine($"Write length: {w.Length}");
-  ```
-
-- #### Reader
-  ```csharp
-  using Byter;
-  using System.Text;
-  
-  // Create sample input
-  var w = new Writer();
-  // Write sample datas
-  w.Write((int) 1024);
-  w.Write((byte) 255);
-  w.Write((string) "Byter");
-  w.Write((byte[]) new byte[] { 1, 1, 1, 1 }); 
-
-  // Create instance      
-  var r = new Reader(ref w);                     // Create instance and copy buffer from existing Writer
-  _     = new Reader(new byte[] { 1, 1, 1, 1 }); // Create instance with bytes (byte[])
-
-  // Read data
-  int     _int      = r.Read<int>();             // Output: 1024
-  byte    _byte     = r.Read<byte>();            // Output: 255
-  string  _string   = r.Read<string>();          // Output: "Byter"
-  byte[]  _bytes    = r.Read<byte[]>();          // Output: [ 1, 1, 1, 1 ]
-
-  // Output
-  bool success    = r.Success;                   // Returns success if there was no error retrieving the data
-
-  // Other
-  int position  = r.Position;                    // Return the read pointer position 
-  int length    = r.Length;                      // Returns the length of buffer
-  r.Seek(position);                              // Moves the read pointer to any existing index
-  r.Dispose();                                   // Destroy the Reader object
-
-  // Console output
-  Console.WriteLine($"Int       -> {_int}     ");
-  Console.WriteLine($"Byte      -> {_byte}    ");
-  Console.WriteLine($"String    -> {_string}  ");
-  Console.WriteLine($"Byte[]    -> {_bytes}   ");
-  Console.WriteLine($"Success   -> {success}  ");
-  Console.WriteLine($"Position  -> {position} ");
-  Console.WriteLine($"Length    -> {length}   ");
-  ```
-
-- #### Warning
-  Internally, before data is written a prefix is added in front of it, so when reading it always compares the prefix of the (data type) you want to read with the strings in the read buffer. if the prefixes do not match then o (Reader. Success = False), eg. If you write an (int) and try to read a float (Reader.Success = False) because the prefix of an (int) is different from that of a (float), it is recommended to read all the data and at the end check the success, if it is (Reader.Success = False) then one or more data is corrupt. This means that Writer and Reader add dipping to your write and read data.
+<br/><hr/><br/>
 
 #### Sample
 ```csharp
@@ -331,14 +292,9 @@ Console.WriteLine($"Status: {reader.Success}"); // output: False
 reader.Dispose(); // Destroy Reader
 ```
 
-## Install
-- #### Nuget [SEE HERE](https://www.nuget.org/packages/Byter)
-  ###### .NET CLI
-  ```rb
-  dotnet add package Byter --version 1.2.0
-  ```
-  
-- #### Submodule
+<br/><hr/><br/>
+
+#### Install using git submodule
   ```rb
   # Install - recommend a stable branch e.g. "1.x" or use a fork repository
   git submodule add --name byter --branch main https://github.com/alec1o/byter vendor/byter
