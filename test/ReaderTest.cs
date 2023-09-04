@@ -238,7 +238,7 @@ public class ReaderTest
         Reader reader = new(ref writer);
 
         var result = reader.Read<Float2>();
-        Assert.Equal(target * MathF.PI, result * MathF.PI);
+        Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
 }

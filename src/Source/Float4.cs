@@ -4,7 +4,7 @@ namespace Byter
     {
         public float X, Y, Z, W;
       
-        public Float2(float x, float y, float z, float w)
+        public Float4(float x, float y, float z, float w)
         {
             this.X = x;
             this.Y = y;

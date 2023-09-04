@@ -141,7 +141,7 @@ namespace Byter
             Save(prefix, BitConverter.GetBytes(bytes.Length), bytes);
         }
 
-        public void Write(Vector2 value)
+        public void Write(Float2 value)
         {
             char prefix = GetPrefix(value);
             Save(prefix, BitConverter.GetBytes(value.X), BitConverter.GetBytes(value.Y));
@@ -225,7 +225,7 @@ namespace Byter
             else if (type == typeof(char))      /*  char    */ return 'K';
             else if (type == typeof(string))    /*  string  */ return 'L';
             else if (type == typeof(bool))      /*  bool    */ return 'M';
-            else if (type == typeof(2))   /*  Vector2 */ return 'N';
+            else if (type == typeof(Float2))    /*  Float2  */ return 'N';
             else                                /*  null    */ return '0';
         }
 
