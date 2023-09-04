@@ -10,7 +10,7 @@ namespace Byter
             this.Y = y;
         }
     
-        public override ToString()
+        public override string ToString()
         {
             return $"({X}, {Y})";
         }
