@@ -1,5 +1,5 @@
 # Byter
-#### Byte parse. Convert byte to object and object to byte
+Byter is a bytes serializer. It can serialize and deserialize from primitive type.
 
 ## Usage
 
@@ -28,6 +28,107 @@ using Byter
   `Float4` (Vector4 / Quaternion),
 ]
 ```
+
+<hr/>
+
+## Reader
+> Proprietary
+  - #### ``Length``
+    ```cs
+    using Byter;
+
+    var w = new Writer();
+
+    // Get lenght of buffer
+    int lenght = w.Length; 
+    ```
+
+<br/>
+
+> Methods
+  - #### ``Write(dynamic value)``
+    ```cs
+    using Byter;
+  
+    // Create writer instance;
+    using var w = new Writer();
+    
+    // Write string
+    w.Write("KEZERO");
+  
+    // Write char
+    w.Write('K');
+  
+    // Write Float3 (Vector3)
+    w.Write(new Float3(10F, 10F, 10F));
+  
+    // Get bytes (buffer)
+    byte[] buffer = w.GetBytes();
+  
+    // Get byte list (buffer)
+    List<byte> bytes = w.GetList();
+    ```
+  
+  - #### ``GetBytes()``
+    ```cs
+    using Byter;
+  
+    var w = new Writer();
+  
+    // Return buffer on <Writer> instance 
+    byte[] buffer = w.GetBytes();
+    ```
+  
+  - #### ``GetList()``
+    ```cs
+    using Byter;
+  
+    var w = new Writer();
+  
+    // Return buffer on <Writer> instance as byte list 
+    List<byte> bytes = w.GetList();
+    ```
+
+  - #### ``Clear()``
+    ```cs
+    using Byter;
+
+    var w = new Writer();
+    w.Write((int)1000);
+    w.Write((float)100f);
+
+    // Clear internal buffer and reset internal index
+    w.Clear();
+    ```
+
+
+- #### ``Reader.Read<T>(T type)``
+  ```cs
+  using Byter;
+
+  byte[] buffer = ...;
+
+  // Create reader instance
+  using r = new Reader(buffer);
+
+  string name = r.Read<string>();
+  char firstLatter = r.Read<char>();
+  Float3 position = r.Read<Float3>();
+
+  // Check if is success
+  if (r.Success)
+  {
+      Console.WriteLine($"Name: {name}");
+      Console.WriteLine($"First Latter: {firstLatter}");
+      Console.WriteLine($"Position: {position}");
+  }
+  else
+  {
+      Console.WriteLine("Error on get data");
+  }
+  ```
+
+
 
 - #### Writer
   ```csharp
