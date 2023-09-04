@@ -31,7 +31,7 @@ using Byter
 
 <hr/>
 
-## Reader
+## Writer
 > Proprietary
   - #### ``Length``
     ```cs
@@ -101,34 +101,99 @@ using Byter
     w.Clear();
     ```
 
+<hr>
 
-- #### ``Reader.Read<T>(T type)``
-  ```cs
-  using Byter;
+## Reader
+> Proprietary
+  - #### ``Length``
+    ```cs
+    using Byter;
 
-  byte[] buffer = ...;
+    byte[] buffer = ...;
+    var r = new Reader(buffer);
 
-  // Create reader instance
-  using r = new Reader(buffer);
+    // Get lenght of buffer
+    int lenght = r.Length; 
+    ```
 
-  string name = r.Read<string>();
-  char firstLatter = r.Read<char>();
-  Float3 position = r.Read<Float3>();
+  - #### ``Position ``
+    ```cs
+    using Byter;
 
-  // Check if is success
-  if (r.Success)
-  {
-      Console.WriteLine($"Name: {name}");
-      Console.WriteLine($"First Latter: {firstLatter}");
-      Console.WriteLine($"Position: {position}");
-  }
-  else
-  {
-      Console.WriteLine("Error on get data");
-  }
-  ```
+    byte[] buffer = ...;
+    var r = new Reader(buffer);
 
+    // return current index of readed buffer
+    int position = r.Position; 
+    ```
+    
+- #### ``Successs ``
+    ```cs
+    using Byter;
 
+    byte[] buffer = ...;
+    var r = new Reader(buffer);
+    string name = r.Read<string>();
+    int age = r.Read<int>();
+    
+    // return true if not exist problem on read values.
+    // return false when have any error on read values;
+    bool success = r.Success; 
+    ```
+
+> Methods
+  - #### ``Read<T>()``, ``Read<string>(Encoding encoding)``;
+    ```cs
+    using Byter;
+  
+    byte[] buffer = ...;
+  
+    // Create reader instance
+    using r = new Reader(buffer);
+  
+    string name = r.Read<string>();
+    char firstLatter = r.Read<char>();
+    Float3 position = r.Read<Float3>();
+  
+    // Check if is success
+    if (r.Success)
+    {
+        Console.WriteLine($"Name: {name}");
+        Console.WriteLine($"First Latter: {firstLatter}");
+        Console.WriteLine($"Position: {position}");
+    }
+    else
+    {
+        Console.WriteLine("Error on get data");
+    }
+    ```
+
+  - #### ``Seek(int position)``;
+    ```cs
+    using Byter;
+
+    using var w = new Writer();
+    w.Write("KEZERO");
+    w.Write((int) 1024);
+
+    using var r = new Reader(ref w);
+
+    string name = r.Read<string>(); // name: KEZERO
+    int age = r.Read<int>(); // age: 1024
+    
+    // Move index (Reader.Position) for target value "MIN VALUE IS 0";
+    r.Seek(10); // move current index for read for 10 (when start read using .Read<Type> will start read on 10 index from buffer);
+
+    // Reset internal position
+    r.Seek(0);
+
+    string name2 = r.Read<string>(); // name: KEZERO (because the start index of this string on buffer is 0)
+    int age2 = r.Read<int>(); age: 1024;
+
+    // NEED READ LAST INT
+    r.Seek(r.Position - sizeof(int) /* int size is 4 */);    
+    int age3 = r.Read<int>(); age: 1024 (because i return 4bytes before old current value)
+    ``
 
 - #### Writer
   ```csharp
