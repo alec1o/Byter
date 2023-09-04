@@ -11,20 +11,20 @@ namespace Byter.Core.Interface
         byte[] GetBytes();
         List<byte> GetList();
 
-        void Write(byte a);
-        void Write(byte[] a);
-        void Write(short a);
-        void Write(ushort a);
-        void Write(int a);
-        void Write(uint a);
-        void Write(long a);
-        void Write(ulong a);
-        void Write(float a);
-        void Write(double a);
-        void Write(char a);
-        void Write(string a);        
-        void Write(string a, Encoding b);
-        void Write(Vector2 a);
+        void Write(byte value);
+        void Write(byte[] value);
+        void Write(short value);
+        void Write(ushort value);
+        void Write(int value);
+        void Write(uint value);
+        void Write(long value);
+        void Write(ulong value);
+        void Write(float value);
+        void Write(double value);
+        void Write(char value);
+        void Write(string value);        
+        void Write(string value1, Encoding value2);
+        void Write(Float2 value);
 
         void Clear();
     }
