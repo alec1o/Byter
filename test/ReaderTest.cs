@@ -8,6 +8,8 @@ public class ReaderTest
     private const float FLOAT_X = 1024 * 2;
     private const float FLOAT_Y = 1024 * 4;
     private const float FLOAT_Z = 1024 * 6;
+    private const float FLOAT_W = 1024 * 8;
+
     public ReaderTest() { }
 
     [Fact]
@@ -276,5 +278,16 @@ public class ReaderTest
         Assert.Equal(FLOAT_X, result.X);
         Assert.Equal(FLOAT_Y, result.Y);
         Assert.Equal(FLOAT_Z, result.Z);
+    }
+    
+    [Fact]
+    public void ImplFloat4()
+    {
+        var result = new Float4(FLOAT_X, FLOAT_Y, FLOAT_Z, FLOAT_W);
+
+        Assert.Equal(FLOAT_X, result.X);
+        Assert.Equal(FLOAT_Y, result.Y);
+        Assert.Equal(FLOAT_Z, result.Z);
+        Assert.Equal(FLOAT_W, result.W);
     }
 }
