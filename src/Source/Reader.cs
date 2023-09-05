@@ -320,6 +320,40 @@ namespace Byter
 
                     return (T)(object)new Float3(x, y, z);
                 }
+
+                // Float4
+                else if (typeof(T) == typeof(Float4))
+                {
+                    // compare (buffer prefix) to (type prefix)
+                    if (!ValidPrefix(prefix)) return default;
+
+                    // get encoded value
+                    var x = BitConverter.ToSingle(_buffer, _position);
+
+                    // skip x bytes read
+                    _position += sizeof(float);
+
+                    // get encoded value
+                    var y = BitConverter.ToSingle(_buffer, _position);
+
+                    // skip y bytes read
+                    _position += sizeof(float);
+
+                    // get encoded value
+                    var z = BitConverter.ToSingle(_buffer, _position);
+
+                    // skip y bytes read
+                    _position += sizeof(float);
+                    
+                    
+                    // get encoded value
+                    var w = BitConverter.ToSingle(_buffer, _position);
+
+                    // skip y bytes read
+                    _position += sizeof(float);
+
+                    return (T)(object)new Float4(x, y, z, w);
+                }
             }
             catch { }
 

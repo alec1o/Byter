@@ -159,6 +159,19 @@ namespace Byter
             );
         }
 
+        public void Write(Float4 value)
+        {
+            char prefix = GetPrefix(value);
+            Save
+            (
+                prefix,
+                BitConverter.GetBytes(value.X),
+                BitConverter.GetBytes(value.Y),
+                BitConverter.GetBytes(value.Z),
+                BitConverter.GetBytes(value.W)
+            );
+        }
+
         #endregion
 
         #region Dispose
@@ -245,6 +258,7 @@ namespace Byter
             else if (type == typeof(bool))      /*  bool    */ return 'M';
             else if (type == typeof(Float2))    /*  Float2  */ return 'N';
             else if (type == typeof(Float3))    /*  Float3  */ return 'O';
+            else if (type == typeof(Float4))    /*  Float4  */ return 'P';
             else                                /*  null    */ return '0';
         }
 
