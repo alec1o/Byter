@@ -7,7 +7,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<PackageId>Byter</PackageId>
-		<Version>1.2.0</Version>
+		<Version>2.0</Version>
 		<Authors>alec1o</Authors>
 		<Company>alec1o</Company>
 		<Copyright>alec1o</Copyright>
@@ -19,9 +19,11 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageReleaseNotes>
-			+ Read Vector2 type
-			+ Write Vector2 type
-			+ Improve .NET standard 2.0 to 2.1
+			+ Add Float2 struct (Vector2)
+			+ Add Float3 struct (Vector3)
+			+ Add Float4 struct (Vector4 / Quaternion)
+			+ Downgrade .NET standard 2.1 to 2.0
+			+ New docs
 		</PackageReleaseNotes>
 		<Description>
 			Byte parse. Convert byte to object and object to byte
