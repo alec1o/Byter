@@ -1,11 +1,12 @@
 using System;
 using Byter;
 using Xunit;
-using Xunit.Abstractions;
 namespace ByterTest;
 
 public class ReaderTest
 {
+    private const float FLOAT_X = 1024 * 2;
+    private const float FLOAT_Y = 1024 * 4;
     public ReaderTest() { }
 
     [Fact]
@@ -255,5 +256,14 @@ public class ReaderTest
         var result = reader.Read<Float3>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
+    }
+
+    [Fact]
+    public void ImplFloat2()
+    {
+        var result = new Float2(FLOAT_X, FLOAT_Y);
+
+        Assert.Equal(FLOAT_X, result.X);
+        Assert.Equal(FLOAT_Y, result.Y);
     }
 }
