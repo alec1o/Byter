@@ -147,6 +147,18 @@ namespace Byter
             Save(prefix, BitConverter.GetBytes(value.X), BitConverter.GetBytes(value.Y));
         }
 
+        public void Write(Float3 value)
+        {
+            char prefix = GetPrefix(value);
+            Save
+            (
+                prefix,
+                BitConverter.GetBytes(value.X),
+                BitConverter.GetBytes(value.Y),
+                BitConverter.GetBytes(value.Z)
+            );
+        }
+
         #endregion
 
         #region Dispose
@@ -192,20 +204,26 @@ namespace Byter
 
         #endregion
 
-        private void Save(char prefix, byte[] value, byte[] value2 = null)
+        private void Save(char prefix, params byte[][] values)
         {
-            if (value == null || value.Length <= 0) return;
-
-            byte[] p = BitConverter.GetBytes(prefix);
-
-            _list.Add(p);
-            _list.Add(value);
-            if (value2 != null)
+            if (values == null || values.Length <= 0 || values[0] == null || values[0].Length <= 0)
             {
-                _list.Add(value2);
-                _length += value2.Length;
+                return;
             }
-            _length += p.Length + value.Length;
+
+            #region ADD PREFIX            
+
+            byte[] _prefix = BitConverter.GetBytes(prefix);
+            _list.Add(_prefix);
+            _length += _prefix.Length;
+            
+            #endregion
+            
+            foreach (var value in values)
+            {
+                _list.Add(value);
+                _length += value.Length;
+            }
         }
 
         internal static char GetPrefix(object obj) => GetPrefix(obj.GetType());
@@ -226,6 +244,7 @@ namespace Byter
             else if (type == typeof(string))    /*  string  */ return 'L';
             else if (type == typeof(bool))      /*  bool    */ return 'M';
             else if (type == typeof(Float2))    /*  Float2  */ return 'N';
+            else if (type == typeof(Float3))    /*  Float3  */ return 'O';
             else                                /*  null    */ return '0';
         }
 

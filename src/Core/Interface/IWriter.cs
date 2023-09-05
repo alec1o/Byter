@@ -25,6 +25,7 @@ namespace Byter.Core.Interface
         void Write(string value);        
         void Write(string value1, Encoding value2);
         void Write(Float2 value);
+        void Write(Float3 value);
 
         void Clear();
     }

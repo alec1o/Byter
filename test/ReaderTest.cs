@@ -241,4 +241,19 @@ public class ReaderTest
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
+
+    [Fact]
+    public void ReadFloat3()
+    {
+        var target = new Float3(1, 2, 3);
+
+        Writer writer = new();
+        writer.Write(target);
+
+        Reader reader = new(ref writer);
+
+        var result = reader.Read<Float3>();
+        Assert.Equal(target, result);
+        Assert.True(reader.Success);
+    }
 }
