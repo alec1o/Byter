@@ -7,7 +7,7 @@ Byter is a bytes serializer. It can serialize and deserialize from primitive typ
 - #### Nuget [SEE HERE](https://www.nuget.org/packages/Byter)
   ###### .NET CLI
   ```rb
-  dotnet add package Byter --version 1.2.0
+  dotnet add package Byter --version 2.0
   ```
   ###### Git submodule
   See how add as git submodule? See on bottom of this docs
