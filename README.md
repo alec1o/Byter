@@ -229,7 +229,7 @@ using Byter
     int age2 = r.Read<int>(); age: 1024;
 
     // NEED READ LAST INT
-    r.Seek(r.Position - sizeof(int) /* int size is 4 */);    
+    r.Seek(r.Position - sizeof(int) + sizeof(char) /* int size is 4 + char size is 2. The 2 bytes is overhead of protocol */);    
     int age3 = r.Read<int>(); age: 1024 (because i return 4bytes before old current value)
     ```
 
