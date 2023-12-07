@@ -1,7 +1,7 @@
 # Byter
 Byter is a bytes serializer. It can serialize and deserialize from primitive type. 
 
-> ###### Byter is very stable, extremely fast and inexpensive (2 bytes ``sizeof(char)`` of overhead per data written) and ``100%`` written in ``C#``
+> ###### Byter is very stable, super easy to learn, extremely fast and inexpensive (2 bytes or ``sizeof(char)`` of overhead per data written) and ``100%`` written in ``C#`` and it's FREE!
 
 <br><hr><br>
 
