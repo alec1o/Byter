@@ -22,5 +22,11 @@ namespace Byter
             if (string.IsNullOrWhiteSpace(content)) return content;
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(content);
         }
+
+        public static string ToUpperCase(this string content)
+        {
+            if (string.IsNullOrWhiteSpace(content)) return content;
+            return CultureInfo.CurrentCulture.TextInfo.ToUpper(content);
+        }
     }
 }
