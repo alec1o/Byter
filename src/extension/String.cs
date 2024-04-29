@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 
 namespace Byter
@@ -14,6 +15,12 @@ namespace Byter
         public static byte[] GetBytes(this string content, Encoding encoding)
         {
             return encoding.GetBytes(content);
+        }
+
+        public static string ToCapitalize(this string content)
+        {
+            if (string.IsNullOrWhiteSpace(content)) return content;
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(content);
         }
     }
 }
