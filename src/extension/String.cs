@@ -6,6 +6,10 @@ namespace Byter
     {
         public static Encoding Default { get; set; } = Encoding.UTF8;
 
+        public static byte[] GetBytes(this string content)
+        {
+            return Default.GetBytes(content);
+        }
 
     }
 }
