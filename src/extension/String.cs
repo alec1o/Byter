@@ -11,5 +11,9 @@ namespace Byter
             return Default.GetBytes(content);
         }
 
+        public static byte[] GetBytes(this string content, Encoding encoding)
+        {
+            return encoding.GetBytes(content);
+        }
     }
 }
