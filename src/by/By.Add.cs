@@ -91,6 +91,12 @@ namespace Byter
                     buffer = BitConverter.GetBytes((sbyte)-1);
                     break;
                 }
+                case Types.Decimal:
+                {
+                    // TODO: create own implementation to be 100% precise
+                    buffer = BitConverter.GetBytes(Decimal.ToOACurrency((decimal)data));
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
