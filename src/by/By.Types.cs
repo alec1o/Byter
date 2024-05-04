@@ -51,6 +51,7 @@ namespace Byter
             Class = TypesPrefix + 19,
             Struct = TypesPrefix + 20,
             Array = TypesPrefix + 21,
+            DateTime = TypesPrefix + 22,
         };
     }
 }

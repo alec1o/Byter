@@ -31,6 +31,7 @@ namespace Byter
             if (type.IsClass) return Types.Class;
             if (type.IsConstructedGenericType) return Types.Struct;
             if (type.IsArray) return Types.Array;
+            if (type == typeof(DateTime)) return Types.DateTime;
             
             throw new NotImplementedException($"[{nameof(By)}.{nameof(Hash)}] Error: {type} Isn't implemented");
         }
