@@ -34,7 +34,10 @@ namespace Byter
                 }
                 case Types.Bytes:
                 {
-                    buffer.AddRange((byte[])data);
+                    var bytes = (byte[])data;
+                    var size = BitConverter.GetBytes(bytes.Length);
+                    buffer.AddRange(size);
+                    buffer.AddRange(bytes);
                     break;
                 }
                 case Types.Float:
