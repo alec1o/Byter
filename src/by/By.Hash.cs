@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Numerics;
 
 namespace Byter
@@ -30,6 +31,7 @@ namespace Byter
             if (type == typeof(BigInteger)) return Types.BigInteger;
             if (type.IsClass) return Types.Class;
             if (type.IsValueType && !type.IsEnum && !type.IsPrimitive) return Types.Struct;
+            if (type == typeof(ICollection)) return Types.List;
             if (type.IsArray) return Types.Array;
             if (type == typeof(DateTime)) return Types.DateTime;
 
