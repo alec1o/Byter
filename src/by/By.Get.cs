@@ -227,7 +227,7 @@ namespace Byter
                 }
 
                 default:
-                    throw new NotImplementedException();
+                    throw new NotImplementedException($"{type}");
             }
         }
     }
