@@ -140,6 +140,17 @@ namespace Byter
 
                     return value;
                 }
+                case Types.Sbyte:
+                {
+                    if (!IsValidPrefix(type, sizeof(sbyte))) return default;
+
+                    value = (T)(object)(sbyte)_vault[GetIndex()];
+
+                    AddIndex(sizeof(sbyte));
+
+                    return value;
+                }
+
                 case Types.Null:
                 {
                     if (!IsValidPrefix(type, sizeof(sbyte))) return default;
@@ -174,6 +185,7 @@ namespace Byter
                     return value;
                 }
 
+                case Types.String:
 
                 default:
                     throw new NotImplementedException();
