@@ -50,6 +50,11 @@ namespace Byter
                     buffer.AddRange(BitConverter.GetBytes((int)data));
                     break;
                 }
+                case Types.Uint:
+                {
+                    buffer.AddRange(BitConverter.GetBytes((uint)data));
+                    break;
+                }
                 case Types.Ulong:
                 {
                     buffer.AddRange(BitConverter.GetBytes((ulong)data));
