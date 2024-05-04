@@ -86,6 +86,17 @@ namespace Byter
                     return value;
                 }
 
+                case Types.Char:
+                {
+                    if (!IsValidPrefix(type, sizeof(char))) return default;
+
+                    value = (T)(object)BitConverter.ToChar(Buffer, GetIndex());
+
+                    AddIndex(sizeof(char));
+
+                    return value;
+                }
+
                     {
                         IsValid = false;
                         return default;
