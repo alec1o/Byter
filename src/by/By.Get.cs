@@ -230,5 +230,33 @@ namespace Byter
                     throw new NotImplementedException($"{type}");
             }
         }
+
+        private bool IsValidPrefix(Types type, int size)
+        {
+            if (Index + size + sizeof(sbyte) > _vault.Count)
+            {
+                IsValid = false;
+                return false;
+            }
+
+            Types target = (Types)(sbyte)_vault[Index];
+            if (type != target)
+            {
+                IsValid = false;
+                return false;
+            }
+
+            return true;
+        }
+
+        private void AddIndex(int size)
+        {
+            Index += sizeof(sbyte) + size;
+        }
+
+        private int GetIndex()
+        {
+            return Index + sizeof(sbyte);
+        }
     }
 }
