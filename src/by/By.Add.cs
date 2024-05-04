@@ -61,6 +61,11 @@ namespace Byter
                     buffer = BitConverter.GetBytes((short)data);
                     break;
                 }
+                case Types.Sbyte:
+                {
+                    buffer = BitConverter.GetBytes((sbyte)data);
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
