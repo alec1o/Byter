@@ -10,12 +10,6 @@ namespace Byter
         public int Index { get; private set; }
         public bool IsValid { get; private set; }
         public byte[] Buffer => _vault.ToArray();
-        public void Reset()
-        {
-            Index = 0;
-            IsValid = true;
-        }
-
         public void Add<T>(T value)
         {
             throw new System.NotImplementedException();
