@@ -71,6 +71,11 @@ namespace Byter
                     buffer = ((BigInteger)data).ToByteArray();
                     break;
                 }
+                case Types.Long:
+                {
+                    buffer = BitConverter.GetBytes((long)data);
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
