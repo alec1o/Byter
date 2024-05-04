@@ -72,7 +72,7 @@ namespace Byter
                 }
                 case Types.Sbyte:
                 {
-                    buffer.AddRange(BitConverter.GetBytes((sbyte)data));
+                    buffer.Add((byte)(sbyte)data);
                     break;
                 }
                 case Types.BigInteger:
