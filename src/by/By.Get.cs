@@ -53,6 +53,17 @@ namespace Byter
 
                     return value;
                 }
+
+                case Types.Long:
+                {
+                    if (!IsValidPrefix(type, sizeof(long))) return default;
+
+                    value = (T)(object)BitConverter.ToInt64(Buffer, GetIndex());
+
+                    AddIndex(sizeof(long));
+
+                    return value;
+                }
                     {
                         IsValid = false;
                         return default;
