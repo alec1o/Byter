@@ -140,6 +140,26 @@ namespace Byter
 
                     return value;
                 }
+
+                case Types.Decimal:
+                {
+                    if (!IsValidPrefix(type, sizeof(int) * 4)) return default;
+
+                    int[] bits =
+                    {
+                        BitConverter.ToInt32(Buffer, GetIndex() + (sizeof(int) * 0)),
+                        BitConverter.ToInt32(Buffer, GetIndex() + (sizeof(int) * 1)),
+                        BitConverter.ToInt32(Buffer, GetIndex() + (sizeof(int) * 2)),
+                        BitConverter.ToInt32(Buffer, GetIndex() + (sizeof(int) * 3)),
+                    };
+
+                    value = (T)(object)new decimal(bits);
+
+                    AddIndex((sizeof(int) * 4) + (sizeof(int) * 4)); // 16 bytes. 4 int
+
+                    return value;
+                }
+
                 case Types.Byte:
                 {
                     if (!IsValidPrefix(type, sizeof(byte))) return default;
