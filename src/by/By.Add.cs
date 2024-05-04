@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 
@@ -108,8 +109,7 @@ namespace Byter
                 }
                 case Types.Decimal:
                 {
-                    // TODO: create own implementation to be 100% precise
-                    buffer.AddRange(BitConverter.GetBytes(Decimal.ToOACurrency((decimal)data)));
+                    Decimal.GetBits((decimal)data).ToList().ForEach(x => buffer.AddRange(BitConverter.GetBytes(x)));
                     break;
                 }
                 case Types.DateTime:
