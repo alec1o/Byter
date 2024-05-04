@@ -8,9 +8,9 @@ namespace Byter
         public static Types Hash<T>(T value)
         {
             if (value == null) return Types.Null;
-            
+
             Type type = value.GetType();
-            
+
             if (type == typeof(sbyte)) return Types.Sbyte;
             if (type == typeof(byte)) return Types.Byte;
             if (type == typeof(bool)) return Types.Bool;
@@ -32,7 +32,7 @@ namespace Byter
             if (type.IsValueType && !type.IsEnum && !type.IsPrimitive) return Types.Struct;
             if (type.IsArray) return Types.Array;
             if (type == typeof(DateTime)) return Types.DateTime;
-            
+
             throw new NotImplementedException($"[{nameof(By)}.{nameof(Hash)}] Error: {type} Isn't implemented");
         }
     }
