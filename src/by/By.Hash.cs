@@ -29,7 +29,7 @@ namespace Byter
             if (type == typeof(string)) return Types.String;
             if (type == typeof(BigInteger)) return Types.BigInteger;
             if (type.IsClass) return Types.Class;
-            if (type.IsConstructedGenericType) return Types.Struct;
+            if (type.IsValueType && !type.IsEnum && !type.IsPrimitive) return Types.Struct;
             if (type.IsArray) return Types.Array;
             if (type == typeof(DateTime)) return Types.DateTime;
             
