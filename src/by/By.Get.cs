@@ -211,6 +211,20 @@ namespace Byter
                     return value;
                 }
 
+                case Types.BigInteger:
+                {
+                    if (!IsValidPrefix(type, sizeof(int))) return default;
+
+                    int size = BitConverter.ToInt32(Buffer, GetIndex());
+
+                    int index = Index + sizeof(sbyte) + sizeof(int);
+
+                    value = (T)(object)(BigInteger)new BigInteger(_vault.GetRange(index, size).ToArray());
+
+                    AddIndex(sizeof(int) + size);
+
+                    return value;
+                }
 
                 default:
                     throw new NotImplementedException();
