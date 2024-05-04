@@ -197,6 +197,20 @@ namespace Byter
                 }
 
                 case Types.String:
+                {
+                    if (!IsValidPrefix(type, sizeof(int))) return default;
+
+                    int size = BitConverter.ToInt32(Buffer, GetIndex());
+
+                    int index = Index + sizeof(sbyte) + sizeof(int);
+
+                    value = (T)(object)(string)_vault.GetRange(index, size).ToArray().GetString(Encoding.UTF8);
+
+                    AddIndex(sizeof(int) + size);
+
+                    return value;
+                }
+
 
                 default:
                     throw new NotImplementedException();
