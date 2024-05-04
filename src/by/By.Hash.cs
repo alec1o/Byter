@@ -10,9 +10,7 @@ namespace Byter
     {
         public static Types Hash<T>(T value)
         {
-            if (value == null) return Types.Null;
-
-            Type type = value.GetType();
+            Type type = typeof(T) == typeof(Type) ? (Type)(object)value : value.GetType();
 
             if (type == typeof(sbyte)) return Types.Sbyte;
             if (type == typeof(byte)) return Types.Byte;
