@@ -69,8 +69,8 @@ public class ByHash
         Assert.Equal(By.Types.BigInteger, By.Hash(@big));
         Assert.Equal(By.Types.Class, By.Hash(@class));
         Assert.Equal(By.Types.Struct, By.Hash(@struct));
-        Assert.Equal(By.Types.Array, By.Hash(@array));
         Assert.Equal(By.Types.DateTime, By.Hash(date));
+        Assert.Equal(By.Types.Array, By.Hash(@array));
         Assert.Equal(By.Types.List, By.Hash(list));
     }
 }

@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 
 namespace Byter
@@ -29,11 +31,11 @@ namespace Byter
             if (type == typeof(byte[])) return Types.Bytes;
             if (type == typeof(string)) return Types.String;
             if (type == typeof(BigInteger)) return Types.BigInteger;
-            if (type.IsClass) return Types.Class;
-            if (type.IsValueType && !type.IsEnum && !type.IsPrimitive) return Types.Struct;
-            if (type == typeof(ICollection)) return Types.List;
-            if (type.IsArray) return Types.Array;
             if (type == typeof(DateTime)) return Types.DateTime;
+            if (type.IsArray) return Types.Array;
+            if (value is IList) return Types.List;
+            if (type.IsValueType && !type.IsEnum && !type.IsPrimitive) return Types.Struct;
+            if (type.IsClass) return Types.Class;
 
             throw new NotImplementedException($"[{nameof(By)}.{nameof(Hash)}] Error: {type} Isn't implemented");
         }
