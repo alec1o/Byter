@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 
@@ -12,94 +13,100 @@ namespace Byter
 
             object data = value;
             byte prefix = (byte)type;
-            byte[] buffer;
+            List<byte> buffer = new List<byte>();
 
             switch (type)
             {
                 case Types.Bool:
                 {
-                    buffer = BitConverter.GetBytes((bool)data);
+                    buffer.AddRange(BitConverter.GetBytes((bool)data));
                     break;
                 }
                 case Types.Byte:
                 {
-                    buffer = BitConverter.GetBytes((byte)data);
+                    buffer.AddRange(BitConverter.GetBytes((byte)data));
                     break;
                 }
                 case Types.Char:
                 {
-                    buffer = BitConverter.GetBytes((char)data);
+                    buffer.AddRange(BitConverter.GetBytes((char)data));
                     break;
                 }
                 case Types.Bytes:
                 {
-                    buffer = (byte[])data;
+                    buffer.AddRange((byte[])data);
                     break;
                 }
                 case Types.Float:
                 {
-                    buffer = BitConverter.GetBytes((float)data);
+                    buffer.AddRange(BitConverter.GetBytes((float)data));
                     break;
                 }
                 case Types.Int:
                 {
-                    buffer = BitConverter.GetBytes((int)data);
+                    buffer.AddRange(BitConverter.GetBytes((int)data));
                     break;
                 }
                 case Types.Ulong:
                 {
-                    buffer = BitConverter.GetBytes((ulong)data);
+                    buffer.AddRange(BitConverter.GetBytes((ulong)data));
                     break;
                 }
                 case Types.Ushort:
                 {
-                    buffer = BitConverter.GetBytes((ushort)data);
+                    buffer.AddRange(BitConverter.GetBytes((ushort)data));
                     break;
                 }
                 case Types.Short:
                 {
-                    buffer = BitConverter.GetBytes((short)data);
+                    buffer.AddRange(BitConverter.GetBytes((short)data));
                     break;
                 }
                 case Types.Sbyte:
                 {
-                    buffer = BitConverter.GetBytes((sbyte)data);
+                    buffer.AddRange(BitConverter.GetBytes((sbyte)data));
                     break;
                 }
                 case Types.BigInteger:
                 {
-                    buffer = ((BigInteger)data).ToByteArray();
+                    var bytes = ((BigInteger)data).ToByteArray();
+                    var size = BitConverter.GetBytes(bytes.Length);
+                    buffer.AddRange(size);
+                    buffer.AddRange(bytes);
                     break;
                 }
                 case Types.Long:
                 {
-                    buffer = BitConverter.GetBytes((long)data);
+                    buffer.AddRange(BitConverter.GetBytes((long)data));
                     break;
                 }
                 case Types.String:
                 {
-                    buffer = Encoding.UTF8.GetBytes((string)data);
+                    var bytes = Encoding.UTF8.GetBytes((string)data);
+                    var size = BitConverter.GetBytes(bytes.Length);
+                    buffer.AddRange(size);
+                    buffer.AddRange(bytes);
                     break;
                 }
                 case Types.Double:
                 {
-                    buffer = BitConverter.GetBytes((double)data);
+                    buffer.AddRange(BitConverter.GetBytes((double)data));
                     break;
                 }
                 case Types.Null:
                 {
-                    buffer = BitConverter.GetBytes((sbyte)-1);
+                    buffer.AddRange(BitConverter.GetBytes((sbyte)-1));
                     break;
                 }
                 case Types.Decimal:
                 {
                     // TODO: create own implementation to be 100% precise
-                    buffer = BitConverter.GetBytes(Decimal.ToOACurrency((decimal)data));
+                    buffer.AddRange(BitConverter.GetBytes(Decimal.ToOACurrency((decimal)data)));
                     break;
                 }
                 case Types.DateTime:
                 {
-                    buffer = BitConverter.GetBytes(((DateTime)data).ToBinary());
+                    buffer.AddRange(BitConverter.GetBytes(((DateTime)data).ToBinary()));
                     break;
                 }
                 default:
