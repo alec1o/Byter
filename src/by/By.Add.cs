@@ -51,6 +51,11 @@ namespace Byter
                     buffer = BitConverter.GetBytes((ulong)data);
                     break;
                 }
+                case Types.Ushort:
+                {
+                    buffer = BitConverter.GetBytes((ushort)data);
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
