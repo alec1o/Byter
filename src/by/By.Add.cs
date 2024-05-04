@@ -86,6 +86,11 @@ namespace Byter
                     buffer = BitConverter.GetBytes((double)data);
                     break;
                 }
+                case Types.Null:
+                {
+                    buffer = BitConverter.GetBytes((sbyte)-1);
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
