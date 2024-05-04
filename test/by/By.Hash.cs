@@ -42,7 +42,7 @@ public class ByHash
         double @double = double.MaxValue;
         decimal @decimal = decimal.MaxValue;
         SocketType @enum = SocketType.Stream;
-        byte[] bytes = Encoding.UTF8.GetBytes("By");
+        byte[] bytes = "By"u8.ToArray();
         MyStruct @struct = new MyStruct();
         List<int> list = [1, 2, 3];
         int[] array = [1, 2, 3];

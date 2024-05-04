@@ -85,7 +85,7 @@ namespace Byter
                 }
                 case Types.String:
                 {
-                    var bytes = Encoding.UTF8.GetBytes((string)data);
+                    var bytes = ((string)data).GetBytes(Encoding.UTF8);
                     var size = BitConverter.GetBytes(bytes.Length);
                     buffer.AddRange(size);
                     buffer.AddRange(bytes);
