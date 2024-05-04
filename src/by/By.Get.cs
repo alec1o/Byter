@@ -158,6 +158,20 @@ namespace Byter
 
                     return value;
                 }
+
+                case Types.Bytes:
+                {
+                    if (!IsValidPrefix(type, sizeof(int))) return default;
+
+                    int size = BitConverter.ToInt32(Buffer, GetIndex());
+
+                    int index = Index + sizeof(sbyte) + sizeof(int);
+
+                    value = (T)(object)(byte[])_vault.GetRange(index, size).ToArray();
+
+                    AddIndex(sizeof(int) + size);
+
+                    return value;
                 }
 
 
