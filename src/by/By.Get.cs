@@ -64,6 +64,17 @@ namespace Byter
 
                     return value;
                 }
+
+                case Types.Ulong:
+                {
+                    if (!IsValidPrefix(type, sizeof(ulong))) return default;
+
+                    value = (T)(object)BitConverter.ToUInt64(Buffer, GetIndex());
+
+                    AddIndex(sizeof(ulong));
+
+                    return value;
+                }
                     {
                         IsValid = false;
                         return default;
