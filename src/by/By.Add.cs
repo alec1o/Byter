@@ -24,7 +24,7 @@ namespace Byter
                 }
                 case Types.Byte:
                 {
-                    buffer.AddRange(BitConverter.GetBytes((byte)data));
+                    buffer.Add((byte)data);
                     break;
                 }
                 case Types.Char:
