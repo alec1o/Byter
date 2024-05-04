@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Numerics;
+using System.Text;
 
 namespace Byter
 {
@@ -14,13 +17,20 @@ namespace Byter
 
             Types type = Hash(typeof(T));
 
+            T value;
+
             switch (type)
             {
                 case Types.Int:
                 {
-                    if (Index + sizeof(int) + sizeof(sbyte) > _vault.Count) return default;
-                    sbyte prefix = (sbyte)_vault[Index];
-                    if ((sbyte)type != prefix)
+                    if (!IsValidPrefix(type, sizeof(int))) return default;
+
+                    value = (T)(object)BitConverter.ToInt32(Buffer, GetIndex());
+
+                    AddIndex(sizeof(int));
+
+                    return value;
+                }
                     {
                         IsValid = false;
                         return default;
