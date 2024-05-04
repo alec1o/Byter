@@ -140,14 +140,24 @@ namespace Byter
 
                     return value;
                 }
+                case Types.Null:
+                {
+                    if (!IsValidPrefix(type, sizeof(sbyte))) return default;
+
+                    sbyte data = (sbyte)_vault[GetIndex()];
+
+                    if (data != -1)
                     {
                         IsValid = false;
                         return default;
                     }
 
-                    int result = BitConverter.ToInt32(Buffer, Index + sizeof(sbyte));
-                    Index += sizeof(sbyte) + sizeof(int);
-                    return (T)((object)result);
+                    value = (T)(object)data;
+
+                    AddIndex(sizeof(sbyte));
+
+                    return value;
+                }
                 }
 
 
