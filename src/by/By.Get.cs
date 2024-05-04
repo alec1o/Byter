@@ -75,6 +75,17 @@ namespace Byter
 
                     return value;
                 }
+                case Types.Bool:
+                {
+                    if (!IsValidPrefix(type, sizeof(bool))) return default;
+
+                    value = (T)(object)BitConverter.ToBoolean(Buffer, GetIndex());
+
+                    AddIndex(sizeof(bool));
+
+                    return value;
+                }
+
                     {
                         IsValid = false;
                         return default;
