@@ -97,6 +97,16 @@ namespace Byter
                     return value;
                 }
 
+                case Types.Short:
+                {
+                    if (!IsValidPrefix(type, sizeof(short))) return default;
+
+                    value = (T)(object)BitConverter.ToInt16(Buffer, GetIndex());
+
+                    AddIndex(sizeof(short));
+
+                    return value;
+                }
                     {
                         IsValid = false;
                         return default;
