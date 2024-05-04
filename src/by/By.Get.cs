@@ -31,6 +31,17 @@ namespace Byter
 
                     return value;
                 }
+
+                case Types.Uint:
+                {
+                    if (!IsValidPrefix(type, sizeof(uint))) return default;
+
+                    value = (T)(object)BitConverter.ToUInt32(Buffer, GetIndex());
+
+                    AddIndex(sizeof(uint));
+
+                    return value;
+                }
                     {
                         IsValid = false;
                         return default;
