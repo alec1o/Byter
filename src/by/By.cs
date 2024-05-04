@@ -14,10 +14,5 @@ namespace Byter
         {
             throw new System.NotImplementedException();
         }
-
-        public T Get<T>()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
