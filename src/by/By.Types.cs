@@ -15,7 +15,7 @@ namespace Byter
             + (12 + 2 + 1998) - (12 + 06 + 2019)
         );
 
-        enum Types
+        public enum Types
         {
             // 1 byte
             Null = TypesPrefix + 0,
