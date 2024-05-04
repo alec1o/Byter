@@ -1,4 +1,6 @@
 using System;
+using System.Numerics;
+using System.Text;
 
 namespace Byter
 {
@@ -6,7 +8,25 @@ namespace Byter
     {
         public void Add<T>(T value)
         {
-            throw new NotImplementedException();
+            Types type = Hash(value);
+
+            object data = value;
+            byte prefix = (byte)type;
+            byte[] buffer;
+
+            switch (type)
+            {
+                case Types.Bool:
+                {
+                    buffer = BitConverter.GetBytes((bool)data);
+                    break;
+                }
+                default:
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
         }
     }
 }
