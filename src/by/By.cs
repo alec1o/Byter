@@ -10,7 +10,8 @@ namespace Byter
 
         public void Reset()
         {
-            throw new System.NotImplementedException();
+            Index = 0;
+            IsValid = true;
         }
 
         public void Add<T>(T value)
