@@ -42,6 +42,17 @@ namespace Byter
 
                     return value;
                 }
+
+                case Types.Float:
+                {
+                    if (!IsValidPrefix(type, sizeof(float))) return default;
+
+                    value = (T)(object)BitConverter.ToSingle(Buffer, GetIndex());
+
+                    AddIndex(sizeof(float));
+
+                    return value;
+                }
                     {
                         IsValid = false;
                         return default;
