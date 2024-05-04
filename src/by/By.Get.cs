@@ -129,6 +129,17 @@ namespace Byter
 
                     return value;
                 }
+
+                case Types.DateTime:
+                {
+                    if (!IsValidPrefix(type, sizeof(long))) return default;
+
+                    value = (T)(object)DateTime.FromBinary(BitConverter.ToInt64(Buffer, GetIndex()));
+
+                    AddIndex(sizeof(long));
+
+                    return value;
+                }
                     {
                         IsValid = false;
                         return default;
