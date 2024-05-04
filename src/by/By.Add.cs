@@ -108,6 +108,8 @@ namespace Byter
                 }
             }
 
+            _vault.Add(prefix);
+            _vault.AddRange(buffer);
         }
     }
 }
