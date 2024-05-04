@@ -26,6 +26,11 @@ namespace Byter
                     buffer = BitConverter.GetBytes((byte)data);
                     break;
                 }
+                case Types.Char:
+                {
+                    buffer = BitConverter.GetBytes((char)data);
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
