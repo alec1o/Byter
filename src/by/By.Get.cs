@@ -28,7 +28,7 @@ namespace Byter
 
                     int result = BitConverter.ToInt32(Buffer, Index + sizeof(sbyte));
                     Index += sizeof(sbyte) + sizeof(int);
-                    return (dynamic)result;
+                    return (T)((object)result);
                 }
 
 
