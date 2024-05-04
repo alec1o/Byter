@@ -97,6 +97,11 @@ namespace Byter
                     buffer = BitConverter.GetBytes(Decimal.ToOACurrency((decimal)data));
                     break;
                 }
+                case Types.DateTime:
+                {
+                    buffer = BitConverter.GetBytes(((DateTime)data).ToBinary());
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
