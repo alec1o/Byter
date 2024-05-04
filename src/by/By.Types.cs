@@ -18,6 +18,7 @@ namespace Byter
         enum Types
         {
             // 1 byte
+            Null = TypesPrefix + 0,
             Sbyte = TypesPrefix + 1,
             Byte = TypesPrefix + 2,
             Bool = TypesPrefix + 3,
