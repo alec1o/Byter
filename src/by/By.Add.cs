@@ -36,6 +36,11 @@ namespace Byter
                     buffer = (byte[])data;
                     break;
                 }
+                case Types.Float:
+                {
+                    buffer = BitConverter.GetBytes((float)data);
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
