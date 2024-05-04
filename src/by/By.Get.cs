@@ -140,6 +140,17 @@ namespace Byter
 
                     return value;
                 }
+                case Types.Byte:
+                {
+                    if (!IsValidPrefix(type, sizeof(byte))) return default;
+
+                    value = (T)(object)(byte)_vault[GetIndex()];
+
+                    AddIndex(sizeof(byte));
+
+                    return value;
+                }
+
                 case Types.Sbyte:
                 {
                     if (!IsValidPrefix(type, sizeof(sbyte))) return default;
