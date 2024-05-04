@@ -81,6 +81,11 @@ namespace Byter
                     buffer = Encoding.UTF8.GetBytes((string)data);
                     break;
                 }
+                case Types.Double:
+                {
+                    buffer = BitConverter.GetBytes((double)data);
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
