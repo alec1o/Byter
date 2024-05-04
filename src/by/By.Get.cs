@@ -118,6 +118,17 @@ namespace Byter
 
                     return value;
                 }
+
+                case Types.Double:
+                {
+                    if (!IsValidPrefix(type, sizeof(double))) return default;
+
+                    value = (T)(object)BitConverter.ToDouble(Buffer, GetIndex());
+
+                    AddIndex(sizeof(double));
+
+                    return value;
+                }
                     {
                         IsValid = false;
                         return default;
