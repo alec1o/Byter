@@ -4,38 +4,41 @@ namespace Byter
 {
     public partial class By : IBy
     {
-        static By()
+        enum Types
         {
-            Types = new[]
-            {
-                // 1 byte
-                typeof(sbyte),
-                typeof(byte),
-                typeof(bool),
+            // 1 byte
+            Sbyte,
+            Byte,
+            Bool,
 
-                // 2 bytes
-                typeof(char),
-                typeof(short),
-                typeof(ushort),
+            // 2 bytes
+            Char,
+            Short,
+            Ushort,
 
-                // 4 bytes
-                typeof(uint),
-                typeof(int),
-                typeof(float),
+            // 4 bytes
+            Uint,
+            Int,
+            Float,
+            Enum,
 
-                // 8 bytes
-                typeof(long),
-                typeof(ulong),
-                typeof(double),
+            // 8 bytes
+            Long,
+            Ulong,
+            Double,
 
-                // 16 bytes
-                typeof(decimal),
+            // 16 bytes
+            Decimal,
 
-                // dynamic
-                typeof(byte[]),
-                typeof(string),
-                typeof(BigInteger)
-            };
-        }
+            // dynamic
+            Bytes,
+            String,
+            BigInteger,
+
+            // Symbols
+            Class,
+            Struct,
+            Array,
+        };
     }
 }
