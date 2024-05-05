@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 
@@ -143,19 +145,21 @@ namespace Byter
 
                 case Types.Decimal:
                 {
-                    if (!IsValidPrefix(type, sizeof(int) * 4)) return default;
+                    if (!IsValidPrefix(type, sizeof(decimal))) return default;
 
-                    int[] bits =
+                    byte[] bits = _vault.GetRange(GetIndex(), sizeof(decimal)).ToArray();
+
+                    int[] binary =
                     {
-                        BitConverter.ToInt32(Buffer, GetIndex() + (sizeof(int) * 0)),
-                        BitConverter.ToInt32(Buffer, GetIndex() + (sizeof(int) * 1)),
-                        BitConverter.ToInt32(Buffer, GetIndex() + (sizeof(int) * 2)),
-                        BitConverter.ToInt32(Buffer, GetIndex() + (sizeof(int) * 3)),
+                        BitConverter.ToInt32(bits, sizeof(int) * 0),
+                        BitConverter.ToInt32(bits, sizeof(int) * 1),
+                        BitConverter.ToInt32(bits, sizeof(int) * 2),
+                        BitConverter.ToInt32(bits, sizeof(int) * 3),
                     };
 
-                    value = (T)(object)new decimal(bits);
+                    value = (T)(object)new decimal(binary);
 
-                    AddIndex((sizeof(int) * 4) + (sizeof(int) * 4)); // 16 bytes. 4 int
+                    AddIndex(sizeof(decimal));
 
                     return value;
                 }
