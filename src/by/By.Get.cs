@@ -230,6 +230,16 @@ namespace Byter
 
                     return value;
                 }
+                case Types.Enum:
+                {
+                    if (!IsValidPrefix(type, sizeof(int))) return default;
+                    
+                    value = (T)(object)BitConverter.ToInt32(Buffer, GetIndex());
+
+                    AddIndex(sizeof(int));
+
+                    return value;
+                }
 
                 default:
                     throw new NotImplementedException($"{type}");
