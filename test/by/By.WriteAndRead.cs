@@ -158,7 +158,7 @@ public class ByWriteAndRead
         b.Add(string.Empty);
         b.Add(Array.Empty<byte>());
         b.Add(BigInteger.Zero);
-        
+
         Assert.Equal(string.Empty, b.Get<string>());
         Assert.Equal(Array.Empty<byte>(), b.Get<byte[]>());
         Assert.Equal(BigInteger.Zero, b.Get<BigInteger>());
@@ -277,5 +277,30 @@ public class ByWriteAndRead
         Assert.Equal(b1, b.Get<BigInteger>());
         Assert.Equal(b2, b.Get<BigInteger>());
         Assert.True(b.IsValid);
+    }
+
+    [Fact(Skip = "Enum")]
+    public void ByEnum()
+    {
+    }
+
+    [Fact(Skip = "TODO")]
+    public void ByArray()
+    {
+    }
+
+    [Fact(Skip = "TODO")]
+    public void ByList()
+    {
+    }
+
+    [Fact(Skip = "TODO")]
+    public void ByStruct()
+    {
+    }
+
+    [Fact(Skip = "TODO")]
+    public void ByClass()
+    {
     }
 }
