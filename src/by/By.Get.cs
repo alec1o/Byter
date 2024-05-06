@@ -233,7 +233,7 @@ namespace Byter
                 case Types.Enum:
                 {
                     if (!IsValidPrefix(type, sizeof(int))) return default;
-                    
+
                     value = (T)(object)BitConverter.ToInt32(Buffer, GetIndex());
 
                     AddIndex(sizeof(int));
