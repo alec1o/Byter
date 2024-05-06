@@ -117,6 +117,15 @@ namespace Byter
                     buffer.AddRange(BitConverter.GetBytes((int)data));
                     break;
                 }
+                case Types.Array:
+                {
+                    By b = new By();
+                    dynamic[] objects = data as dynamic[];
+                    buffer.AddRange(BitConverter.GetBytes(objects?.Length ?? 0));
+                    objects?.ToList().ForEach((x) => b.Add(x as object));
+                    buffer.AddRange(b.Buffer);
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
