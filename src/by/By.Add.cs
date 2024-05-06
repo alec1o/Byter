@@ -112,6 +112,11 @@ namespace Byter
                     buffer.AddRange(BitConverter.GetBytes(((DateTime)data).ToBinary()));
                     break;
                 }
+                case Types.Enum:
+                {
+                    buffer.AddRange(BitConverter.GetBytes((int)data));
+                    break;
+                }
                 default:
                 {
                     throw new NotImplementedException();
