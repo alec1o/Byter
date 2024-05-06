@@ -102,11 +102,6 @@ namespace Byter
                     buffer.AddRange(BitConverter.GetBytes((double)data));
                     break;
                 }
-                case Types.Null:
-                {
-                    buffer.AddRange(BitConverter.GetBytes((sbyte)-1));
-                    break;
-                }
                 case Types.Decimal:
                 {
                     Decimal.GetBits((decimal)data).ToList().ForEach(x => buffer.AddRange(BitConverter.GetBytes(x)));

@@ -48,8 +48,7 @@ public class ByHash
         int[] array = [1, 2, 3];
         MyClass @class = new MyClass();
         BigInteger big = BigInteger.One;
-
-        Assert.Equal(By.Types.Null, By.Hash(@null));
+        
         Assert.Equal(By.Types.Sbyte, By.Hash(@sbyte));
         Assert.Equal(By.Types.Byte, By.Hash(@byte));
         Assert.Equal(By.Types.Bool, By.Hash(@bool));

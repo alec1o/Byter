@@ -186,25 +186,6 @@ namespace Byter
                     return value;
                 }
 
-                case Types.Null:
-                {
-                    if (!IsValidPrefix(type, sizeof(sbyte))) return default;
-
-                    sbyte data = (sbyte)_vault[GetIndex()];
-
-                    if (data != -1)
-                    {
-                        IsValid = false;
-                        return default;
-                    }
-
-                    value = (T)(object)data;
-
-                    AddIndex(sizeof(sbyte));
-
-                    return value;
-                }
-
                 case Types.Bytes:
                 {
                     if (!IsValidPrefix(type, sizeof(int))) return default;

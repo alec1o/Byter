@@ -17,6 +17,7 @@ public class ByWriteAndRead
 
         Assert.Equal(int.MinValue, b.Get<int>());
         Assert.Equal(int.MaxValue, b.Get<int>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -29,6 +30,7 @@ public class ByWriteAndRead
 
         Assert.Equal(uint.MinValue, b.Get<uint>());
         Assert.Equal(uint.MaxValue, b.Get<uint>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -41,6 +43,7 @@ public class ByWriteAndRead
 
         Assert.Equal(long.MinValue, b.Get<long>());
         Assert.Equal(long.MaxValue, b.Get<long>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -53,6 +56,7 @@ public class ByWriteAndRead
 
         Assert.Equal(ulong.MinValue, b.Get<ulong>());
         Assert.Equal(ulong.MaxValue, b.Get<ulong>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -65,6 +69,7 @@ public class ByWriteAndRead
 
         Assert.Equal(float.MinValue, b.Get<float>());
         Assert.Equal(float.MaxValue, b.Get<float>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -77,6 +82,7 @@ public class ByWriteAndRead
 
         Assert.Equal(short.MinValue, b.Get<short>());
         Assert.Equal(short.MaxValue, b.Get<short>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -89,6 +95,7 @@ public class ByWriteAndRead
 
         Assert.Equal(ushort.MinValue, b.Get<ushort>());
         Assert.Equal(ushort.MaxValue, b.Get<ushort>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -101,6 +108,7 @@ public class ByWriteAndRead
 
         Assert.Equal(byte.MinValue, b.Get<byte>());
         Assert.Equal(byte.MaxValue, b.Get<byte>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -113,6 +121,7 @@ public class ByWriteAndRead
 
         Assert.Equal(sbyte.MinValue, b.Get<sbyte>());
         Assert.Equal(sbyte.MaxValue, b.Get<sbyte>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -125,6 +134,7 @@ public class ByWriteAndRead
 
         Assert.Equal(double.MinValue, b.Get<double>());
         Assert.Equal(double.MaxValue, b.Get<double>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -137,17 +147,22 @@ public class ByWriteAndRead
 
         Assert.Equal(decimal.MinValue, b.Get<decimal>());
         Assert.Equal(decimal.MaxValue, b.Get<decimal>());
+        Assert.True(b.IsValid);
     }
 
-    [Fact(Skip = "TODO: ")]
+    [Fact]
     public void ByNull()
     {
         var b = new By();
 
-        object? @null = null;
-        b.Add(@null);
-
-        Assert.Null(b.Get<object>());
+        b.Add(string.Empty);
+        b.Add(Array.Empty<byte>());
+        b.Add(BigInteger.Zero);
+        
+        Assert.Equal(string.Empty, b.Get<string>());
+        Assert.Equal(Array.Empty<byte>(), b.Get<byte[]>());
+        Assert.Equal(BigInteger.Zero, b.Get<BigInteger>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -163,6 +178,7 @@ public class ByWriteAndRead
 
         Assert.Equal(y1970, b.Get<DateTime>());
         Assert.Equal(y2038, b.Get<DateTime>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -178,6 +194,7 @@ public class ByWriteAndRead
 
         Assert.Equal(b1, b.Get<byte[]>());
         Assert.Equal(b2, b.Get<byte[]>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -198,6 +215,7 @@ public class ByWriteAndRead
         Assert.Equal('C', b.Get<char>());
         Assert.Equal('1', b.Get<char>());
         Assert.Equal('O', b.Get<char>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -218,6 +236,7 @@ public class ByWriteAndRead
         Assert.True(b.Get<bool>());
         Assert.False(b.Get<bool>());
         Assert.False(b.Get<bool>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -239,6 +258,7 @@ public class ByWriteAndRead
         Assert.Equal(s2, b.Get<string>());
         Assert.Equal(s3, b.Get<string>());
         Assert.Equal(s4, b.Get<string>());
+        Assert.True(b.IsValid);
     }
 
     [Fact]
@@ -247,7 +267,7 @@ public class ByWriteAndRead
         var b = new By();
 
         const string data = "01234567891011121314151617181920212223242526272829303132";
-        
+
         BigInteger b1 = BigInteger.Parse("1970" + data);
         BigInteger b2 = BigInteger.Parse("2038" + data);
 
@@ -256,5 +276,6 @@ public class ByWriteAndRead
 
         Assert.Equal(b1, b.Get<BigInteger>());
         Assert.Equal(b2, b.Get<BigInteger>());
+        Assert.True(b.IsValid);
     }
 }
