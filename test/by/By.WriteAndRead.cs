@@ -1,4 +1,5 @@
 using System;
+using System.Net.Sockets;
 using System.Numerics;
 using Byter;
 using Xunit;
@@ -279,14 +280,32 @@ public class ByWriteAndRead
         Assert.True(b.IsValid);
     }
 
-    [Fact(Skip = "Enum")]
+    [Fact]
     public void ByEnum()
     {
+        By b = new By();
+        
+        b.Add(SocketType.Unknown);
+        b.Add(SocketType.Stream);
+        b.Add(SocketType.Dgram);
+        b.Add(SocketType.Raw);
+        b.Add(SocketType.Rdm);
+        b.Add(SocketType.Seqpacket);
+        
+        Assert.Equal(SocketType.Unknown, b.Get<SocketType>());
+        Assert.Equal(SocketType.Stream, b.Get<SocketType>());
+        Assert.Equal(SocketType.Dgram, b.Get<SocketType>());
+        Assert.Equal(SocketType.Raw, b.Get<SocketType>());
+        Assert.Equal(SocketType.Rdm, b.Get<SocketType>());
+        Assert.Equal(SocketType.Seqpacket, b.Get<SocketType>());
+        
+        Assert.True(b.IsValid);
     }
 
     [Fact(Skip = "TODO")]
     public void ByArray()
     {
+        
     }
 
     [Fact(Skip = "TODO")]
