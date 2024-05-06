@@ -284,28 +284,46 @@ public class ByWriteAndRead
     public void ByEnum()
     {
         By b = new By();
-        
+
         b.Add(SocketType.Unknown);
         b.Add(SocketType.Stream);
         b.Add(SocketType.Dgram);
         b.Add(SocketType.Raw);
         b.Add(SocketType.Rdm);
         b.Add(SocketType.Seqpacket);
-        
+
         Assert.Equal(SocketType.Unknown, b.Get<SocketType>());
         Assert.Equal(SocketType.Stream, b.Get<SocketType>());
         Assert.Equal(SocketType.Dgram, b.Get<SocketType>());
         Assert.Equal(SocketType.Raw, b.Get<SocketType>());
         Assert.Equal(SocketType.Rdm, b.Get<SocketType>());
         Assert.Equal(SocketType.Seqpacket, b.Get<SocketType>());
-        
+
         Assert.True(b.IsValid);
     }
 
     [Fact(Skip = "TODO")]
     public void ByArray()
     {
+        int[] intArray =
+        {
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+        };
+
+        char[] charArray =
+        {
+            'A', 'L', 'E', 'C', 'I', 'O', ' ', 'F', 'U', 'R', 'A', 'N', 'Z', 'E'
+        };
+
+        By b = new By();
         
+        b.Add(intArray);
+        b.Add(charArray);
+
+        Assert.Equal(intArray, b.Get<int[]>());
+        Assert.Equal(charArray, b.Get<char[]>());
+        
+        Assert.True(b.IsValid);
     }
 
     [Fact(Skip = "TODO")]
