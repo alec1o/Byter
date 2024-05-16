@@ -17,7 +17,9 @@ namespace Byter
         #region Builder
 
         // private for IDisposable
-        private Reader() { }
+        private Reader()
+        {
+        }
 
         public Reader(byte[] buffer, int offset = 0)
         {
@@ -344,8 +346,8 @@ namespace Byter
 
                     // skip y bytes read
                     _position += sizeof(float);
-                    
-                    
+
+
                     // get encoded value
                     var w = BitConverter.ToSingle(_buffer, _position);
 
@@ -355,7 +357,10 @@ namespace Byter
                     return (T)(object)new Float4(x, y, z, w);
                 }
             }
-            catch { }
+            catch
+            {
+                //
+            }
 
             _success = false;
             return default;
@@ -363,34 +368,41 @@ namespace Byter
 
         public T Read<T>(Encoding encode)
         {
-            char prefix = Writer.GetPrefix(typeof(T));
-
-            // string
-            if (typeof(T) == typeof(string))
+            try
             {
-                // compare (buffer prefix) to (type prefix)
-                if (!ValidPrefix(prefix)) return default;
+                char prefix = Writer.GetPrefix(typeof(T));
 
-                // get length of bytes
-                int length = BitConverter.ToInt32(_buffer, _position);
-                _position += sizeof(int);
-                if (length <= 0 || length > (Length - _position))
+                // string
+                if (typeof(T) == typeof(string))
                 {
-                    _success = false;
-                    return default;
+                    // compare (buffer prefix) to (type prefix)
+                    if (!ValidPrefix(prefix)) return default;
+
+                    // get length of bytes
+                    int length = BitConverter.ToInt32(_buffer, _position);
+                    _position += sizeof(int);
+                    if (length <= 0 || length > (Length - _position))
+                    {
+                        _success = false;
+                        return default;
+                    }
+
+                    // get encoded value
+                    byte[] bytes = new byte[length];
+                    Buffer.BlockCopy(_buffer, _position, bytes, 0, bytes.Length);
+
+                    // skip bytes read
+                    _position += bytes.Length;
+
+                    // convert bytes to string
+                    string value = encode.GetString(bytes);
+
+                    return (T)(object)value;
                 }
-
-                // get encoded value
-                byte[] bytes = new byte[length];
-                Buffer.BlockCopy(_buffer, _position, bytes, 0, bytes.Length);
-
-                // skip bytes read
-                _position += bytes.Length;
-
-                // convert bytes to string
-                string value = encode.GetString(bytes);
-
-                return (T)(object)value;
+            }
+            catch
+            {
+                //
             }
 
             _success = false;
