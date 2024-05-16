@@ -1,6 +1,8 @@
 using System;
+using System.Text;
 using Byter;
 using Xunit;
+
 namespace ByterTest;
 
 public class ReaderTest
@@ -10,7 +12,9 @@ public class ReaderTest
     private const float FLOAT_Z = 1024 * 6;
     private const float FLOAT_W = 1024 * 8;
 
-    public ReaderTest() { }
+    public ReaderTest()
+    {
+    }
 
     [Fact]
     public void ReadByte()
@@ -279,7 +283,7 @@ public class ReaderTest
         Assert.Equal(FLOAT_Y, result.Y);
         Assert.Equal(FLOAT_Z, result.Z);
     }
-    
+
     [Fact]
     public void ImplFloat4()
     {
@@ -289,5 +293,41 @@ public class ReaderTest
         Assert.Equal(FLOAT_Y, result.Y);
         Assert.Equal(FLOAT_Z, result.Z);
         Assert.Equal(FLOAT_W, result.W);
+    }
+
+    [Fact]
+    public void ReadFromEmptyBuffer()
+    {
+        Reader r = new Reader(Array.Empty<byte>());
+
+        Assert.True(r.Success);
+
+        _ = r.Read<string>(Encoding.ASCII);
+
+        Assert.False(r.Success);
+    }
+
+    [Fact]
+    public void ReadFromNullBuffer()
+    {
+        Reader r = new Reader(null);
+
+        Assert.True(r.Success);
+
+        _ = r.Read<string>(Encoding.ASCII);
+
+        Assert.False(r.Success);
+    }
+
+    [Fact]
+    public void ReadFromOneByteBuffer()
+    {
+        Reader r = new Reader([0]);
+
+        Assert.True(r.Success);
+
+        _ = r.Read<string>(Encoding.ASCII);
+
+        Assert.False(r.Success);
     }
 }
