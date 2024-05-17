@@ -1,8 +1,8 @@
 namespace Byter
 {
-    public partial class Vault
+    public partial class Primitive
     {
-        private sealed class VaultPrefix : IVaultPrefix
+        private sealed class PrimitivePrefix : IPrimitivePrefix
         {
             public byte Bool { get; } = 247;
             public byte Byte { get; } = 237;

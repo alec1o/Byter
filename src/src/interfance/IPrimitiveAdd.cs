@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Byter
 {
-    public interface IVaultAdd
+    public interface IPrimitiveAdd
     {
         // 1 byte (3)
         void Bool(bool value);

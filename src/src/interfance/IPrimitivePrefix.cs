@@ -1,6 +1,6 @@
 namespace Byter
 {
-    internal interface IVaultPrefix
+    internal interface IPrimitivePrefix
     {
         // 1 byte (3)
         byte Bool { get; }

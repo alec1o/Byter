@@ -4,117 +4,117 @@ using System.Numerics;
 
 namespace Byter
 {
-    public partial class Vault
+    public partial class Primitive
     {
-        private class VaultAdd : IVaultAdd
+        private class PrimitiveGet : IPrimitiveGet
         {
-            private Vault _vault;
-            public VaultAdd(Vault vault)
+            private Primitive _primitive;
+            public PrimitiveGet(Primitive primitive)
             {
-                _vault = vault;
+                _primitive = primitive;
             }
 
-            public void Bool(bool value)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void Byte(byte value)
+            public bool Bool()
             {
                 throw new NotImplementedException();
             }
 
-            public void SByteInt(sbyte value)
+            public byte Byte()
             {
                 throw new NotImplementedException();
             }
 
-            public void Char(char value)
+            public sbyte SByteInt()
             {
                 throw new NotImplementedException();
             }
 
-            public void Short(short value)
+            public char Char()
             {
                 throw new NotImplementedException();
             }
 
-            public void UShort(ushort value)
+            public short Short()
             {
                 throw new NotImplementedException();
             }
 
-            public void Int(int value)
+            public ushort UShort()
             {
                 throw new NotImplementedException();
             }
 
-            public void UInt(uint value)
+            public int Int()
             {
                 throw new NotImplementedException();
             }
 
-            public void Float(float value)
+            public uint UInt()
             {
                 throw new NotImplementedException();
             }
 
-            public void Enum(Enum value)
+            public float Float()
             {
                 throw new NotImplementedException();
             }
 
-            public void Long(long value)
+            public Enum Enum()
             {
                 throw new NotImplementedException();
             }
 
-            public void ULong(ulong value)
+            public long Long()
             {
                 throw new NotImplementedException();
             }
 
-            public void Double(double value)
+            public ulong ULong()
             {
                 throw new NotImplementedException();
             }
 
-            public void DateTime(DateTime value)
+            public double Double()
             {
                 throw new NotImplementedException();
             }
 
-            public void Decimal(decimal value)
+            public DateTime DateTime()
             {
                 throw new NotImplementedException();
             }
 
-            public void String(string value)
+            public decimal Decimal()
             {
                 throw new NotImplementedException();
             }
 
-            public void Class(object value)
+            public string String()
             {
                 throw new NotImplementedException();
             }
 
-            public void Struct(object value)
+            public T Class<T>()
             {
                 throw new NotImplementedException();
             }
 
-            public void Array<T>(IList<T> value)
+            public T Struct<T>()
             {
                 throw new NotImplementedException();
             }
 
-            public void List<T>(List<T> value)
+            public IList<T> Array<T>()
             {
                 throw new NotImplementedException();
             }
 
-            public void BigInteger(BigInteger value)
+            public List<T> List<T>()
+            {
+                throw new NotImplementedException();
+            }
+
+            public BigInteger BigInteger()
             {
                 throw new NotImplementedException();
             }

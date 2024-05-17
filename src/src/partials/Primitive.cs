@@ -2,28 +2,28 @@ using System.Collections.Generic;
 
 namespace Byter
 {
-    public partial class Vault : IVault
+    public partial class Primitive : IPrimitive
     {
-        private static readonly IVaultPrefix Prefix;
+        private static readonly IPrimitivePrefix Prefix;
         private readonly List<byte> _bytes;
         public bool IsValid { get; }
         public byte[] Data => _bytes.ToArray();
-        public IVaultAdd Add { get; }
-        public IVaultGet Get { get; }
+        public IPrimitiveAdd Add { get; }
+        public IPrimitiveGet Get { get; }
 
-        static Vault()
+        static Primitive()
         {
-            Prefix = new VaultPrefix();
+            Prefix = new PrimitivePrefix();
         }
 
-        public Vault() : this(null)
+        public Primitive() : this(null)
         {
         }
 
-        public Vault(byte[] data)
+        public Primitive(byte[] data)
         {
-            Get = new VaultGet(this);
-            Add = new VaultAdd(this);
+            Get = new PrimitiveGet(this);
+            Add = new PrimitiveAdd(this);
 
             IsValid = false;
 
