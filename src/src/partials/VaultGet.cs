@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Byter
 {
@@ -109,6 +110,11 @@ namespace Byter
             }
 
             public List<T> List<T>()
+            {
+                throw new NotImplementedException();
+            }
+
+            public BigInteger BigInteger()
             {
                 throw new NotImplementedException();
             }

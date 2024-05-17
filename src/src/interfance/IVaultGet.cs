@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Byter
 {
@@ -30,11 +31,12 @@ namespace Byter
         // 16 bytes (1)
         decimal Decimal();
 
-        // dynamic (5)
+        // dynamic (6)
         string String();
         T Class<T>();
         T Struct<T>();
         IList<T> Array<T>();
         List<T> List<T>();
+        BigInteger BigInteger();
     }
 }
