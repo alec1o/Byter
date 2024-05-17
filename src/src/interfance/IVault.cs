@@ -1,6 +1,6 @@
 namespace Byter
 {
-    public interface IPot
+    public interface IVault
     {
         bool IsValid { get; }
         byte[] Data { get; }

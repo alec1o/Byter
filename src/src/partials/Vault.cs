@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Byter
 {
-    public partial class Vault : IPot
+    public partial class Vault : IVault
     {
         private readonly List<byte> _bytes;
         public bool IsValid { get; }
