@@ -8,6 +8,11 @@ namespace ByterTest.by;
 
 public class ByWriteAndRead
 {
+    public ByWriteAndRead()
+    {
+        
+    }
+    
     [Fact]
     public void ByInt()
     {
@@ -316,13 +321,13 @@ public class ByWriteAndRead
         };
 
         By b = new By();
-        
+
         b.Add(intArray);
         b.Add(charArray);
 
         Assert.Equal(intArray, b.Get<int[]>());
         Assert.Equal(charArray, b.Get<char[]>());
-        
+
         Assert.True(b.IsValid);
     }
 
@@ -336,8 +341,56 @@ public class ByWriteAndRead
     {
     }
 
-    [Fact(Skip = "TODO")]
+    public class MyClass
+    {
+        public int MyInt { get; set; }
+        public string MyString { get; set; }
+        public byte MyByte { get; set; }
+        public char MyChar { get; set; }
+        public sbyte MySbyte { get; set; }
+        public byte[] MyBytes { get; set; }
+        public long MyLong { get; set; }
+        public double MyDouble { get; set; }
+        public bool MyBool { get; set; }
+        public float MyFloat { get; set; }
+        public DateTime DateTime { get; set; }
+        public decimal MyDecimal { get; set; }
+        public MyClass2 MyNewClass2 { get; set; }
+
+        public class MyClass2
+        {
+            public string MyString { get; set; }
+            public double MyDouble { get; set; }
+        }
+    }
+
+    [Fact]
     public void ByClass()
     {
+        MyClass myClass = new()
+        {
+            MyInt = int.MaxValue,
+            MyString = "alecio",
+            MyByte = byte.MaxValue,
+            MyChar = 'A',
+            MySbyte = sbyte.MinValue,
+            MyBytes = [1, 2, 3, 4],
+            MyLong = long.MaxValue,
+            MyDouble = double.MaxValue,
+            MyBool = true,
+            MyFloat = float.MaxValue,
+            DateTime = new DateTime(1970, 1, 1),
+            MyDecimal = decimal.MaxValue,
+            MyNewClass2 = new MyClass.MyClass2()
+            {
+                MyString = "Byter",
+                MyDouble = double.MinValue,
+            }
+        };
+
+        By b = new By();
+        b.Add(myClass);
+
+        Assert.Equal(myClass, b.Get<MyClass>());
     }
 }
