@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace Byter
 {
-    public partial class Pot : IPot
+    public partial class Vault : IPot
     {
         private readonly List<byte> _bytes;
         public bool IsValid { get; }
         public byte[] Data => _bytes.ToArray();
-        public IPotAdd Add { get; }
-        public IPotGet Get { get; }
+        public IVaultAdd Add { get; }
+        public IVaultGet Get { get; }
 
-        public Pot() : this(null)
+        public Vault() : this(null)
         {
         }
 
-        public Pot(byte[] data)
+        public Vault(byte[] data)
         {
-            Get = new PotGet(this);
-            Add = new PotAdd(this);
+            Get = new VaultGet(this);
+            Add = new VaultAdd(this);
             
             IsValid = false;
             

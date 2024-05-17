@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Byter
 {
-    public partial class Pot
+    public partial class Vault
     {
-        private class PotGet : IPotGet
+        private class VaultGet : IVaultGet
         {
-            private Pot _pot;
-            public PotGet(Pot pot)
+            private Vault _vault;
+            public VaultGet(Vault vault)
             {
-                _pot = pot;
+                _vault = vault;
             }
 
             public bool Bool()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Byter
 {
-    public interface IPotGet
+    public interface IVaultGet
     {
         // 1 byte (3)
         bool Bool();

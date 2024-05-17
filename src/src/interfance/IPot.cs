@@ -4,7 +4,7 @@ namespace Byter
     {
         bool IsValid { get; }
         byte[] Data { get; }
-        IPotAdd Add { get; }
-        IPotGet Get { get; }
+        IVaultAdd Add { get; }
+        IVaultGet Get { get; }
     }
 }
