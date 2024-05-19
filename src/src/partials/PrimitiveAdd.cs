@@ -26,7 +26,8 @@ namespace Byter
 
             public void Byte(byte value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Byte);
+                Vault.Add(value);
             }
 
             public void SByte(sbyte value)
