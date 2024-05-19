@@ -104,7 +104,14 @@ namespace Byter
 
             public void Decimal(decimal value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Decimal);
+
+                List<int> list = decimal.GetBits(value).ToList();
+
+                foreach (int x in list)
+                {
+                    Vault.AddRange(BitConverter.GetBytes(x));
+                }
             }
 
             public void String(string value)
