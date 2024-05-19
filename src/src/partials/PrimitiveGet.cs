@@ -363,9 +363,58 @@ namespace Byter
 
             public T[] Array<T>()
             {
-                throw new NotImplementedException();
-            }
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Array)) throw new InvalidDataException();
 
+                    var list = new List<T>();
+
+                    int objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    int collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    if
+                    (
+                        // objects count lower than zero
+                        objectCount < 0 ||
+                        // buffer size lower than zero
+                        collectionBuffer < 0 ||
+                        // if zero objects count is zero, buffer size must be zero too
+                        (objectCount == 0 && collectionBuffer != 0) ||
+                        // if have object(s), the buffer size must not be zero
+                        (objectCount != 0 && collectionBuffer == 0)
+                    )
+                    {
+                        throw new InvalidConstraintException();
+                    }
+
+                    if (objectCount > 0 && collectionBuffer > 0)
+                    {
+                        var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
+
+                        for (int i = 0; i < objectCount; i++)
+                        {
+                            var result = PrimitiveExtension.FromPrimitive<T>(primitive);
+
+                            if (result.IsError)
+                            {
+                                throw new InvalidDataException();
+                            }
+                            
+                            list.Add(result.Value);
+                        }
+                    }
+
+                    return list.ToArray();
+                }
+                catch
+                {
+                    return SetError<T[]>();
+                }
+            }
+            
             public List<T> List<T>()
             {
                 try
