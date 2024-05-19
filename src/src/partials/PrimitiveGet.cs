@@ -208,9 +208,24 @@ namespace Byter
                 }
             }
 
-            public Enum Enum()
+            public T Enum<T>()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!typeof(T).IsEnum) throw new InvalidOperationException();
+
+                    if (!IsValidPrefix(Prefix.Enum)) throw new InvalidDataException();
+
+                    int value = BitConverter.ToInt32(VaultArray, Position);
+
+                    Position += sizeof(int);
+
+                    return (T)(object)value;
+                }
+                catch
+                {
+                    return SetError<T>();
+                }
             }
 
             public long Long()
