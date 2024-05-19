@@ -317,7 +317,7 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.False(primitive.IsValid);
     }
 
-    [Fact]
+    [Fact] // DONE
     public void _Enum()
     {
         Primitive primitive = new();
@@ -358,6 +358,28 @@ public class ReadAndWrite : IPrimitiveGet
     {
         Primitive primitive = new();
 
+        
+        List<string> list = new();
+
+        const int round = 100;
+
+        for (int i = 0; i < round; i++)
+        {
+            list.Add(Guid.NewGuid().ToString());
+        }
+
+        string[] array = list.ToArray(); 
+        
+        primitive.Add.Array(array);
+        string[] content = primitive.Get.Array<string>();
+        
+        for (int i = 0; i < round; i++)
+        {
+            Assert.Equal(array[i], content[i]);
+        }
+
+        Assert.Equal(100, round);
+        
         Terminate(ref primitive);
     }
 
@@ -365,6 +387,26 @@ public class ReadAndWrite : IPrimitiveGet
     public void _List()
     {
         Primitive primitive = new();
+
+        List<string> list = new();
+
+        const int round = 100;
+
+        for (int i = 0; i < round; i++)
+        {
+            list.Add(Guid.NewGuid().ToString());
+        }
+
+        primitive.Add.List(list);
+
+        var content = primitive.Get.List<string>();
+
+        for (int i = 0; i < round; i++)
+        {
+            Assert.Equal(list[i], content[i]);
+        }
+
+        Assert.Equal(100, round);
 
         Terminate(ref primitive);
     }
