@@ -26,7 +26,7 @@ namespace Byter
             Get = new PrimitiveGet(this);
             Add = new PrimitiveAdd(this);
 
-            IsValid = false;
+            IsValid = true;
 
             _bytes = new List<byte>();
 
