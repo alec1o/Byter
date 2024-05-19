@@ -48,7 +48,20 @@ namespace Byter
 
             public bool Bool()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Bool)) throw new InvalidDataException();
+
+                    bool value = BitConverter.ToBoolean(VaultArray, Position);
+
+                    Position += sizeof(bool);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<bool>();
+                }
             }
 
             public byte Byte()
