@@ -80,7 +80,8 @@ namespace Byter
 
             public void Long(long value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Long);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void ULong(ulong value)
