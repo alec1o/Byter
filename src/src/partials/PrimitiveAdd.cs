@@ -38,7 +38,8 @@ namespace Byter
 
             public void Char(char value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Char);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void Short(short value)
