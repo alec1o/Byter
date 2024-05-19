@@ -5,7 +5,7 @@ namespace Byter
         // 1 byte (3)
         byte Bool { get; }
         byte Byte { get; }
-        byte SByteInt { get; }
+        byte SByte { get; }
 
         // 2 bytes (3)
         byte Char { get; }

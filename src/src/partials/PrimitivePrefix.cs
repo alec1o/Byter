@@ -6,7 +6,7 @@ namespace Byter
         {
             public byte Bool { get; } = 247;
             public byte Byte { get; } = 237;
-            public byte SByteInt { get; } = 227;
+            public byte SByte { get; } = 227;
             public byte Char { get; } = 217;
             public byte Short { get; } = 207;
             public byte UShort { get; } = 197;

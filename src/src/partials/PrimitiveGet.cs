@@ -24,7 +24,7 @@ namespace Byter
                 throw new NotImplementedException();
             }
 
-            public sbyte SByteInt()
+            public sbyte SByte()
             {
                 throw new NotImplementedException();
             }

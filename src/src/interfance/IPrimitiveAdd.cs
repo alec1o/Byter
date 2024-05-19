@@ -9,7 +9,7 @@ namespace Byter
         // 1 byte (3)
         void Bool(bool value);
         void Byte(byte value);
-        void SByteInt(sbyte value);
+        void SByte(sbyte value);
         
         // 2 bytes (3)
         void Char(char value);
