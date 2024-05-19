@@ -98,7 +98,8 @@ namespace Byter
 
             public void DateTime(DateTime value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.DateTime);
+                Vault.AddRange(BitConverter.GetBytes(value.ToBinary()));
             }
 
             public void Decimal(decimal value)
