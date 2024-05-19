@@ -68,7 +68,8 @@ namespace Byter
 
             public void Float(float value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Float);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void Enum(Enum value)
