@@ -212,7 +212,14 @@ namespace Byter
                 // TODO: struct
             }
 
-            return ((T)value, value == null);
+            if (primitive.IsValid)
+            {
+                return ((T)value, value == null);
+            }
+            else
+            {
+                return (default, true);
+            }
         }
     }
 }
