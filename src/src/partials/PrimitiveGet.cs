@@ -102,7 +102,20 @@ namespace Byter
 
             public char Char()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Char)) throw new InvalidDataException();
+
+                    char value = BitConverter.ToChar(VaultArray, Position);
+
+                    Position += sizeof(char);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<char>();
+                }
             }
 
             public short Short()
