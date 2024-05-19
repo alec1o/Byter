@@ -86,7 +86,8 @@ namespace Byter
 
             public void ULong(ulong value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.ULong);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void Double(double value)
