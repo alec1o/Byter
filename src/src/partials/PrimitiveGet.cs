@@ -230,7 +230,20 @@ namespace Byter
 
             public long Long()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Long)) throw new InvalidDataException();
+
+                    long value = BitConverter.ToInt64(VaultArray, Position);
+
+                    Position += sizeof(long);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<long>();
+                }
             }
 
             public ulong ULong()
