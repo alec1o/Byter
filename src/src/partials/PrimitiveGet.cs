@@ -84,7 +84,20 @@ namespace Byter
 
             public sbyte SByte()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.SByte)) throw new InvalidDataException();
+
+                    sbyte value = (sbyte)Vault[Position];
+
+                    Position += sizeof(sbyte);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<sbyte>();
+                }
             }
 
             public char Char()
