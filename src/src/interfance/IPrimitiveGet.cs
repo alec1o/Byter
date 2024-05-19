@@ -38,5 +38,6 @@ namespace Byter
         IList<T> Array<T>();
         List<T> List<T>();
         BigInteger BigInteger();
+        byte[] Bytes();
     }
 }

@@ -38,5 +38,6 @@ namespace Byter
         void Array<T>(IList<T> value);
         void List<T>(List<T> value);
         void BigInteger(BigInteger value);
+        void Bytes(byte[] value);
     }
 }

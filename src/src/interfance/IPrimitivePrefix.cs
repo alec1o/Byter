@@ -34,5 +34,6 @@ namespace Byter
         byte Array { get; }
         byte List { get; }
         byte BigInteger { get; }
+        byte Bytes { get; }
     }
 }

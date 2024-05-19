@@ -159,6 +159,20 @@ namespace Byter
 
                 Vault.AddRange(bytes);
             }
+
+            public void Bytes(byte[] value)
+            {
+                byte[] bytes = value ?? System.Array.Empty<byte>();
+                
+                Vault.Add(Prefix.Bytes);
+
+                Vault.AddRange(BitConverter.GetBytes(bytes.Length));
+
+                if (bytes.Length > 0)
+                {
+                    Vault.AddRange(bytes);
+                }
+            }
         }
     }
 }

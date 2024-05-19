@@ -25,6 +25,7 @@ namespace Byter
             public byte Array { get; } = 67;
             public byte List { get; } = 57;
             public byte BigInteger { get; } = 47;
+            public byte Bytes { get; } = 37;
         }
     }
 }
