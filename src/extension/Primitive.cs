@@ -50,14 +50,9 @@ namespace Byter
             return primitive.Data;
         }
 
-        public static T ToPrimitive<T>(this T value, Primitive primitive)
+        internal static (T Value, bool IsError) FromPrimitive<T>(Primitive primitive)
         {
-            return value;
-        }
-
-        public static T FromPrimitive<T>(this T value, Primitive primitive)
-        {
-            return value;
+            return (default, false);
         }
     }
 }
