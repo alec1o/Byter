@@ -92,7 +92,8 @@ namespace Byter
 
             public void Double(double value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Double);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void DateTime(DateTime value)
