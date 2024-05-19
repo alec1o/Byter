@@ -248,7 +248,20 @@ namespace Byter
 
             public ulong ULong()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.ULong)) throw new InvalidDataException();
+
+                    ulong value = BitConverter.ToUInt64(VaultArray, Position);
+
+                    Position += sizeof(ulong);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<uint>();
+                }
             }
 
             public double Double()
