@@ -31,7 +31,7 @@ namespace Byter
         // 16 bytes (1)
         decimal Decimal();
 
-        // dynamic (6)
+        // dynamic (7)
         string String();
         T Class<T>();
         T Struct<T>();

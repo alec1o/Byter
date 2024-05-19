@@ -31,7 +31,7 @@ namespace Byter
         // 16 bytes (1)
         void Decimal(decimal value);
         
-        // dynamic (6)
+        // dynamic (7)
         void String(string value);
         void Class(object value);
         void Struct(object value);

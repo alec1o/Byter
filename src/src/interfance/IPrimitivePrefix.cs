@@ -27,7 +27,7 @@ namespace Byter
         // 16 bytes (1)
         byte Decimal { get; }
 
-        // dynamic (6)
+        // dynamic (7)
         byte String { get; }
         byte Class { get; }
         byte Struct { get; }
