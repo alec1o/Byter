@@ -516,6 +516,11 @@ namespace Byter
                     return SetError<byte[]>();
                 }
             }
+
+            public T FromRaw<T>()
+            {
+                return default;
+            }
         }
     }
 }
