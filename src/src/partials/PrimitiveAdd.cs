@@ -72,8 +72,9 @@ namespace Byter
                 Vault.AddRange(BitConverter.GetBytes(value));
             }
 
-            public void Enum(Enum value)
+            public void Enum<T>(T value)
             {
+                if (!typeof(T).IsEnum) throw new InvalidOperationException();
                 Vault.Add(Prefix.Enum);
                 Vault.AddRange(BitConverter.GetBytes((int)(object)value));
             }

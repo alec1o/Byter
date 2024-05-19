@@ -20,7 +20,7 @@ namespace Byter
         int Int();
         uint UInt();
         float Float();
-        Enum Enum();
+        T Enum<T>();
 
         // 8 bytes (4)
         long Long();

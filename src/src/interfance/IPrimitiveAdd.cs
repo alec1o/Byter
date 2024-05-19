@@ -20,7 +20,7 @@ namespace Byter
         void Int(int value);
         void UInt(uint value);
         void Float(float value);
-        void Enum(Enum value);
+        void Enum<T>(T value);
 
         // 8 bytes (3)
         void Long(long value);
