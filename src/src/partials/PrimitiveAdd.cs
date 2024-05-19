@@ -146,7 +146,19 @@ namespace Byter
 
             public void List<T>(List<T> value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.List);
+
+                int size = value?.Count ?? 0;
+
+                Vault.AddRange(BitConverter.GetBytes(size));
+
+                if (size > 0 && value != null)
+                {
+                    foreach (T x in value)
+                    {
+                        Vault.AddRange(x.ToPrimitive());
+                    }
+                }
             }
 
             public void BigInteger(BigInteger value)
@@ -163,7 +175,7 @@ namespace Byter
             public void Bytes(byte[] value)
             {
                 byte[] bytes = value ?? System.Array.Empty<byte>();
-                
+
                 Vault.Add(Prefix.Bytes);
 
                 Vault.AddRange(BitConverter.GetBytes(bytes.Length));
