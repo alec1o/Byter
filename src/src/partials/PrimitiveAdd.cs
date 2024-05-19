@@ -150,7 +150,13 @@ namespace Byter
 
             public void BigInteger(BigInteger value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.BigInteger);
+
+                byte[] bytes = value.ToByteArray();
+
+                Vault.AddRange(BitConverter.GetBytes(bytes.Length));
+
+                Vault.AddRange(bytes);
             }
         }
     }
