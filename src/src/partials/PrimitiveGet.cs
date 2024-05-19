@@ -120,7 +120,20 @@ namespace Byter
 
             public short Short()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Short)) throw new InvalidDataException();
+
+                    short value = BitConverter.ToInt16(VaultArray, Position);
+
+                    Position += sizeof(short);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<short>();
+                }
             }
 
             public ushort UShort()
