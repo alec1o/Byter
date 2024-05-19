@@ -6,7 +6,8 @@ namespace Byter
     {
         private static readonly IPrimitivePrefix Prefix;
         private readonly List<byte> _bytes;
-        public bool IsValid { get; }
+        public int Position { get; private set; }
+        public bool IsValid { get; private set; }
         public byte[] Data => _bytes.ToArray();
         public IPrimitiveAdd Add { get; }
         public IPrimitiveGet Get { get; }
