@@ -192,7 +192,20 @@ namespace Byter
 
             public float Float()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Float)) throw new InvalidDataException();
+
+                    float value = BitConverter.ToSingle(VaultArray, Position);
+
+                    Position += sizeof(float);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<float>();
+                }
             }
 
             public Enum Enum()
