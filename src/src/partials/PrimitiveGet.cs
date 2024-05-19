@@ -156,7 +156,20 @@ namespace Byter
 
             public int Int()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Int)) throw new InvalidDataException();
+
+                    int value = BitConverter.ToInt32(VaultArray, Position);
+
+                    Position += sizeof(int);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<int>();
+                }
             }
 
             public uint UInt()
