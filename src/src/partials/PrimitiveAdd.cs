@@ -141,7 +141,19 @@ namespace Byter
 
             public void Array<T>(T[] value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Array);
+
+                int size = value?.Length ?? 0;
+
+                Vault.AddRange(BitConverter.GetBytes(size));
+
+                if (size > 0 && value != null)
+                {
+                    foreach (T x in value)
+                    {
+                        Vault.AddRange(x.ToPrimitive());
+                    }
+                }
             }
 
             public void List<T>(List<T> value)
