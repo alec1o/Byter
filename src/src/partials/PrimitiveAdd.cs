@@ -32,7 +32,8 @@ namespace Byter
 
             public void SByte(sbyte value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.SByte);
+                Vault.Add((byte)value);
             }
 
             public void Char(char value)
