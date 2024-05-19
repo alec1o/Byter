@@ -44,7 +44,8 @@ namespace Byter
 
             public void Short(short value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Short);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void UShort(ushort value)
