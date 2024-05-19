@@ -266,7 +266,20 @@ namespace Byter
 
             public double Double()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Double)) throw new InvalidDataException();
+
+                    double value = BitConverter.ToDouble(VaultArray, Position);
+
+                    Position += sizeof(double);
+
+                    return value;
+                }
+                catch
+                {
+                    return SetError<double>();
+                }
             }
 
             public DateTime DateTime()
