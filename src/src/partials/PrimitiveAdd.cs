@@ -56,7 +56,8 @@ namespace Byter
 
             public void Int(int value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Int);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void UInt(uint value)
