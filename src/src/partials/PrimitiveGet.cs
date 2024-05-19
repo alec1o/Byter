@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Numerics;
+using System.Text;
 
 namespace Byter
 {
@@ -8,10 +11,39 @@ namespace Byter
     {
         private class PrimitiveGet : IPrimitiveGet
         {
-            private Primitive _primitive;
+            private readonly Primitive _primitive;
+
+            private bool IsValid
+            {
+                get => _primitive.IsValid;
+                set => _primitive.IsValid = value;
+            }
+
+            private List<byte> Vault => _primitive._bytes;
+            private byte[] VaultArray => _primitive._bytes.ToArray();
+
+            private int Position
+            {
+                get => _primitive.Position;
+                set => _primitive.Position = value;
+            }
+
             public PrimitiveGet(Primitive primitive)
             {
                 _primitive = primitive;
+            }
+
+            private bool IsValidPrefix(byte prefix)
+            {
+                bool value = prefix == Vault[Position];
+                if (value) Position += sizeof(byte);
+                return value;
+            }
+
+            private T SetError<T>()
+            {
+                IsValid = false;
+                return default;
             }
 
             public bool Bool()
