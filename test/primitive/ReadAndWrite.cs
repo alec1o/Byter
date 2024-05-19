@@ -9,21 +9,6 @@ namespace ByterTest.primitive;
 
 public class ReadAndWrite : IPrimitiveGet
 {
-    private T? Terminate<T>(ref Primitive primitive)
-    {
-        Terminate(ref primitive);
-
-        return default;
-    }
-
-    private void Terminate(ref Primitive primitive)
-    {
-        // EXTRA
-        Assert.True(primitive.IsValid);
-        _ = primitive.Get.Bool();
-        Assert.False(primitive.IsValid);
-    }
-
     [Fact] // DONE
     public bool Bool()
     {
@@ -40,7 +25,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.True(primitive.Get.Bool());
 
         return Terminate<bool>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -55,7 +39,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(byte.MaxValue, primitive.Get.Byte());
 
         return Terminate<byte>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -106,7 +89,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(short.MaxValue, primitive.Get.Short());
 
         return Terminate<short>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -121,7 +103,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(ushort.MaxValue, primitive.Get.UShort());
 
         return Terminate<ushort>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -136,7 +117,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(int.MaxValue, primitive.Get.Int());
 
         return Terminate<int>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -151,7 +131,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(uint.MaxValue, primitive.Get.UInt());
 
         return Terminate<uint>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -166,7 +145,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(float.MaxValue, primitive.Get.Float());
 
         return Terminate<float>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -181,7 +159,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(long.MaxValue, primitive.Get.Long());
 
         return Terminate<long>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -196,7 +173,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(ulong.MaxValue, primitive.Get.ULong());
 
         return Terminate<ulong>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -211,7 +187,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(double.MaxValue, primitive.Get.Double());
 
         return Terminate<double>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -232,7 +207,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(time3, primitive.Get.DateTime());
 
         return Terminate<DateTime>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
@@ -247,37 +221,7 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(decimal.MaxValue, primitive.Get.Decimal());
 
         return Terminate<decimal>(ref primitive);
-        ;
     }
-
-    #region Unused
-
-    public T? Enum<T>()
-    {
-        return default;
-    }
-
-    public T? Class<T>()
-    {
-        return default;
-    }
-
-    public T? Struct<T>()
-    {
-        return default;
-    }
-
-    public IList<T>? Array<T>()
-    {
-        return default;
-    }
-
-    public List<T>? List<T>()
-    {
-        return default;
-    }
-
-    #endregion
 
     [Fact] // DONE
     public BigInteger BigInteger()
@@ -310,15 +254,14 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(number9, primitive.Get.BigInteger());
 
         return Terminate<BigInteger>(ref primitive);
-        ;
     }
 
     [Fact] // DONE
     public byte[]? Bytes()
     {
         byte[] data1 = [1, 2, 3, 4, 6, 7, 8, 9, 0];
-        byte[] data2 = "ALEC1O".GetBytes(Encoding.UTF8);
-        byte[] data3 = "Hello World".GetBytes(Encoding.UTF32);
+        var data2 = "ALEC1O".GetBytes(Encoding.UTF8);
+        var data3 = "Hello World".GetBytes(Encoding.UTF32);
 
         Primitive primitive = new();
 
@@ -331,27 +274,6 @@ public class ReadAndWrite : IPrimitiveGet
         Assert.Equal(data3, primitive.Get.Bytes());
 
         return Terminate<byte[]>(ref primitive);
-        ;
-    }
-
-    [Fact]
-    public void _Enum()
-    {
-        Primitive primitive = new();
-
-        primitive.Add.Enum(TypeCode.Char);
-        primitive.Add.Enum(TypeCode.Byte);
-        primitive.Add.Enum(TypeCode.String);
-        primitive.Add.Enum(TypeCode.Decimal);
-
-        Assert.Throws<InvalidOperationException>(() => primitive.Add.Enum(int.MaxValue));
-
-        Assert.Equal(TypeCode.Char, primitive.Get.Enum<TypeCode>());
-        Assert.Equal(TypeCode.Byte, primitive.Get.Enum<TypeCode>());
-        Assert.Equal(TypeCode.String, primitive.Get.Enum<TypeCode>());
-        Assert.Equal(TypeCode.Decimal, primitive.Get.Enum<TypeCode>());
-
-        Terminate(ref primitive);
     }
 
     [Fact] // DONE
@@ -380,23 +302,99 @@ public class ReadAndWrite : IPrimitiveGet
         return Terminate<string>(ref primitive);
     }
 
+    private T? Terminate<T>(ref Primitive primitive)
+    {
+        Terminate(ref primitive);
+
+        return default;
+    }
+
+    private void Terminate(ref Primitive primitive)
+    {
+        // EXTRA
+        Assert.True(primitive.IsValid);
+        _ = primitive.Get.Bool();
+        Assert.False(primitive.IsValid);
+    }
+
+    [Fact]
+    public void _Enum()
+    {
+        Primitive primitive = new();
+
+        primitive.Add.Enum(TypeCode.Char);
+        primitive.Add.Enum(TypeCode.Byte);
+        primitive.Add.Enum(TypeCode.String);
+        primitive.Add.Enum(TypeCode.Decimal);
+
+        Assert.Throws<InvalidOperationException>(() => primitive.Add.Enum(int.MaxValue));
+
+        Assert.Equal(TypeCode.Char, primitive.Get.Enum<TypeCode>());
+        Assert.Equal(TypeCode.Byte, primitive.Get.Enum<TypeCode>());
+        Assert.Equal(TypeCode.String, primitive.Get.Enum<TypeCode>());
+        Assert.Equal(TypeCode.Decimal, primitive.Get.Enum<TypeCode>());
+
+        Terminate(ref primitive);
+    }
+
     [Fact]
     public void _Class()
     {
+        Primitive primitive = new();
+
+        Terminate(ref primitive);
     }
 
     [Fact]
     public void _Struct()
     {
+        Primitive primitive = new();
+
+        Terminate(ref primitive);
     }
 
     [Fact]
     public void _Array()
     {
+        Primitive primitive = new();
+
+        Terminate(ref primitive);
     }
 
     [Fact]
     public void _List()
     {
+        Primitive primitive = new();
+
+        Terminate(ref primitive);
     }
+
+    #region Unused
+
+    public T? Enum<T>()
+    {
+        return default;
+    }
+
+    public T? Class<T>()
+    {
+        return default;
+    }
+
+    public T? Struct<T>()
+    {
+        return default;
+    }
+
+    public IList<T>? Array<T>()
+    {
+        return default;
+    }
+
+    public List<T>? List<T>()
+    {
+        return default;
+    }
+
+    #endregion
 }
