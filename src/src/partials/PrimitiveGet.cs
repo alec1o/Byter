@@ -360,7 +360,7 @@ namespace Byter
                 throw new NotImplementedException();
             }
 
-            public IList<T> Array<T>()
+            public T[] Array<T>()
             {
                 throw new NotImplementedException();
             }

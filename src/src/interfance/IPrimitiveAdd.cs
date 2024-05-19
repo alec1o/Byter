@@ -35,7 +35,7 @@ namespace Byter
         void String(string value);
         void Class(object value);
         void Struct(object value);
-        void Array<T>(IList<T> value);
+        void Array<T>(T[] value);
         void List<T>(List<T> value);
         void BigInteger(BigInteger value);
         void Bytes(byte[] value);

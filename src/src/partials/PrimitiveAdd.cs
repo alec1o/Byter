@@ -139,7 +139,7 @@ namespace Byter
                 throw new NotImplementedException();
             }
 
-            public void Array<T>(IList<T> value)
+            public void Array<T>(T[] value)
             {
                 throw new NotImplementedException();
             }

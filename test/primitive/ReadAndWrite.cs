@@ -386,7 +386,7 @@ public class ReadAndWrite : IPrimitiveGet
         return default;
     }
 
-    public IList<T>? Array<T>()
+    public T[]? Array<T>()
     {
         return default;
     }

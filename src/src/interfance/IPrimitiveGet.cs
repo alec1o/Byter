@@ -35,7 +35,7 @@ namespace Byter
         string String();
         T Class<T>();
         T Struct<T>();
-        IList<T> Array<T>();
+        T[] Array<T>();
         List<T> List<T>();
         BigInteger BigInteger();
         byte[] Bytes();
