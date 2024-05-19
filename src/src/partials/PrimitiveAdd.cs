@@ -145,14 +145,23 @@ namespace Byter
 
                 int size = value?.Length ?? 0;
 
-                Vault.AddRange(BitConverter.GetBytes(size));
-
                 if (size > 0 && value != null)
                 {
+                    var collection = new List<byte>();
+
                     foreach (T x in value)
                     {
-                        Vault.AddRange(x.ToPrimitive());
+                        collection.AddRange(x.ToPrimitive());
                     }
+
+                    Vault.AddRange(BitConverter.GetBytes(size)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
+                    Vault.AddRange(collection); // buffer
+                }
+                else
+                {
+                    Vault.AddRange(BitConverter.GetBytes(0)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(0)); // buffer
                 }
             }
 
@@ -162,14 +171,23 @@ namespace Byter
 
                 int size = value?.Count ?? 0;
 
-                Vault.AddRange(BitConverter.GetBytes(size));
-
                 if (size > 0 && value != null)
                 {
+                    var collection = new List<byte>();
+
                     foreach (T x in value)
                     {
-                        Vault.AddRange(x.ToPrimitive());
+                        collection.AddRange(x.ToPrimitive());
                     }
+
+                    Vault.AddRange(BitConverter.GetBytes(size)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
+                    Vault.AddRange(collection); // buffer
+                }
+                else
+                {
+                    Vault.AddRange(BitConverter.GetBytes(0)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(0)); // buffer
                 }
             }
 
