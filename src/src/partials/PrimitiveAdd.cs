@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
+using System.Text;
 
 namespace Byter
 {
@@ -8,7 +10,9 @@ namespace Byter
     {
         private class PrimitiveAdd : IPrimitiveAdd
         {
-            private Primitive _primitive;
+            private readonly Primitive _primitive;
+            private List<byte> Vault => _primitive._bytes;
+
             public PrimitiveAdd(Primitive primitive)
             {
                 _primitive = primitive;
@@ -16,7 +20,8 @@ namespace Byter
 
             public void Bool(bool value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Bool);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void Byte(byte value)
