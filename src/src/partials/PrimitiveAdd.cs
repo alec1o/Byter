@@ -116,7 +116,16 @@ namespace Byter
 
             public void String(string value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.String);
+
+                byte[] bytes = Encoding.UTF8.GetBytes(value ?? string.Empty);
+
+                Vault.AddRange(BitConverter.GetBytes(bytes.Length));
+
+                if (bytes.Length > 0)
+                {
+                    Vault.AddRange(bytes);
+                }
             }
 
             public void Class(object value)
