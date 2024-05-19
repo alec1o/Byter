@@ -328,7 +328,26 @@ namespace Byter
 
             public string String()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.String)) throw new InvalidDataException();
+
+                    int valueSize = BitConverter.ToInt32(VaultArray, Position);
+
+                    Position += sizeof(int);
+
+                    if (valueSize <= 0 || valueSize > Vault.Count - Position) throw new InvalidDataException();
+
+                    byte[] value = Vault.GetRange(Position, valueSize).ToArray();
+
+                    Position += valueSize;
+
+                    return Encoding.UTF8.GetString(value);
+                }
+                catch
+                {
+                    return SetError<string>();
+                }
             }
 
             public T Class<T>()
