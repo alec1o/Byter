@@ -302,7 +302,28 @@ namespace Byter
 
             public decimal Decimal()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Decimal)) throw new InvalidDataException();
+
+                    byte[] value = Vault.GetRange(Position, sizeof(decimal)).ToArray();
+
+                    Position += sizeof(decimal);
+
+                    int[] bits =
+                    {
+                        BitConverter.ToInt32(value, sizeof(int) * 0),
+                        BitConverter.ToInt32(value, sizeof(int) * 1),
+                        BitConverter.ToInt32(value, sizeof(int) * 2),
+                        BitConverter.ToInt32(value, sizeof(int) * 3),
+                    };
+
+                    return new decimal(bits);
+                }
+                catch
+                {
+                    return SetError<decimal>();
+                }
             }
 
             public string String()
