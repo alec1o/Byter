@@ -372,7 +372,27 @@ namespace Byter
 
             public BigInteger BigInteger()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.BigInteger)) throw new InvalidDataException();
+
+                    int valueSize = BitConverter.ToInt32(VaultArray, Position);
+
+                    Position += sizeof(int);
+
+                    if (valueSize <= 0 || valueSize > Vault.Count - Position) throw new InvalidDataException();
+
+                    byte[] value = Vault.GetRange(Position, valueSize).ToArray();
+
+                    Position += valueSize;
+
+                    return new BigInteger(value);
+                }
+                catch
+                {
+                    return SetError<BigInteger>();
+                }
+            }
             }
         }
     }
