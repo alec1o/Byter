@@ -74,7 +74,8 @@ namespace Byter
 
             public void Enum(Enum value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.Enum);
+                Vault.AddRange(BitConverter.GetBytes((int)(object)value));
             }
 
             public void Long(long value)
