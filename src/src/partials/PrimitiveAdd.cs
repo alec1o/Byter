@@ -50,7 +50,8 @@ namespace Byter
 
             public void UShort(ushort value)
             {
-                throw new NotImplementedException();
+                Vault.Add(Prefix.UShort);
+                Vault.AddRange(BitConverter.GetBytes(value));
             }
 
             public void Int(int value)
