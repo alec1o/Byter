@@ -284,7 +284,20 @@ namespace Byter
 
             public DateTime DateTime()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.DateTime)) throw new InvalidDataException();
+
+                    long value = BitConverter.ToInt64(VaultArray, Position);
+
+                    Position += sizeof(long);
+
+                    return System.DateTime.FromBinary(value);
+                }
+                catch
+                {
+                    return SetError<DateTime>();
+                }
             }
 
             public decimal Decimal()
