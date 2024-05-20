@@ -129,7 +129,7 @@ namespace Byter
                 }
             }
 
-            public void Class(object value)
+            public void Class<T>(T value)
             {
                 throw new NotImplementedException();
             }

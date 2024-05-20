@@ -33,7 +33,7 @@ namespace Byter
         
         // dynamic (7)
         void String(string value);
-        void Class(object value);
+        void Class<T>(T value);
         void Struct<T>(T value);
         void Array<T>(T[] value);
         void List<T>(List<T> value);
