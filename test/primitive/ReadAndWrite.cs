@@ -337,11 +337,86 @@ public class ReadAndWrite : IPrimitiveGet
         Terminate(ref primitive);
     }
 
+    enum VehicleMode
+    {
+        Example,
+        Sample,
+        Demo
+    }
+
+    class Airplane
+    {
+        public string Name { get; set; }
+        public int Random { get; set; }
+        public Vehicle Info { get; set; }
+    }
+
+    class Machine
+    {
+        public string Name { get; set; }
+    }
+
+    struct Vehicle
+    {
+        public string Name { get; set; }
+        public int Year { get; set; }
+        public bool IsAirplane { get; set; }
+        public VehicleMode Mode { get; set; }
+        public Machine Machine { get; set; }
+    }
+
     [Fact]
     public void _Class()
     {
         Primitive primitive = new();
 
+        var class1 = new Airplane
+        {
+            Name = Guid.NewGuid().ToString(),
+            Random = System.DateTime.Now.Second,
+            Info = new Vehicle
+            {
+                IsAirplane = true,
+                Name = Guid.NewGuid().ToString(),
+                Mode = VehicleMode.Demo,
+                Year = System.DateTime.Now.Millisecond,
+                Machine = new Machine
+                {
+                    Name = Guid.NewGuid().ToString()
+                }
+            }
+        };
+
+        var class2 = new Machine
+        {
+            Name = Guid.NewGuid().ToString()
+        };
+
+        Assert.True(primitive.IsValid);
+        Assert.NotNull(class1);
+        Assert.NotNull(class2);
+        
+        primitive.Add.Class(class1);
+        primitive.Add.Class(class2);
+        
+        var myClass1 = primitive.Get.Class<Airplane>();
+        var myClass2 = primitive.Get.Class<Machine>();
+
+        Assert.True(primitive.IsValid);
+        Assert.NotNull(myClass1);
+        Assert.NotNull(myClass2);
+        {
+            Assert.Equal(class1.Name, myClass1.Name);
+            Assert.Equal(class1.Random, myClass1.Random);
+            Assert.Equal(class1.Info.Name, myClass1.Info.Name);
+            Assert.Equal(class1.Info.Year, myClass1.Info.Year);
+            Assert.Equal(class1.Info.IsAirplane, myClass1.Info.IsAirplane);
+            Assert.Equal(class1.Info.Mode, myClass1.Info.Mode);
+            Assert.Equal(class1.Info.Machine.Name, myClass1.Info.Machine.Name);
+        }
+        {
+            Assert.Equal(class2.Name, myClass2.Name);
+        }
         Terminate(ref primitive);
     }
 
@@ -349,6 +424,27 @@ public class ReadAndWrite : IPrimitiveGet
     public void _Struct()
     {
         Primitive primitive = new();
+
+        var struct1 = new Vehicle
+        {
+            IsAirplane = true,
+            Machine = new Machine { Name = Guid.NewGuid().ToString() },
+            Name = Guid.NewGuid().ToString(),
+            Year = System.DateTime.Now.Second,
+            Mode = VehicleMode.Sample,
+        };
+
+        primitive.Add.Struct(struct1);
+        
+        Assert.True(primitive.IsValid);
+        
+        var myStruct1 = primitive.Get.Struct<Vehicle>();
+        
+        Assert.Equal(struct1.Name, myStruct1.Name);
+        Assert.Equal(struct1.Year, myStruct1.Year);
+        Assert.Equal(struct1.Mode, myStruct1.Mode);
+        Assert.Equal(struct1.IsAirplane, myStruct1.IsAirplane);
+        Assert.Equal(struct1.Machine.Name, myStruct1.Machine.Name);
 
         Terminate(ref primitive);
     }
@@ -358,7 +454,7 @@ public class ReadAndWrite : IPrimitiveGet
     {
         Primitive primitive = new();
 
-        
+
         List<string> list = new();
 
         const int round = 100;
@@ -368,18 +464,18 @@ public class ReadAndWrite : IPrimitiveGet
             list.Add(Guid.NewGuid().ToString());
         }
 
-        string[] array = list.ToArray(); 
-        
+        string[] array = list.ToArray();
+
         primitive.Add.Array(array);
         string[] content = primitive.Get.Array<string>();
-        
+
         for (int i = 0; i < round; i++)
         {
             Assert.Equal(array[i], content[i]);
         }
 
         Assert.Equal(100, round);
-        
+
         Terminate(ref primitive);
     }
 
