@@ -132,7 +132,60 @@ namespace Byter
 
             public void Class<T>(T value)
             {
-                throw new NotImplementedException();
+                const int defaultCount = 0;
+                const int defaultBuffer = 0;
+
+                Type type = typeof(T);
+
+                if (!type.IsClass) throw new InvalidOperationException("Only class is accepted");
+                // if (!type.IsSerializable) throw new InvalidOperationException("Only serialized class is accepted");
+
+                Vault.Add(Prefix.Class);
+                var cache = new List<byte>();
+
+                if (value == null)
+                {
+                    Vault.AddRange(BitConverter.GetBytes(defaultCount));
+                    Vault.AddRange(BitConverter.GetBytes(defaultBuffer));
+                    return;
+                }
+
+                PropertyInfo[] props = type.GetProperties();
+
+                if (props.Length <= 0)
+                {
+                    Vault.AddRange(BitConverter.GetBytes(defaultCount));
+                    Vault.AddRange(BitConverter.GetBytes(defaultBuffer));
+                    return;
+                }
+
+                int count = 0;
+
+                foreach (var prop in props)
+                {
+                    if (prop.CanRead && prop.CanWrite)
+                    {
+                        var propValue = prop.GetValue(value);
+                        var propBuffer = propValue.ToPrimitive();
+                        if (propBuffer != null && propBuffer.Length > 0)
+                        {
+                            count++;
+                            cache.AddRange(propBuffer);
+                        }
+                    }
+                }
+
+                if (count <= 0 || cache.Count <= 0)
+                {
+                    Vault.AddRange(BitConverter.GetBytes(defaultCount));
+                    Vault.AddRange(BitConverter.GetBytes(defaultBuffer));
+                }
+                else
+                {
+                    Vault.AddRange(BitConverter.GetBytes(count));
+                    Vault.AddRange(BitConverter.GetBytes(cache.Count));
+                    Vault.AddRange(cache);
+                }
             }
 
             public void Struct<T>(T value)
