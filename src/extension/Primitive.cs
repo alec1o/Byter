@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -113,7 +114,16 @@ namespace Byter
 
         internal static (T Value, bool IsError) FromPrimitive<T>(Primitive primitive)
         {
-            var type = typeof(T);
+            var result = FromPrimitive(typeof(T), primitive);
+            return ((T)result.Value, result.IsError);
+        }
+
+        internal static (object Value, bool IsError) FromPrimitive(Type type, Primitive primitive)
+        {
+            if (type == null || primitive == null)
+            {
+                return (default, true);
+            }
 
             object value = null;
 
@@ -158,7 +168,7 @@ namespace Byter
             }
             else if (type.IsEnum)
             {
-                value = primitive.Get.Enum<T>();
+                value = primitive.Get.Enum(type);
             }
             // 8 bytes (3)
             else if (type == typeof(long))
@@ -195,11 +205,11 @@ namespace Byter
             {
                 value = primitive.Get.Bytes();
             }
-            else if (type == typeof(T[]))
+            else if (type.IsArray)
             {
                 // TODO: array
             }
-            else if (type == typeof(List<T>))
+            else if (type == typeof(object))
             {
                 // TODO: list
             }
@@ -214,7 +224,7 @@ namespace Byter
 
             if (primitive.IsValid)
             {
-                return ((T)value, value == null);
+                return (value, value == null);
             }
             else
             {

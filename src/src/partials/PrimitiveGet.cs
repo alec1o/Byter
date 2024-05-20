@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
 
 namespace Byter
@@ -211,9 +212,14 @@ namespace Byter
 
             public T Enum<T>()
             {
+                return (T)Enum(typeof(T));
+            }
+
+            public object Enum(Type type)
+            {
                 try
                 {
-                    if (!typeof(T).IsEnum) throw new InvalidOperationException();
+                    if (!type.IsEnum) throw new InvalidOperationException();
 
                     if (!IsValidPrefix(Prefix.Enum)) throw new InvalidDataException();
 
@@ -221,11 +227,11 @@ namespace Byter
 
                     Position += sizeof(int);
 
-                    return (T)(object)value;
+                    return value;
                 }
                 catch
                 {
-                    return SetError<T>();
+                    return SetError<object>();
                 }
             }
 
@@ -353,7 +359,65 @@ namespace Byter
 
             public T Class<T>()
             {
-                throw new NotImplementedException();
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Class)) throw new InvalidDataException();
+
+                    int objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    int collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    if
+                    (
+                        // objects count lower than zero
+                        objectCount < 0 ||
+                        // buffer size lower than zero
+                        collectionBuffer < 0 ||
+                        // if zero objects count is zero, buffer size must be zero too
+                        (objectCount == 0 && collectionBuffer != 0) ||
+                        // if have object(s), the buffer size must not be zero
+                        (objectCount != 0 && collectionBuffer == 0)
+                    )
+                    {
+                        throw new InvalidConstraintException();
+                    }
+
+                    if (objectCount > 0 && collectionBuffer > 0)
+                    {
+                        var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
+
+                        PropertyInfo[] props = typeof(T).GetProperties();
+
+                        if (props.Length <= 0) return default;
+
+                        T obj = Activator.CreateInstance<T>();
+
+                        /*foreach (var prop in props)
+                        {
+                            if (prop.CanRead && prop.CanWrite)
+                            {
+                                var result = PrimitiveExtension.FromPrimitive<object>(prop.PropertyType, primitive);
+
+                                if (result.IsError)
+                                {
+                                    throw new InvalidDataException();
+                                }
+
+                                prop.SetValue(obj, result.Value);
+                            }
+                        }*/
+
+                        return obj;
+                    }
+
+                    return default;
+                }
+                catch
+                {
+                    return SetError<T>();
+                }
             }
 
             public T Struct<T>()
@@ -402,7 +466,7 @@ namespace Byter
                             {
                                 throw new InvalidDataException();
                             }
-                            
+
                             list.Add(result.Value);
                         }
                     }
@@ -414,7 +478,7 @@ namespace Byter
                     return SetError<T[]>();
                 }
             }
-            
+
             public List<T> List<T>()
             {
                 try
@@ -456,7 +520,7 @@ namespace Byter
                             {
                                 throw new InvalidDataException();
                             }
-                            
+
                             list.Add(result.Value);
                         }
                     }

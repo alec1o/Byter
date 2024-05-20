@@ -16,11 +16,12 @@ namespace Byter
         short Short();
         ushort UShort();
 
-        // 4 bytes (4)
+        // 4 bytes (4) + (1) Overhead
         int Int();
         uint UInt();
         float Float();
         T Enum<T>();
+        object Enum(Type type);
 
         // 8 bytes (4)
         long Long();
