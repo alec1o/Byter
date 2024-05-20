@@ -134,7 +134,7 @@ namespace Byter
                 throw new NotImplementedException();
             }
 
-            public void Struct(object value)
+            public void Struct<T>(T value)
             {
                 throw new NotImplementedException();
             }

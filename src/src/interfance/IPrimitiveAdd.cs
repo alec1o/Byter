@@ -34,7 +34,7 @@ namespace Byter
         // dynamic (7)
         void String(string value);
         void Class(object value);
-        void Struct(object value);
+        void Struct<T>(T value);
         void Array<T>(T[] value);
         void List<T>(List<T> value);
         void BigInteger(BigInteger value);
