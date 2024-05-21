@@ -462,8 +462,6 @@ namespace Byter
 
                         PropertyInfo[] props = typeof(T).GetProperties();
 
-                        if (props.Length <= 0) return default;
-
                         foreach (var prop in props)
                         {
                             if (prop.CanRead && prop.CanWrite)
@@ -474,19 +472,55 @@ namespace Byter
                                 {
                                     throw new InvalidDataException();
                                 }
+/*
+ * WARNING: dotnet standard bug. but this code working if running in dotnet 8+
+ * NOTICE 1*: https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
+ * NOTICE 1 (original): https://bytes.com/topic/visual-basic-net/372981-cannot-get-propertyinfo-setvalue-work-structure
+ 
+ -> prop.SetValue(instance, result.Value);
+ 
+ * NOTICE 1*: https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
+ * NOTICE 1 (Original): https://stackoverflow.com/questions/6280506/is-there-a-way-to-set-properties-on-struct-instances-using-reflection
+ 
+ -> typeof(T).GetField(prop.Name).SetValue(instance, result.Value);
+ */
 
-                                {
-                                    // WARNING: dotnet standard bug. but this code working if running in dotnet 8+
-                                    // NOTICE 1*: https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
-                                    // NOTICE 1 (original): https://bytes.com/topic/visual-basic-net/372981-cannot-get-propertyinfo-setvalue-work-structure
-                                    // prop.SetValue(instance, result.Value);
-                                }
-                                {
-                                    // NOTICE 1*: https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
-                                    // NOTICE 1 (Original): https://stackoverflow.com/questions/6280506/is-there-a-way-to-set-properties-on-struct-instances-using-reflection
-                                    
-                                    // typeof(T).GetField(prop.Name).SetValue(instance, result.Value);
-                                }
+/*
+https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
+|-----------------------------------------------------------------------------------|
+|   PropertyInfo.SetValue/GetValue worked with struct with accurate using           |
+|-----------------------------------------------------------------------------------|
+|  struct Z                                                                         |
+|  {                                                                                |
+|      public int X { get; set; }                                                   |
+|  }                                                                                |
+|                                                                                   |
+|  Z z1 = new Z();                                                                  |
+|  z1.GetType().GetProperty("X").SetValue(z1, 100, null);                           |
+|  Console.WriteLine(z1.X); //z1.X dont changed                                     |
+|                                                                                   |
+|  object z2 = new Z();                                                             |
+|  z2.GetType().GetProperty("X").SetValue(z2, 100, null);                           |
+|  Console.WriteLine(((Z)z2).X); //z2.x changed to 100                              |
+|                                                                                   |
+|  Z z3 = new Z();                                                                  |
+|  object _z3 = z3;                                                                 |
+|  _z3.GetType().GetProperty("X").SetValue(_z3, 100, null);                         |
+|  z3 = (Z)_z3;                                                                     |
+|  Console.WriteLine(z3.X); //z3.x changed to 100                                   |
+|-----------------------------------------------------------------------------------|
+|  Correct way to change struct:                                                    |
+|                                                                                   |
+|     - box struct                                                                  |
+|     - change property of boxed struct                                             |  
+|     - assign boxed struct to source                                               |
+|-----------------------------------------------------------------------------------|
+*/
+                                object dto = instance;
+                                
+                                prop.SetValue(dto, result.Value);
+
+                                instance = (T)dto;
                             }
                         }
 
