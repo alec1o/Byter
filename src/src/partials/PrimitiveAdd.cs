@@ -165,8 +165,8 @@ namespace Byter
                 {
                     if (prop.CanRead && prop.CanWrite)
                     {
-                        var propValue = prop.GetValue(value);
-                        var propBuffer = propValue.ToPrimitive();
+                        object propValue = prop.GetValue(value);
+                        var propBuffer = propValue.ToPrimitive(prop.PropertyType);
                         if (propBuffer != null && propBuffer.Length > 0)
                         {
                             count++;
