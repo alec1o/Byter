@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Byter.Core.Interface
+namespace Byter.Legacy
 {
     internal interface IReader
     {

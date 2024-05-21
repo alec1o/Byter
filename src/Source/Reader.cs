@@ -1,6 +1,6 @@
 using System;
 using System.Text;
-using Byter.Core.Interface;
+using Byter.Legacy;
 
 namespace Byter
 {

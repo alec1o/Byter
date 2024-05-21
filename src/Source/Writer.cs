@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
-using Byter.Core.Interface;
+using Byter.Legacy;
 
 namespace Byter
 {

@@ -1,8 +1,7 @@
 using System.Text;
-using System.Numerics;
 using System.Collections.Generic;
 
-namespace Byter.Core.Interface
+namespace Byter.Legacy
 {
     internal interface IWriter
     {
