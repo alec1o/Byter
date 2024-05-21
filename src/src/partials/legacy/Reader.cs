@@ -1,8 +1,7 @@
 using System;
 using System.Text;
-using Byter.Legacy;
 
-namespace Byter
+namespace Byter.Legacy
 {
     public class Reader : IReader, IDisposable
     {

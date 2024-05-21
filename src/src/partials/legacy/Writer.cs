@@ -2,9 +2,8 @@ using System;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
-using Byter.Legacy;
 
-namespace Byter
+namespace Byter.Legacy
 {
     public class Writer : IWriter, IDisposable
     {

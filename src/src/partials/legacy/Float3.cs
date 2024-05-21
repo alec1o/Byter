@@ -1,4 +1,4 @@
-namespace Byter
+namespace Byter.Legacy
 {
     public struct Float3
     {
