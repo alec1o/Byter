@@ -384,6 +384,8 @@ namespace Byter
                         throw new InvalidConstraintException();
                     }
 
+                    T instance = (T)Activator.CreateInstance(typeof(T));
+                    
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
@@ -392,27 +394,25 @@ namespace Byter
 
                         if (props.Length <= 0) return default;
 
-                        T obj = Activator.CreateInstance<T>();
-
-                        /*foreach (var prop in props)
+                        foreach (var prop in props)
                         {
                             if (prop.CanRead && prop.CanWrite)
                             {
-                                var result = PrimitiveExtension.FromPrimitive<object>(prop.PropertyType, primitive);
+                                var result = PrimitiveExtension.FromPrimitive(prop.PropertyType, primitive);
 
                                 if (result.IsError)
                                 {
                                     throw new InvalidDataException();
                                 }
 
-                                prop.SetValue(obj, result.Value);
+                                prop.SetValue(instance, result.Value);
                             }
-                        }*/
+                        }
 
-                        return obj;
+                        return instance;
                     }
 
-                    return default;
+                    return instance;
                 }
                 catch
                 {
