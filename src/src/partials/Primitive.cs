@@ -6,11 +6,6 @@ namespace Byter
     {
         private static readonly IPrimitivePrefix Prefix;
         private readonly List<byte> _bytes;
-        public int Position { get; private set; }
-        public bool IsValid { get; private set; }
-        public byte[] Data => _bytes.ToArray();
-        public IPrimitiveAdd Add { get; }
-        public IPrimitiveGet Get { get; }
 
         static Primitive()
         {
@@ -30,10 +25,13 @@ namespace Byter
 
             _bytes = new List<byte>();
 
-            if (data != null && data.Length > 0)
-            {
-                _bytes.AddRange(data);
-            }
+            if (data != null && data.Length > 0) _bytes.AddRange(data);
         }
+
+        public int Position { get; private set; }
+        public bool IsValid { get; private set; }
+        public byte[] Data => _bytes.ToArray();
+        public IPrimitiveAdd Add { get; }
+        public IPrimitiveGet Get { get; }
     }
 }
