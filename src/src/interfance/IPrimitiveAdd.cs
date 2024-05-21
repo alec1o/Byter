@@ -10,12 +10,12 @@ namespace Byter
         void Bool(bool value);
         void Byte(byte value);
         void SByte(sbyte value);
-        
+
         // 2 bytes (3)
         void Char(char value);
         void Short(short value);
         void UShort(ushort value);
-        
+
         // 4 bytes (4)
         void Int(int value);
         void UInt(uint value);
@@ -27,10 +27,10 @@ namespace Byter
         void ULong(ulong value);
         void Double(double value);
         void DateTime(DateTime value);
-        
+
         // 16 bytes (1)
         void Decimal(decimal value);
-        
+
         // dynamic (7)
         void String(string value);
         void Class<T>(T value);

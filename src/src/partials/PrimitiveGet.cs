@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Numerics;
-using System.Reflection;
 using System.Text;
 
 namespace Byter
@@ -13,6 +12,11 @@ namespace Byter
         private class PrimitiveGet : IPrimitiveGet
         {
             private readonly Primitive _primitive;
+
+            public PrimitiveGet(Primitive primitive)
+            {
+                _primitive = primitive;
+            }
 
             private bool IsValid
             {
@@ -29,31 +33,13 @@ namespace Byter
                 set => _primitive.Position = value;
             }
 
-            public PrimitiveGet(Primitive primitive)
-            {
-                _primitive = primitive;
-            }
-
-            private bool IsValidPrefix(byte prefix)
-            {
-                bool value = prefix == Vault[Position];
-                if (value) Position += sizeof(byte);
-                return value;
-            }
-
-            private T SetError<T>()
-            {
-                IsValid = false;
-                return default;
-            }
-
             public bool Bool()
             {
                 try
                 {
                     if (!IsValidPrefix(Prefix.Bool)) throw new InvalidDataException();
 
-                    bool value = BitConverter.ToBoolean(VaultArray, Position);
+                    var value = BitConverter.ToBoolean(VaultArray, Position);
 
                     Position += sizeof(bool);
 
@@ -71,7 +57,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.Byte)) throw new InvalidDataException();
 
-                    byte value = Vault[Position];
+                    var value = Vault[Position];
 
                     Position += sizeof(byte);
 
@@ -89,7 +75,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.SByte)) throw new InvalidDataException();
 
-                    sbyte value = (sbyte)Vault[Position];
+                    var value = (sbyte)Vault[Position];
 
                     Position += sizeof(sbyte);
 
@@ -107,7 +93,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.Char)) throw new InvalidDataException();
 
-                    char value = BitConverter.ToChar(VaultArray, Position);
+                    var value = BitConverter.ToChar(VaultArray, Position);
 
                     Position += sizeof(char);
 
@@ -125,7 +111,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.Short)) throw new InvalidDataException();
 
-                    short value = BitConverter.ToInt16(VaultArray, Position);
+                    var value = BitConverter.ToInt16(VaultArray, Position);
 
                     Position += sizeof(short);
 
@@ -143,7 +129,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.UShort)) throw new InvalidDataException();
 
-                    ushort value = BitConverter.ToUInt16(VaultArray, Position);
+                    var value = BitConverter.ToUInt16(VaultArray, Position);
 
                     Position += sizeof(ushort);
 
@@ -161,7 +147,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.Int)) throw new InvalidDataException();
 
-                    int value = BitConverter.ToInt32(VaultArray, Position);
+                    var value = BitConverter.ToInt32(VaultArray, Position);
 
                     Position += sizeof(int);
 
@@ -179,7 +165,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.UInt)) throw new InvalidDataException();
 
-                    uint value = BitConverter.ToUInt32(VaultArray, Position);
+                    var value = BitConverter.ToUInt32(VaultArray, Position);
 
                     Position += sizeof(uint);
 
@@ -197,7 +183,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.Float)) throw new InvalidDataException();
 
-                    float value = BitConverter.ToSingle(VaultArray, Position);
+                    var value = BitConverter.ToSingle(VaultArray, Position);
 
                     Position += sizeof(float);
 
@@ -222,7 +208,7 @@ namespace Byter
 
                     if (!IsValidPrefix(Prefix.Enum)) throw new InvalidDataException();
 
-                    int value = BitConverter.ToInt32(VaultArray, Position);
+                    var value = BitConverter.ToInt32(VaultArray, Position);
 
                     Position += sizeof(int);
 
@@ -240,7 +226,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.Long)) throw new InvalidDataException();
 
-                    long value = BitConverter.ToInt64(VaultArray, Position);
+                    var value = BitConverter.ToInt64(VaultArray, Position);
 
                     Position += sizeof(long);
 
@@ -258,7 +244,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.ULong)) throw new InvalidDataException();
 
-                    ulong value = BitConverter.ToUInt64(VaultArray, Position);
+                    var value = BitConverter.ToUInt64(VaultArray, Position);
 
                     Position += sizeof(ulong);
 
@@ -276,7 +262,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.Double)) throw new InvalidDataException();
 
-                    double value = BitConverter.ToDouble(VaultArray, Position);
+                    var value = BitConverter.ToDouble(VaultArray, Position);
 
                     Position += sizeof(double);
 
@@ -294,7 +280,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.DateTime)) throw new InvalidDataException();
 
-                    long value = BitConverter.ToInt64(VaultArray, Position);
+                    var value = BitConverter.ToInt64(VaultArray, Position);
 
                     Position += sizeof(long);
 
@@ -312,7 +298,7 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.Decimal)) throw new InvalidDataException();
 
-                    byte[] value = Vault.GetRange(Position, sizeof(decimal)).ToArray();
+                    var value = Vault.GetRange(Position, sizeof(decimal)).ToArray();
 
                     Position += sizeof(decimal);
 
@@ -321,7 +307,7 @@ namespace Byter
                         BitConverter.ToInt32(value, sizeof(int) * 0),
                         BitConverter.ToInt32(value, sizeof(int) * 1),
                         BitConverter.ToInt32(value, sizeof(int) * 2),
-                        BitConverter.ToInt32(value, sizeof(int) * 3),
+                        BitConverter.ToInt32(value, sizeof(int) * 3)
                     };
 
                     return new decimal(bits);
@@ -338,13 +324,13 @@ namespace Byter
                 {
                     if (!IsValidPrefix(Prefix.String)) throw new InvalidDataException();
 
-                    int valueSize = BitConverter.ToInt32(VaultArray, Position);
+                    var valueSize = BitConverter.ToInt32(VaultArray, Position);
 
                     Position += sizeof(int);
 
                     if (valueSize <= 0 || valueSize > Vault.Count - Position) throw new InvalidDataException();
 
-                    byte[] value = Vault.GetRange(Position, valueSize).ToArray();
+                    var value = Vault.GetRange(Position, valueSize).ToArray();
 
                     Position += valueSize;
 
@@ -364,10 +350,10 @@ namespace Byter
 
                     if (!IsValidPrefix(Prefix.Class)) throw new InvalidDataException();
 
-                    int objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    var objectCount = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
 
-                    int collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    var collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
 
                     if
@@ -381,34 +367,27 @@ namespace Byter
                         // if have object(s), the buffer size must not be zero
                         (objectCount != 0 && collectionBuffer == 0)
                     )
-                    {
                         throw new InvalidConstraintException();
-                    }
 
-                    T instance = (T)Activator.CreateInstance(typeof(T));
+                    var instance = (T)Activator.CreateInstance(typeof(T));
 
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
 
-                        PropertyInfo[] props = typeof(T).GetProperties();
+                        var props = typeof(T).GetProperties();
 
                         if (props.Length <= 0) return default;
 
                         foreach (var prop in props)
-                        {
                             if (prop.CanRead && prop.CanWrite)
                             {
                                 var result = PrimitiveExtension.FromPrimitive(prop.PropertyType, primitive);
 
-                                if (result.IsError)
-                                {
-                                    throw new InvalidDataException();
-                                }
+                                if (result.IsError) throw new InvalidDataException();
 
                                 prop.SetValue(instance, result.Value);
                             }
-                        }
 
                         return instance;
                     }
@@ -423,7 +402,7 @@ namespace Byter
 
             public T Struct<T>()
             {
-                Type type = typeof(T);
+                var type = typeof(T);
 
                 try
                 {
@@ -432,10 +411,10 @@ namespace Byter
 
                     if (!IsValidPrefix(Prefix.Struct)) throw new InvalidDataException();
 
-                    int objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    var objectCount = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
 
-                    int collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    var collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
 
                     if
@@ -449,42 +428,36 @@ namespace Byter
                         // if have object(s), the buffer size must not be zero
                         (objectCount != 0 && collectionBuffer == 0)
                     )
-                    {
                         throw new InvalidConstraintException();
-                    }
 
-                    T instance = (T)Activator.CreateInstance(typeof(T));
+                    var instance = (T)Activator.CreateInstance(typeof(T));
 
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
 
-                        PropertyInfo[] props = typeof(T).GetProperties();
+                        var props = typeof(T).GetProperties();
 
                         foreach (var prop in props)
-                        {
                             if (prop.CanRead && prop.CanWrite)
                             {
                                 var result = PrimitiveExtension.FromPrimitive(prop.PropertyType, primitive);
 
-                                if (result.IsError)
-                                {
-                                    throw new InvalidDataException();
-                                }
-/*
+                                if (result.IsError) throw new InvalidDataException();
+
+                                /*
  * WARNING: dotnet standard bug. but this code working if running in dotnet 8+
  * NOTICE 1*: https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
  * NOTICE 1 (original): https://bytes.com/topic/visual-basic-net/372981-cannot-get-propertyinfo-setvalue-work-structure
- 
+
  -> prop.SetValue(instance, result.Value);
- 
+
  * NOTICE 1*: https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
  * NOTICE 1 (Original): https://stackoverflow.com/questions/6280506/is-there-a-way-to-set-properties-on-struct-instances-using-reflection
- 
+
  -> typeof(T).GetField(prop.Name).SetValue(instance, result.Value);
  */
-
-/*
+                                /*
 https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
 |-----------------------------------------------------------------------------------|
 |   PropertyInfo.SetValue/GetValue worked with struct with accurate using           |
@@ -511,17 +484,16 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 |  Correct way to change struct:                                                    |
 |                                                                                   |
 |     - box struct                                                                  |
-|     - change property of boxed struct                                             |  
+|     - change property of boxed struct                                             |
 |     - assign boxed struct to source                                               |
 |-----------------------------------------------------------------------------------|
 */
                                 object dto = instance;
-                                
+
                                 prop.SetValue(dto, result.Value);
 
                                 instance = (T)dto;
                             }
-                        }
 
                         return instance;
                     }
@@ -542,10 +514,10 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
                     var list = new List<T>();
 
-                    int objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    var objectCount = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
 
-                    int collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    var collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
 
                     if
@@ -559,22 +531,17 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                         // if have object(s), the buffer size must not be zero
                         (objectCount != 0 && collectionBuffer == 0)
                     )
-                    {
                         throw new InvalidConstraintException();
-                    }
 
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
 
-                        for (int i = 0; i < objectCount; i++)
+                        for (var i = 0; i < objectCount; i++)
                         {
                             var result = PrimitiveExtension.FromPrimitive<T>(primitive);
 
-                            if (result.IsError)
-                            {
-                                throw new InvalidDataException();
-                            }
+                            if (result.IsError) throw new InvalidDataException();
 
                             list.Add(result.Value);
                         }
@@ -596,10 +563,10 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
                     var list = new List<T>();
 
-                    int objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    var objectCount = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
 
-                    int collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    var collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
 
                     if
@@ -613,22 +580,17 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                         // if have object(s), the buffer size must not be zero
                         (objectCount != 0 && collectionBuffer == 0)
                     )
-                    {
                         throw new InvalidConstraintException();
-                    }
 
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
 
-                        for (int i = 0; i < objectCount; i++)
+                        for (var i = 0; i < objectCount; i++)
                         {
                             var result = PrimitiveExtension.FromPrimitive<T>(primitive);
 
-                            if (result.IsError)
-                            {
-                                throw new InvalidDataException();
-                            }
+                            if (result.IsError) throw new InvalidDataException();
 
                             list.Add(result.Value);
                         }
@@ -648,13 +610,13 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                 {
                     if (!IsValidPrefix(Prefix.BigInteger)) throw new InvalidDataException();
 
-                    int valueSize = BitConverter.ToInt32(VaultArray, Position);
+                    var valueSize = BitConverter.ToInt32(VaultArray, Position);
 
                     Position += sizeof(int);
 
                     if (valueSize <= 0 || valueSize > Vault.Count - Position) throw new InvalidDataException();
 
-                    byte[] value = Vault.GetRange(Position, valueSize).ToArray();
+                    var value = Vault.GetRange(Position, valueSize).ToArray();
 
                     Position += valueSize;
 
@@ -672,13 +634,13 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                 {
                     if (!IsValidPrefix(Prefix.Bytes)) throw new InvalidDataException();
 
-                    int valueSize = BitConverter.ToInt32(VaultArray, Position);
+                    var valueSize = BitConverter.ToInt32(VaultArray, Position);
 
                     Position += sizeof(int);
 
                     if (valueSize <= 0 || valueSize > Vault.Count - Position) throw new InvalidDataException();
 
-                    byte[] value = Vault.GetRange(Position, valueSize).ToArray();
+                    var value = Vault.GetRange(Position, valueSize).ToArray();
 
                     Position += valueSize;
 
@@ -688,6 +650,19 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                 {
                     return SetError<byte[]>();
                 }
+            }
+
+            private bool IsValidPrefix(byte prefix)
+            {
+                var value = prefix == Vault[Position];
+                if (value) Position += sizeof(byte);
+                return value;
+            }
+
+            private T SetError<T>()
+            {
+                IsValid = false;
+                return default;
             }
         }
     }

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Reflection;
 using System.Text;
 
 namespace Byter
@@ -12,12 +11,13 @@ namespace Byter
         private class PrimitiveAdd : IPrimitiveAdd
         {
             private readonly Primitive _primitive;
-            private List<byte> Vault => _primitive._bytes;
 
             public PrimitiveAdd(Primitive primitive)
             {
                 _primitive = primitive;
             }
+
+            private List<byte> Vault => _primitive._bytes;
 
             public void Bool(bool value)
             {
@@ -108,26 +108,20 @@ namespace Byter
             {
                 Vault.Add(Prefix.Decimal);
 
-                List<int> list = decimal.GetBits(value).ToList();
+                var list = decimal.GetBits(value).ToList();
 
-                foreach (int x in list)
-                {
-                    Vault.AddRange(BitConverter.GetBytes(x));
-                }
+                foreach (var x in list) Vault.AddRange(BitConverter.GetBytes(x));
             }
 
             public void String(string value)
             {
                 Vault.Add(Prefix.String);
 
-                byte[] bytes = Encoding.UTF8.GetBytes(value ?? string.Empty);
+                var bytes = Encoding.UTF8.GetBytes(value ?? string.Empty);
 
                 Vault.AddRange(BitConverter.GetBytes(bytes.Length));
 
-                if (bytes.Length > 0)
-                {
-                    Vault.AddRange(bytes);
-                }
+                if (bytes.Length > 0) Vault.AddRange(bytes);
             }
 
             public void Class<T>(T value)
@@ -135,7 +129,7 @@ namespace Byter
                 const int defaultCount = 0;
                 const int defaultBuffer = 0;
 
-                Type type = typeof(T);
+                var type = typeof(T);
 
                 if (!type.IsClass) throw new InvalidOperationException("Only class is accepted");
                 // if (!type.IsSerializable) throw new InvalidOperationException("Only serialized class is accepted");
@@ -150,7 +144,7 @@ namespace Byter
                     return;
                 }
 
-                PropertyInfo[] props = type.GetProperties();
+                var props = type.GetProperties();
 
                 if (props.Length <= 0)
                 {
@@ -159,13 +153,12 @@ namespace Byter
                     return;
                 }
 
-                int count = 0;
+                var count = 0;
 
                 foreach (var prop in props)
-                {
                     if (prop.CanRead && prop.CanWrite)
                     {
-                        object propValue = prop.GetValue(value);
+                        var propValue = prop.GetValue(value);
                         var propBuffer = propValue.ToPrimitive(prop.PropertyType);
                         if (propBuffer != null && propBuffer.Length > 0)
                         {
@@ -173,7 +166,6 @@ namespace Byter
                             cache.AddRange(propBuffer);
                         }
                     }
-                }
 
                 if (count <= 0 || cache.Count <= 0)
                 {
@@ -193,9 +185,10 @@ namespace Byter
                 const int defaultCount = 0;
                 const int defaultBuffer = 0;
 
-                Type type = typeof(T);
+                var type = typeof(T);
 
-                if (!(type.IsValueType && !type.IsEnum && !type.IsPrimitive)) throw new InvalidOperationException("Only struct is accepted");
+                if (!(type.IsValueType && !type.IsEnum && !type.IsPrimitive))
+                    throw new InvalidOperationException("Only struct is accepted");
                 // if (!type.IsSerializable) throw new InvalidOperationException("Only serialized class is accepted");
 
                 Vault.Add(Prefix.Struct);
@@ -208,7 +201,7 @@ namespace Byter
                     return;
                 }
 
-                PropertyInfo[] props = type.GetProperties();
+                var props = type.GetProperties();
 
                 if (props.Length <= 0)
                 {
@@ -217,13 +210,12 @@ namespace Byter
                     return;
                 }
 
-                int count = 0;
+                var count = 0;
 
                 foreach (var prop in props)
-                {
                     if (prop.CanRead && prop.CanWrite)
                     {
-                        object propValue = prop.GetValue(value);
+                        var propValue = prop.GetValue(value);
                         var propBuffer = propValue.ToPrimitive(prop.PropertyType);
                         if (propBuffer != null && propBuffer.Length > 0)
                         {
@@ -231,7 +223,6 @@ namespace Byter
                             cache.AddRange(propBuffer);
                         }
                     }
-                }
 
                 if (count <= 0 || cache.Count <= 0)
                 {
@@ -250,16 +241,13 @@ namespace Byter
             {
                 Vault.Add(Prefix.Array);
 
-                int size = value?.Length ?? 0;
+                var size = value?.Length ?? 0;
 
                 if (size > 0 && value != null)
                 {
                     var collection = new List<byte>();
 
-                    foreach (T x in value)
-                    {
-                        collection.AddRange(x.ToPrimitive());
-                    }
+                    foreach (var x in value) collection.AddRange(x.ToPrimitive());
 
                     Vault.AddRange(BitConverter.GetBytes(size)); // objects count
                     Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
@@ -276,16 +264,13 @@ namespace Byter
             {
                 Vault.Add(Prefix.List);
 
-                int size = value?.Count ?? 0;
+                var size = value?.Count ?? 0;
 
                 if (size > 0 && value != null)
                 {
                     var collection = new List<byte>();
 
-                    foreach (T x in value)
-                    {
-                        collection.AddRange(x.ToPrimitive());
-                    }
+                    foreach (var x in value) collection.AddRange(x.ToPrimitive());
 
                     Vault.AddRange(BitConverter.GetBytes(size)); // objects count
                     Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
@@ -302,7 +287,7 @@ namespace Byter
             {
                 Vault.Add(Prefix.BigInteger);
 
-                byte[] bytes = value.ToByteArray();
+                var bytes = value.ToByteArray();
 
                 Vault.AddRange(BitConverter.GetBytes(bytes.Length));
 
@@ -311,16 +296,13 @@ namespace Byter
 
             public void Bytes(byte[] value)
             {
-                byte[] bytes = value ?? System.Array.Empty<byte>();
+                var bytes = value ?? System.Array.Empty<byte>();
 
                 Vault.Add(Prefix.Bytes);
 
                 Vault.AddRange(BitConverter.GetBytes(bytes.Length));
 
-                if (bytes.Length > 0)
-                {
-                    Vault.AddRange(bytes);
-                }
+                if (bytes.Length > 0) Vault.AddRange(bytes);
             }
         }
     }
