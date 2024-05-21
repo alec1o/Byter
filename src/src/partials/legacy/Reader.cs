@@ -275,7 +275,7 @@ namespace Byter.Legacy
                 }
 
                 // Float2
-                else if (typeof(T) == typeof(Float2))
+                else if (typeof(T) == typeof(ByFloat2))
                 {
                     // compare (buffer prefix) to (type prefix)
                     if (!ValidPrefix(prefix)) return default;
@@ -292,11 +292,11 @@ namespace Byter.Legacy
                     // skip y bytes read
                     _position += sizeof(float);
 
-                    return (T)(object)new Float2(x, y);
+                    return (T)(object)new ByFloat2(x, y);
                 }
 
                 // Float3
-                else if (typeof(T) == typeof(Float3))
+                else if (typeof(T) == typeof(ByFloat3))
                 {
                     // compare (buffer prefix) to (type prefix)
                     if (!ValidPrefix(prefix)) return default;
@@ -319,11 +319,11 @@ namespace Byter.Legacy
                     // skip y bytes read
                     _position += sizeof(float);
 
-                    return (T)(object)new Float3(x, y, z);
+                    return (T)(object)new ByFloat3(x, y, z);
                 }
 
                 // Float4
-                else if (typeof(T) == typeof(Float4))
+                else if (typeof(T) == typeof(ByFloat4))
                 {
                     // compare (buffer prefix) to (type prefix)
                     if (!ValidPrefix(prefix)) return default;
@@ -353,7 +353,7 @@ namespace Byter.Legacy
                     // skip y bytes read
                     _position += sizeof(float);
 
-                    return (T)(object)new Float4(x, y, z, w);
+                    return (T)(object)new ByFloat4(x, y, z, w);
                 }
             }
             catch

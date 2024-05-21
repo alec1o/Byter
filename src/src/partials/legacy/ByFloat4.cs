@@ -1,10 +1,10 @@
 namespace Byter.Legacy
 {
-    public struct Float4
+    public struct ByFloat4
     {
         public float X, Y, Z, W;
       
-        public Float4(float x, float y, float z, float w)
+        public ByFloat4(float x, float y, float z, float w)
         {
             this.X = x;
             this.Y = y;

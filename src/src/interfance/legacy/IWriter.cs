@@ -23,8 +23,8 @@ namespace Byter.Legacy
         void Write(char value);
         void Write(string value);        
         void Write(string value1, Encoding value2);
-        void Write(Float2 value);
-        void Write(Float3 value);
+        void Write(ByFloat2 value);
+        void Write(ByFloat3 value);
 
         void Clear();
     }
