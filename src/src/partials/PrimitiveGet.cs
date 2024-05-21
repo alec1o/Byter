@@ -362,7 +362,7 @@ namespace Byter
                 try
                 {
                     if (!typeof(T).IsClass) throw new InvalidOperationException("Only class is accepted");
-                    
+
                     if (!IsValidPrefix(Prefix.Class)) throw new InvalidDataException();
 
                     int objectCount = BitConverter.ToInt32(VaultArray, Position);
@@ -425,7 +425,7 @@ namespace Byter
             public T Struct<T>()
             {
                 Type type = typeof(T);
-                
+
                 try
                 {
                     if (!(type.IsValueType && !type.IsEnum && !type.IsPrimitive))
@@ -475,8 +475,18 @@ namespace Byter
                                     throw new InvalidDataException();
                                 }
 
-                                // TODO: fix this bug (is set value)
-                                prop.SetValue(instance, result.Value);
+                                {
+                                    // WARNING: dotnet standard bug. but this code working if running in dotnet 8+
+                                    // NOTICE 1*: https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
+                                    // NOTICE 1 (original): https://bytes.com/topic/visual-basic-net/372981-cannot-get-propertyinfo-setvalue-work-structure
+                                    // prop.SetValue(instance, result.Value);
+                                }
+                                {
+                                    // NOTICE 1*: https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-but-no-errors
+                                    // NOTICE 1 (Original): https://stackoverflow.com/questions/6280506/is-there-a-way-to-set-properties-on-struct-instances-using-reflection
+                                    
+                                    // typeof(T).GetField(prop.Name).SetValue(instance, result.Value);
+                                }
                             }
                         }
 
