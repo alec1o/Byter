@@ -361,6 +361,8 @@ namespace Byter
             {
                 try
                 {
+                    if (!typeof(T).IsClass) throw new InvalidOperationException("Only class is accepted");
+                    
                     if (!IsValidPrefix(Prefix.Class)) throw new InvalidDataException();
 
                     int objectCount = BitConverter.ToInt32(VaultArray, Position);
@@ -385,7 +387,7 @@ namespace Byter
                     }
 
                     T instance = (T)Activator.CreateInstance(typeof(T));
-                    
+
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
