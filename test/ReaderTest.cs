@@ -1,6 +1,6 @@
 using System;
 using System.Text;
-using Byter;
+using Byter.Legacy;
 using Xunit;
 
 namespace ByterTest;
@@ -238,14 +238,14 @@ public class ReaderTest
     [Fact]
     public void ReadFloat2()
     {
-        var target = new Float2(1, 2);
+        var target = new ByFloat2(1, 2);
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
 
-        var result = reader.Read<Float2>();
+        var result = reader.Read<ByFloat2>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -253,14 +253,14 @@ public class ReaderTest
     [Fact]
     public void ReadFloat3()
     {
-        var target = new Float3(1, 2, 3);
+        var target = new ByFloat3(1, 2, 3);
 
         Writer writer = new();
         writer.Write(target);
 
         Reader reader = new(ref writer);
 
-        var result = reader.Read<Float3>();
+        var result = reader.Read<ByFloat3>();
         Assert.Equal(target, result);
         Assert.True(reader.Success);
     }
@@ -268,7 +268,7 @@ public class ReaderTest
     [Fact]
     public void ImplFloat2()
     {
-        var result = new Float2(FLOAT_X, FLOAT_Y);
+        var result = new ByFloat2(FLOAT_X, FLOAT_Y);
 
         Assert.Equal(FLOAT_X, result.X);
         Assert.Equal(FLOAT_Y, result.Y);
@@ -277,7 +277,7 @@ public class ReaderTest
     [Fact]
     public void ImplFloat3()
     {
-        var result = new Float3(FLOAT_X, FLOAT_Y, FLOAT_Z);
+        var result = new ByFloat3(FLOAT_X, FLOAT_Y, FLOAT_Z);
 
         Assert.Equal(FLOAT_X, result.X);
         Assert.Equal(FLOAT_Y, result.Y);
@@ -287,7 +287,7 @@ public class ReaderTest
     [Fact]
     public void ImplFloat4()
     {
-        var result = new Float4(FLOAT_X, FLOAT_Y, FLOAT_Z, FLOAT_W);
+        var result = new ByFloat4(FLOAT_X, FLOAT_Y, FLOAT_Z, FLOAT_W);
 
         Assert.Equal(FLOAT_X, result.X);
         Assert.Equal(FLOAT_Y, result.Y);

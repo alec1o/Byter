@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using Xunit;
 using Byter;
-using Byter.Core;
+using Byter.Legacy;
 
 namespace ByterTest;
 
@@ -35,7 +35,7 @@ public class WriterTest
         w.Write((char) 'A');
         w.Write((string) "UTF8");
         w.Write((string) "ASCII", Encoding.ASCII);
-        w.Write(new Float2(1, 2));
+        w.Write(new ByFloat2(1, 2));
 
         byte[] a = w.GetBytes();
         List<byte> b = w.GetList();
