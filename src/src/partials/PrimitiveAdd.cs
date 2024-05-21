@@ -196,6 +196,7 @@ namespace Byter
                 Type type = typeof(T);
 
                 if (!(type.IsValueType && !type.IsEnum && !type.IsPrimitive)) throw new InvalidOperationException("Only struct is accepted");
+                // if (!type.IsSerializable) throw new InvalidOperationException("Only serialized class is accepted");
 
                 Vault.Add(Prefix.Struct);
                 var cache = new List<byte>();
@@ -222,8 +223,8 @@ namespace Byter
                 {
                     if (prop.CanRead && prop.CanWrite)
                     {
-                        var propValue = prop.GetValue(value);
-                        var propBuffer = propValue.ToPrimitive();
+                        object propValue = prop.GetValue(value);
+                        var propBuffer = propValue.ToPrimitive(prop.PropertyType);
                         if (propBuffer != null && propBuffer.Length > 0)
                         {
                             count++;
