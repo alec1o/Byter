@@ -9,8 +9,11 @@ namespace Byter
     {
         internal static byte[] ToPrimitive<T>(this T value)
         {
+            return ToPrimitive<T>(value, typeof(T));
+        }
+        internal static byte[] ToPrimitive<T>(this T value, Type type)
+        {
             var primitive = new Primitive();
-            var type = typeof(T);
 
             object blackbox = value;
 
