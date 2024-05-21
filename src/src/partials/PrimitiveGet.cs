@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
@@ -689,11 +688,6 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                 {
                     return SetError<byte[]>();
                 }
-            }
-
-            public T FromRaw<T>()
-            {
-                return default;
             }
         }
     }
