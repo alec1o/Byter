@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -9,8 +8,9 @@ namespace Byter
     {
         internal static byte[] ToPrimitive<T>(this T value)
         {
-            return ToPrimitive<T>(value, typeof(T));
+            return ToPrimitive(value, typeof(T));
         }
+
         internal static byte[] ToPrimitive<T>(this T value, Type type)
         {
             var primitive = new Primitive();
@@ -123,10 +123,7 @@ namespace Byter
 
         internal static (object Value, bool IsError) FromPrimitive(Type type, Primitive primitive)
         {
-            if (type == null || primitive == null)
-            {
-                return (default, true);
-            }
+            if (type == null || primitive == null) return (default, true);
 
             object value = null;
 
@@ -226,13 +223,8 @@ namespace Byter
             }
 
             if (primitive.IsValid)
-            {
                 return (value, value == null);
-            }
-            else
-            {
-                return (default, true);
-            }
+            return (default, true);
         }
     }
 }

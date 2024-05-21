@@ -1,38 +1,38 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\" />
-		<None Include="..\LICENSE.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
+    <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\LICENSE.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
 
-	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
-		<PackageId>Byter</PackageId>
-		<Version>2.0.0</Version>
-		<Authors>alec1o</Authors>
-		<Company>alec1o</Company>
-		<Copyright>alec1o</Copyright>
-		<RepositoryType>GitHub</RepositoryType>
-		<PackageTags>Byte, Bytes, Array, Encode, Decode</PackageTags>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<RepositoryUrl>https://github.com/alec1o/Byter</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/alec1o/Byter</PackageProjectUrl>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-		<PackageReleaseNotes>
-			+ Add Float2 struct (Vector2)
-			+ Add Float3 struct (Vector3)
-			+ Add Float4 struct (Vector4 / Quaternion)
-			+ Downgrade .NET standard 2.1 to 2.0
-			+ New docs
-		</PackageReleaseNotes>
-		<Description>
-			Byte parse. Convert byte to object and object to byte
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <PackageId>Byter</PackageId>
+        <Version>2.0.0</Version>
+        <Authors>alec1o</Authors>
+        <Company>alec1o</Company>
+        <Copyright>alec1o</Copyright>
+        <RepositoryType>GitHub</RepositoryType>
+        <PackageTags>Byte, Bytes, Array, Encode, Decode</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <RepositoryUrl>https://github.com/alec1o/Byter</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/alec1o/Byter</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+        <PackageReleaseNotes>
+            + Add Float2 struct (Vector2)
+            + Add Float3 struct (Vector3)
+            + Add Float4 struct (Vector4 / Quaternion)
+            + Downgrade .NET standard 2.1 to 2.0
+            + New docs
+        </PackageReleaseNotes>
+        <Description>
+            Byte parse. Convert byte to object and object to byte
 
-			Docs: https://github.com/alec1o/Byter/blob/main/README.md
-			Sample: https://github.com/alec1o/Byter/blob/main/README.md
-			Fork me: https://github.com/alec1o/Byter
-		</Description>
-		<Title>Byter</Title>
-	</PropertyGroup>
+            Docs: https://github.com/alec1o/Byter/blob/main/README.md
+            Sample: https://github.com/alec1o/Byter/blob/main/README.md
+            Fork me: https://github.com/alec1o/Byter
+        </Description>
+        <Title>Byter</Title>
+    </PropertyGroup>
 
 </Project>
