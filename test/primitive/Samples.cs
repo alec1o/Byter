@@ -80,6 +80,16 @@ public struct ComplexArrayObject
     public DateTime DateTime { get; set; }
     public decimal Decimal { get; set; }
     public string String { get; set; }
+
+    public ComplexArrayObject GetRandom()
+    {
+        return new ComplexArrayObject
+        {
+            DateTime = DateTime.UtcNow.AddMicroseconds(Macro.Random.Next(0, int.MaxValue)),
+            Decimal = Decimal.MaxValue / (decimal)Macro.Random.Next(short.MinValue, short.MaxValue),
+            String = Guid.NewGuid().ToString()
+        };
+    }
 }
 
 public class ComplexSubClass
