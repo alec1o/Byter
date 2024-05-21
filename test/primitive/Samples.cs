@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using Byter;
 
 namespace ByterTest.primitive;
 
@@ -63,15 +64,28 @@ public class ComplexListObject
     public DateTime DateTime { get; set; }
     public decimal Decimal { get; set; }
     public string String { get; set; }
-    
-    public ComplexListObject GetRandom()
+
+    public static ComplexListObject GetRandom()
     {
         return new ComplexListObject
         {
             DateTime = DateTime.UtcNow.AddMicroseconds(Macro.Random.Next(0, int.MaxValue)),
-            Decimal = Decimal.MaxValue / (decimal)Macro.Random.Next(short.MinValue, short.MaxValue),
+            Decimal = Decimal.MaxValue / Macro.Random.Next(short.MinValue, short.MaxValue),
             String = Guid.NewGuid().ToString()
         };
+    }
+
+    public static List<ComplexListObject> GetRandomList()
+    {
+        int round = Macro.Random.Next(5, byte.MaxValue);
+        List<ComplexListObject> list = new();
+        
+        for (int i = 0; i < round; i++)
+        {
+            list.Add(GetRandom());
+        }
+
+        return list;
     }
 }
 
@@ -81,7 +95,7 @@ public struct ComplexArrayObject
     public decimal Decimal { get; set; }
     public string String { get; set; }
 
-    public ComplexArrayObject GetRandom()
+    public static ComplexArrayObject GetRandom()
     {
         return new ComplexArrayObject
         {
@@ -89,6 +103,19 @@ public struct ComplexArrayObject
             Decimal = Decimal.MaxValue / (decimal)Macro.Random.Next(short.MinValue, short.MaxValue),
             String = Guid.NewGuid().ToString()
         };
+    }
+
+    public static ComplexArrayObject[] GetRandomArray()
+    {
+        int round = Macro.Random.Next(5, byte.MaxValue);
+        List<ComplexArrayObject> list = new();
+        
+        for (int i = 0; i < round; i++)
+        {
+            list.Add(GetRandom());
+        }
+
+        return list.ToArray();
     }
 }
 
@@ -102,6 +129,21 @@ public class ComplexSubClass
     public ComplexArrayObject[] Array { get; set; }
     public List<ComplexListObject> List { get; set; }
     public Byte[] Bytes { get; set; }
+
+    public static ComplexSubClass GetRandom()
+    {
+        return new ComplexSubClass
+        {
+            Float = float.MaxValue / Macro.Random.Next(short.MinValue, short.MaxValue),
+            Enum = ComplexEnum.Value4,
+            DateTime = DateTime.Now.AddMilliseconds(Macro.Random.Next(int.MinValue / 2, int.MaxValue / 2)),
+            Decimal = Decimal.MaxValue / (decimal)Macro.Random.Next(short.MinValue, short.MaxValue),
+            String = Guid.NewGuid().ToString(),
+            Array = ComplexArrayObject.GetRandomArray(),
+            List = ComplexListObject.GetRandomList(),
+            Bytes = Guid.NewGuid().ToString().GetBytes()
+        };
+    }
 }
 
 public struct ComplexSubStruct
