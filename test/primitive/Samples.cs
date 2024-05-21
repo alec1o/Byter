@@ -156,4 +156,19 @@ public struct ComplexSubStruct
     public ComplexArrayObject[] Array { get; set; }
     public List<ComplexListObject> List { get; set; }
     public Byte[] Bytes { get; set; }
+    
+    public static ComplexSubStruct GetRandom()
+    {
+        return new ComplexSubStruct
+        {
+            Float = float.MaxValue / Macro.Random.Next(short.MinValue, short.MaxValue),
+            Enum = ComplexEnum.Value4,
+            DateTime = DateTime.Now.AddMilliseconds(Macro.Random.Next(int.MinValue / 2, int.MaxValue / 2)),
+            Decimal = Decimal.MaxValue / (decimal)Macro.Random.Next(short.MinValue, short.MaxValue),
+            String = Guid.NewGuid().ToString(),
+            Array = ComplexArrayObject.GetRandomArray(),
+            List = ComplexListObject.GetRandomList(),
+            Bytes = Guid.NewGuid().ToString().GetBytes()
+        };
+    }
 }
