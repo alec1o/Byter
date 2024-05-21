@@ -4,6 +4,11 @@ using System.Numerics;
 
 namespace ByterTest.primitive;
 
+public static class Macro
+{
+    public static readonly Random Random = new Random();
+}
+
 public class MyFilmClass
 {
     public string Title { get; set; }
@@ -58,6 +63,16 @@ public class ComplexListObject
     public DateTime DateTime { get; set; }
     public decimal Decimal { get; set; }
     public string String { get; set; }
+    
+    public ComplexListObject GetRandom()
+    {
+        return new ComplexListObject
+        {
+            DateTime = DateTime.UtcNow.AddMicroseconds(Macro.Random.Next(0, int.MaxValue)),
+            Decimal = Decimal.MaxValue / (decimal)Macro.Random.Next(short.MinValue, short.MaxValue),
+            String = Guid.NewGuid().ToString()
+        };
+    }
 }
 
 public struct ComplexArrayObject
