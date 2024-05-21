@@ -424,7 +424,71 @@ namespace Byter
 
             public T Struct<T>()
             {
-                throw new NotImplementedException();
+                Type type = typeof(T);
+                
+                try
+                {
+                    if (!(type.IsValueType && !type.IsEnum && !type.IsPrimitive))
+                        throw new InvalidOperationException("Only struct is accepted");
+
+                    if (!IsValidPrefix(Prefix.Struct)) throw new InvalidDataException();
+
+                    int objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    int collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    if
+                    (
+                        // objects count lower than zero
+                        objectCount < 0 ||
+                        // buffer size lower than zero
+                        collectionBuffer < 0 ||
+                        // if zero objects count is zero, buffer size must be zero too
+                        (objectCount == 0 && collectionBuffer != 0) ||
+                        // if have object(s), the buffer size must not be zero
+                        (objectCount != 0 && collectionBuffer == 0)
+                    )
+                    {
+                        throw new InvalidConstraintException();
+                    }
+
+                    T instance = (T)Activator.CreateInstance(typeof(T));
+
+                    if (objectCount > 0 && collectionBuffer > 0)
+                    {
+                        var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
+
+                        PropertyInfo[] props = typeof(T).GetProperties();
+
+                        if (props.Length <= 0) return default;
+
+                        foreach (var prop in props)
+                        {
+                            if (prop.CanRead && prop.CanWrite)
+                            {
+                                var result = PrimitiveExtension.FromPrimitive(prop.PropertyType, primitive);
+
+                                if (result.IsError)
+                                {
+                                    throw new InvalidDataException();
+                                }
+
+                                // TODO: fix this bug (is set value)
+                                prop.SetValue(instance, result.Value);
+                            }
+                        }
+
+                        return instance;
+                    }
+
+                    return instance;
+                }
+                catch
+                {
+                    return SetError<T>();
+                }
             }
 
             public T[] Array<T>()
