@@ -282,6 +282,11 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         return Terminate<byte[]>(ref primitive);
     }
 
+    public object? List(Type type)
+    {
+        return default;
+    }
+
     [Fact] // DONE
     public string? String()
     {
@@ -490,8 +495,8 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
             Assert.Equal(real.Class, clone.Class);
             Assert.Equal(real.Struct, clone.Struct);
             Assert.Equal(real.Array, clone.Array);
-            Assert.Equal(real.List, clone.List);
 #endif
+            Assert.Equal(real.List, clone.List);
         }
 
         Terminate(ref primitive);
@@ -536,8 +541,8 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
             Assert.Equal(real.Class, clone.Class);
             Assert.Equal(real.Struct, clone.Struct);
             Assert.Equal(real.Array, clone.Array);
-            Assert.Equal(real.List, clone.List);
 #endif
+            Assert.Equal(real.List, clone.List);
         }
 
         Terminate(ref primitive);

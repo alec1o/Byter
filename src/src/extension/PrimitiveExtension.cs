@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace Byter
@@ -102,8 +103,7 @@ namespace Byter
             }
             else if (value is ICollection)
             {
-                // TODO: list
-                // primitive.Add.List(value);
+                primitive.Add.List(value as List<object>);
             }
             else if (type.IsClass)
             {
@@ -207,10 +207,9 @@ namespace Byter
             {
                 value = primitive.Get.Bytes();
             }
-            else if (type.GetInterface(typeof(ICollection).FullName) != null)
+            else if (type.IsGenericType)
             {
-                // TODO: impl this...
-                //value = primitive.Get.List(value);
+                value = primitive.Get.List(type);
             }
             else if (type.IsArray)
             {

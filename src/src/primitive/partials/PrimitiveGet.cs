@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -558,6 +559,63 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                 catch
                 {
                     return SetError<T[]>();
+                }
+            }
+
+            public object List(Type type)
+            {
+                if (type == null) return null;
+                if (!type.IsGenericType) return null;
+                var args = type.GetGenericArguments();
+                if (args.Length != 1) return null; // is empty or multi args e.g. Example<object, object?...>
+                Type childrenType = args[0];
+
+                try
+                {
+                    if (!IsValidPrefix(Prefix.List)) throw new InvalidDataException();
+
+                    var list = (IList)Activator.CreateInstance(type);
+
+                    var objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    var collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    if
+                    (
+                        // objects count lower than zero
+                        objectCount < 0 ||
+                        // buffer size lower than zero
+                        collectionBuffer < 0 ||
+                        // if zero objects count is zero, buffer size must be zero too
+                        (objectCount == 0 && collectionBuffer != 0) ||
+                        // if have object(s), the buffer size must not be zero
+                        (objectCount != 0 && collectionBuffer == 0)
+                    )
+                        throw new InvalidConstraintException();
+
+                    if (objectCount > 0 && collectionBuffer > 0)
+                    {
+                        var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
+
+                        Position += collectionBuffer;
+
+                        for (var i = 0; i < objectCount; i++)
+                        {
+                            var result = PrimitiveExtension.FromPrimitive(childrenType, primitive);
+
+                            if (result.IsError) throw new InvalidDataException();
+
+                            list.Add(result.Value);
+                        }
+                    }
+
+                    return list;
+                }
+                catch
+                {
+                    return SetError<object>();
                 }
             }
 

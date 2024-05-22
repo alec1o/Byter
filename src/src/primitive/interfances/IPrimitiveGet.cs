@@ -40,5 +40,6 @@ namespace Byter
         List<T> List<T>();
         BigInteger BigInteger();
         byte[] Bytes();
+        object List(Type type);
     }
 }

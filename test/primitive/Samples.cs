@@ -50,8 +50,8 @@ public class ComplexClass
     public ComplexSubClass Class { get; set; }
     public ComplexSubStruct Struct { get; set; }
     public ComplexArrayObject[] Array { get; set; }
-    public List<ComplexListObject> List { get; set; }
 #endif
+    public List<ComplexListObject> List { get; set; }
 
     public static ComplexClass GetRandom()
     {
@@ -79,8 +79,8 @@ public class ComplexClass
             Class = ComplexSubClass.GetRandom(),
             Struct = ComplexSubStruct.GetRandom(),
             Array = ComplexArrayObject.GetRandomArray(),
-            List = ComplexListObject.GetRandomList(),
 #endif
+            List = ComplexListObject.GetRandomList(),
         };
     }
 }
@@ -109,8 +109,8 @@ public struct ComplexStruct
     public ComplexSubClass Class { get; set; }
     public ComplexSubStruct Struct { get; set; }
     public ComplexArrayObject[] Array { get; set; }
-    public List<ComplexListObject> List { get; set; }
 #endif
+    public List<ComplexListObject> List { get; set; }
 
     public static ComplexStruct GetRandom()
     {
@@ -138,8 +138,8 @@ public struct ComplexStruct
             Class = ComplexSubClass.GetRandom(),
             Struct = ComplexSubStruct.GetRandom(),
             Array = ComplexArrayObject.GetRandomArray(),
-            List = ComplexListObject.GetRandomList(),
 #endif
+            List = ComplexListObject.GetRandomList(),
         };
     }
 }
