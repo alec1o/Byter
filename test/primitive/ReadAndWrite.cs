@@ -7,7 +7,7 @@ using Xunit;
 
 namespace ByterTest.primitive;
 
-public class ReadAndWrite: IPrimitiveGet
+public class ReadAndWrite : IPrimitiveGet
 {
     [Fact] // DONE
     public bool Bool()
@@ -353,17 +353,17 @@ public class ReadAndWrite: IPrimitiveGet
             Director = Guid.NewGuid().ToString(),
             ReleaseYear = System.DateTime.Now.Millisecond
         };
-        
+
         primitive.Add.Class(myClass);
 
         var myPrimitiveClass = primitive.Get.Class<MyFilmClass>();
-        
+
         Assert.True(primitive.IsValid);
         Assert.NotNull(myPrimitiveClass);
         Assert.Equal(myClass.Title, myPrimitiveClass.Title);
         Assert.Equal(myClass.Director, myPrimitiveClass.Director);
         Assert.Equal(myClass.ReleaseYear, myPrimitiveClass.ReleaseYear);
-        
+
         Terminate(ref primitive);
     }
 
@@ -378,11 +378,11 @@ public class ReadAndWrite: IPrimitiveGet
             Director = Guid.NewGuid().ToString(),
             ReleaseYear = System.DateTime.Now.Millisecond
         };
-        
+
         primitive.Add.Struct(myStruct);
 
         var myPrimitiveClass = primitive.Get.Struct<MyFilmStruct>();
-        
+
         Assert.True(primitive.IsValid);
         Assert.Equal(myStruct.Title, myPrimitiveClass.Title);
         Assert.Equal(myStruct.Director, myPrimitiveClass.Director);
@@ -455,48 +455,47 @@ public class ReadAndWrite: IPrimitiveGet
         Primitive primitive = new();
 
         var real = ComplexClass.GetRandom();
-        
+
         primitive.Add.Class(real);
-        
+
         Assert.True(primitive.IsValid);
 
         var clone = primitive.Get.Class<ComplexClass>();
-        
+
         Assert.True(primitive.IsValid);
-        
+
         // Complex Test
         {
             Assert.NotNull(clone);
             // TODO: impl...
         }
-        
+
         Terminate(ref primitive);
-    }    [Fact]
+    }
+
+    [Fact]
     public void TestComplexStruct()
     {
         Primitive primitive = new();
 
         var real = ComplexStruct.GetRandom();
-        
+
         primitive.Add.Struct(real);
-        
+
         Assert.True(primitive.IsValid);
 
         var clone = primitive.Get.Struct<ComplexStruct>();
-        
+
         Assert.True(primitive.IsValid);
-        
+
         // Complex Test
         {
-#pragma warning disable xUnit2002
-            Assert.NotNull(clone);
-#pragma warning restore xUnit2002
             // TODO: impl...
         }
-        
+
         Terminate(ref primitive);
     }
-    
+
     #region Unused
 
     public T? Enum<T>()
