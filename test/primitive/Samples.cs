@@ -96,13 +96,14 @@ public struct ComplexStruct
     public int Int { get; set; }
     public uint UInt { get; set; }
     public float Float { get; set; }
-
     public long Long { get; set; }
     public ulong ULong { get; set; }
     public double Double { get; set; }
     public DateTime DateTime { get; set; }
     public decimal Decimal { get; set; }
     public string String { get; set; }
+    public BigInteger BigInteger { get; set; }
+    public Byte[] Bytes { get; set; }
 #if IS_COMPLEX
     public ComplexEnum Enum { get; set; }
     public ComplexSubClass Class { get; set; }
@@ -110,8 +111,6 @@ public struct ComplexStruct
     public ComplexArrayObject[] Array { get; set; }
     public List<ComplexListObject> List { get; set; }
 #endif
-    public BigInteger BigInteger { get; set; }
-    public Byte[] Bytes { get; set; }
 
     public static ComplexStruct GetRandom()
     {

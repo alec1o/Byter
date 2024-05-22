@@ -4,10 +4,11 @@ using System.Numerics;
 using System.Text;
 using Byter;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace ByterTest.primitive;
 
-public class ReadAndWrite : IPrimitiveGet
+public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
 {
     [Fact] // DONE
     public bool Bool()
@@ -317,6 +318,7 @@ public class ReadAndWrite : IPrimitiveGet
     private void Terminate(ref Primitive primitive)
     {
         // EXTRA
+        output.WriteLine($"Current Data Count Is: {primitive.Data.Length}, Position Is: {primitive.Position}");
         Assert.True(primitive.IsValid);
         _ = primitive.Get.Bool();
         Assert.False(primitive.IsValid);
@@ -466,8 +468,30 @@ public class ReadAndWrite : IPrimitiveGet
 
         // Complex Test
         {
-            Assert.NotNull(clone);
-            // TODO: impl...
+            Assert.Equal(real.Bool, clone.Bool);
+            Assert.Equal(real.Byte, clone.Byte);
+            Assert.Equal(real.SByte, clone.SByte);
+            Assert.Equal(real.Char, clone.Char);
+            Assert.Equal(real.Short, clone.Short);
+            Assert.Equal(real.UShort, clone.UShort);
+            Assert.Equal(real.Int, clone.Int);
+            Assert.Equal(real.UInt, clone.UInt);
+            Assert.Equal(real.Float, clone.Float);
+            Assert.Equal(real.Long, clone.Long);
+            Assert.Equal(real.ULong, clone.ULong);
+            Assert.Equal(real.Double, clone.Double);
+            Assert.Equal(real.DateTime, clone.DateTime);
+            Assert.Equal(real.Decimal, clone.Decimal);
+            Assert.Equal(real.String, clone.String);
+            Assert.Equal(real.BigInteger, clone.BigInteger);
+            Assert.Equal(real.Bytes, clone.Bytes);
+#if IS_COMPLEX
+            Assert.Equal(real.Enum, clone.Enum);
+            Assert.Equal(real.Class, clone.Class);
+            Assert.Equal(real.Struct, clone.Struct);
+            Assert.Equal(real.Array, clone.Array);
+            Assert.Equal(real.List, clone.List);
+#endif
         }
 
         Terminate(ref primitive);
@@ -490,7 +514,30 @@ public class ReadAndWrite : IPrimitiveGet
 
         // Complex Test
         {
-            // TODO: impl...
+            Assert.Equal(real.Bool, clone.Bool);
+            Assert.Equal(real.Byte, clone.Byte);
+            Assert.Equal(real.SByte, clone.SByte);
+            Assert.Equal(real.Char, clone.Char);
+            Assert.Equal(real.Short, clone.Short);
+            Assert.Equal(real.UShort, clone.UShort);
+            Assert.Equal(real.Int, clone.Int);
+            Assert.Equal(real.UInt, clone.UInt);
+            Assert.Equal(real.Float, clone.Float);
+            Assert.Equal(real.Long, clone.Long);
+            Assert.Equal(real.ULong, clone.ULong);
+            Assert.Equal(real.Double, clone.Double);
+            Assert.Equal(real.DateTime, clone.DateTime);
+            Assert.Equal(real.Decimal, clone.Decimal);
+            Assert.Equal(real.String, clone.String);
+            Assert.Equal(real.BigInteger, clone.BigInteger);
+            Assert.Equal(real.Bytes, clone.Bytes);
+#if IS_COMPLEX
+            Assert.Equal(real.Enum, clone.Enum);
+            Assert.Equal(real.Class, clone.Class);
+            Assert.Equal(real.Struct, clone.Struct);
+            Assert.Equal(real.Array, clone.Array);
+            Assert.Equal(real.List, clone.List);
+#endif
         }
 
         Terminate(ref primitive);
