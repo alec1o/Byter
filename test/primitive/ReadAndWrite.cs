@@ -452,6 +452,54 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         Terminate(ref primitive);
     }
 
+    [Fact]
+    public void TestComplexClass()
+    {
+        Primitive primitive = new();
+
+        var real = ComplexClass.GetRandom();
+        
+        primitive.Add.Class(real);
+        
+        Assert.True(primitive.IsValid);
+
+        var clone = primitive.Get.Class<ComplexClass>();
+        
+        Assert.True(primitive.IsValid);
+        
+        // Complex Test
+        {
+            Assert.NotNull(clone);
+            // TODO: impl...
+        }
+        
+        Terminate(ref primitive);
+    }    [Fact]
+    public void TestComplexStruct()
+    {
+        Primitive primitive = new();
+
+        var real = ComplexStruct.GetRandom();
+        
+        primitive.Add.Struct(real);
+        
+        Assert.True(primitive.IsValid);
+
+        var clone = primitive.Get.Struct<ComplexStruct>();
+        
+        Assert.True(primitive.IsValid);
+        
+        // Complex Test
+        {
+#pragma warning disable xUnit2002
+            Assert.NotNull(clone);
+#pragma warning restore xUnit2002
+            // TODO: impl...
+        }
+        
+        Terminate(ref primitive);
+    }
+    
     #region Unused
 
     public T? Enum<T>()
