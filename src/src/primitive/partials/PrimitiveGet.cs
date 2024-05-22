@@ -376,7 +376,7 @@ namespace Byter
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
 
                         Position += collectionBuffer;
-                        
+
                         var props = typeof(T).GetProperties();
 
                         if (props.Length <= 0) return default;
@@ -437,6 +437,8 @@ namespace Byter
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
+
+                        Position += collectionBuffer;
 
                         var props = typeof(T).GetProperties();
 
