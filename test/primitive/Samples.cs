@@ -1,3 +1,5 @@
+//#define IS_COMPLEX
+
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -42,10 +44,12 @@ public class ComplexClass
     public DateTime DateTime { get; set; }
     public decimal Decimal { get; set; }
     public string String { get; set; }
+#if IS_COMPLEX
     public ComplexSubClass Class { get; set; }
     public ComplexSubStruct Struct { get; set; }
     public ComplexArrayObject[] Array { get; set; }
     public List<ComplexListObject> List { get; set; }
+#endif
     public BigInteger BigInteger { get; set; }
     public Byte[] Bytes { get; set; }
 
@@ -69,10 +73,12 @@ public class ComplexClass
             DateTime = DateTime.Now.AddMilliseconds(Macro.Random.Next(int.MinValue, int.MaxValue)),
             Decimal = Decimal.MaxValue / Macro.Random.Next(-255, 255),
             String = Guid.NewGuid().ToString(),
+#if IS_COMPLEX
             Class = ComplexSubClass.GetRandom(),
             Struct = ComplexSubStruct.GetRandom(),
             Array = ComplexArrayObject.GetRandomArray(),
             List = ComplexListObject.GetRandomList(),
+#endif
             BigInteger = BigInteger.Parse(long.MaxValue.ToString() + int.MaxValue.ToString()),
             Bytes = Guid.NewGuid().ToString().GetBytes(),
         };
@@ -97,10 +103,12 @@ public struct ComplexStruct
     public DateTime DateTime { get; set; }
     public decimal Decimal { get; set; }
     public string String { get; set; }
+#if IS_COMPLEX
     public ComplexSubClass Class { get; set; }
     public ComplexSubStruct Struct { get; set; }
     public ComplexArrayObject[] Array { get; set; }
     public List<ComplexListObject> List { get; set; }
+#endif
     public BigInteger BigInteger { get; set; }
     public Byte[] Bytes { get; set; }
 
@@ -124,10 +132,12 @@ public struct ComplexStruct
             DateTime = DateTime.Now.AddMilliseconds(Macro.Random.Next(int.MinValue, int.MaxValue)),
             Decimal = Decimal.MaxValue / Macro.Random.Next(-255, 255),
             String = Guid.NewGuid().ToString(),
+#if IS_COMPLEX
             Class = ComplexSubClass.GetRandom(),
             Struct = ComplexSubStruct.GetRandom(),
             Array = ComplexArrayObject.GetRandomArray(),
             List = ComplexListObject.GetRandomList(),
+#endif
             BigInteger = BigInteger.Parse(long.MaxValue.ToString() + int.MaxValue.ToString()),
             Bytes = Guid.NewGuid().ToString().GetBytes(),
         };
