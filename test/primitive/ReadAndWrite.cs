@@ -4,14 +4,11 @@ using System.Numerics;
 using System.Text;
 using Byter;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace ByterTest.primitive;
 
-public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
+public class ReadAndWrite: IPrimitiveGet
 {
-    private readonly ITestOutputHelper _output =  output;
-    
     [Fact] // DONE
     public bool Bool()
     {
