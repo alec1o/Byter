@@ -485,8 +485,8 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
             Assert.Equal(real.String, clone.String);
             Assert.Equal(real.BigInteger, clone.BigInteger);
             Assert.Equal(real.Bytes, clone.Bytes);
-#if IS_COMPLEX
             Assert.Equal(real.Enum, clone.Enum);
+#if IS_COMPLEX
             Assert.Equal(real.Class, clone.Class);
             Assert.Equal(real.Struct, clone.Struct);
             Assert.Equal(real.Array, clone.Array);
@@ -531,8 +531,8 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
             Assert.Equal(real.String, clone.String);
             Assert.Equal(real.BigInteger, clone.BigInteger);
             Assert.Equal(real.Bytes, clone.Bytes);
-#if IS_COMPLEX
             Assert.Equal(real.Enum, clone.Enum);
+#if IS_COMPLEX
             Assert.Equal(real.Class, clone.Class);
             Assert.Equal(real.Struct, clone.Struct);
             Assert.Equal(real.Array, clone.Array);

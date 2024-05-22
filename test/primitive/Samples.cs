@@ -45,8 +45,8 @@ public class ComplexClass
     public string String { get; set; }
     public BigInteger BigInteger { get; set; }
     public byte[] Bytes { get; set; }
-#if IS_COMPLEX
     public ComplexEnum Enum { get; set; }
+#if IS_COMPLEX
     public ComplexSubClass Class { get; set; }
     public ComplexSubStruct Struct { get; set; }
     public ComplexArrayObject[] Array { get; set; }
@@ -74,8 +74,8 @@ public class ComplexClass
             String = Guid.NewGuid().ToString(),
             BigInteger = BigInteger.Parse(long.MaxValue + int.MaxValue.ToString()),
             Bytes = Guid.NewGuid().ToString().GetBytes(),
-#if IS_COMPLEX
             Enum = Macro.Random.Next(-100, 100) > 0 ? ComplexEnum.Value1 : ComplexEnum.Value3,
+#if IS_COMPLEX
             Class = ComplexSubClass.GetRandom(),
             Struct = ComplexSubStruct.GetRandom(),
             Array = ComplexArrayObject.GetRandomArray(),
@@ -104,8 +104,8 @@ public struct ComplexStruct
     public string String { get; set; }
     public BigInteger BigInteger { get; set; }
     public byte[] Bytes { get; set; }
-#if IS_COMPLEX
     public ComplexEnum Enum { get; set; }
+#if IS_COMPLEX
     public ComplexSubClass Class { get; set; }
     public ComplexSubStruct Struct { get; set; }
     public ComplexArrayObject[] Array { get; set; }
@@ -133,8 +133,8 @@ public struct ComplexStruct
             String = Guid.NewGuid().ToString(),
             BigInteger = BigInteger.Parse(long.MaxValue + int.MaxValue.ToString()),
             Bytes = Guid.NewGuid().ToString().GetBytes(),
-#if IS_COMPLEX
             Enum = Macro.Random.Next(-100, 100) > 0 ? ComplexEnum.Value1 : ComplexEnum.Value3,
+#if IS_COMPLEX
             Class = ComplexSubClass.GetRandom(),
             Struct = ComplexSubStruct.GetRandom(),
             Array = ComplexArrayObject.GetRandomArray(),
