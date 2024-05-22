@@ -77,12 +77,11 @@ namespace Byter
             {
                 var type = typeof(T);
 
-                if (typeof(T) == typeof(object))
+                if (!(value is Enum || type.IsEnum))
                 {
-                    // TODO: check if original object type is enum, and set original type to <type>
+                    throw new InvalidOperationException($"Typeof {typeof(T)}, Is not enum type.");
                 }
 
-                if (!type.IsEnum) throw new InvalidOperationException($"Typeof {typeof(T)}, Is not enum type.");
                 Vault.Add(Prefix.Enum);
                 Vault.AddRange(BitConverter.GetBytes((int)(object)value));
             }
