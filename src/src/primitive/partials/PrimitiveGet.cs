@@ -592,6 +592,8 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                     {
                         var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
 
+                        Position += collectionBuffer;
+
                         for (var i = 0; i < objectCount; i++)
                         {
                             var result = PrimitiveExtension.FromPrimitive<T>(primitive);
