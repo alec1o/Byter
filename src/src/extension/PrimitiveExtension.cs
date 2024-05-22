@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Numerics;
 
 namespace Byter
@@ -95,21 +95,23 @@ namespace Byter
             {
                 primitive.Add.Bytes((byte[])blackbox);
             }
-            else if (type == typeof(T[]))
+            else if (type.IsArray)
             {
                 // TODO: array
+                // primitive.Add.Array(value);
             }
-            else if (type == typeof(List<T>))
+            else if (type.GetInterface(typeof(ICollection).FullName) != null)
             {
                 // TODO: list
+                // primitive.Add.List(value);
             }
-            else if (type == typeof(object))
+            else if (type.IsClass)
             {
-                // TODO: class
+                primitive.Add.Class(value);
             }
-            else if (type == typeof(object))
+            else if (type.IsValueType && !type.IsEnum && !type.IsPrimitive)
             {
-                // TODO: struct
+                primitive.Add.Struct(value);
             }
 
             return primitive.Data;
@@ -126,7 +128,7 @@ namespace Byter
             if (type == null || primitive == null) return (default, true);
 
             object value = null;
-
+            
             // 1 byte (3)
             if (type == typeof(bool))
             {
@@ -205,21 +207,25 @@ namespace Byter
             {
                 value = primitive.Get.Bytes();
             }
+            else if (type.GetInterface(typeof(ICollection).FullName) != null)
+            {
+                // TODO: impl this...
+                //value = primitive.Get.List(value);
+            }
             else if (type.IsArray)
             {
-                // TODO: array
+                // TODO: impl this...
+                //value = primitive.Get.Array(value);
             }
-            else if (type == typeof(object))
+            else if (type.IsClass)
             {
-                // TODO: list
+                // TODO: impl this...
+                //value = primitive.Get.Class(value);
             }
-            else if (type == typeof(object))
+            else if (type.IsValueType && !type.IsEnum && !type.IsPrimitive)
             {
-                // TODO: class
-            }
-            else if (type == typeof(object))
-            {
-                // TODO: struct
+                // TODO: impl this...
+                //value = primitive.Get.Struct(value);
             }
 
             if (primitive.IsValid)
