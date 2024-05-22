@@ -37,7 +37,6 @@ public class ComplexClass
     public int Int { get; set; }
     public uint UInt { get; set; }
     public float Float { get; set; }
-    public ComplexEnum Enum { get; set; }
     public long Long { get; set; }
     public ulong ULong { get; set; }
     public double Double { get; set; }
@@ -45,6 +44,7 @@ public class ComplexClass
     public decimal Decimal { get; set; }
     public string String { get; set; }
 #if IS_COMPLEX
+    public ComplexEnum Enum { get; set; }
     public ComplexSubClass Class { get; set; }
     public ComplexSubStruct Struct { get; set; }
     public ComplexArrayObject[] Array { get; set; }
@@ -66,7 +66,6 @@ public class ComplexClass
             Int = Macro.Random.Next(int.MinValue, int.MaxValue),
             UInt = UInt32.MaxValue - (uint)Macro.Random.Next(byte.MaxValue, short.MaxValue),
             Float = float.MaxValue / Macro.Random.Next(short.MinValue, short.MaxValue),
-            Enum = Macro.Random.Next(-100, 100) > 0 ? ComplexEnum.Value1 : ComplexEnum.Value3,
             Long = Macro.Random.NextInt64(long.MinValue, long.MaxValue),
             ULong = ulong.MaxValue - (ulong)Macro.Random.Next(0, 255),
             Double = double.MaxValue - Macro.Random.Next(0, 255),
@@ -74,6 +73,7 @@ public class ComplexClass
             Decimal = Decimal.MaxValue / Macro.Random.Next(-255, 255),
             String = Guid.NewGuid().ToString(),
 #if IS_COMPLEX
+            Enum = Macro.Random.Next(-100, 100) > 0 ? ComplexEnum.Value1 : ComplexEnum.Value3,
             Class = ComplexSubClass.GetRandom(),
             Struct = ComplexSubStruct.GetRandom(),
             Array = ComplexArrayObject.GetRandomArray(),
@@ -96,7 +96,7 @@ public struct ComplexStruct
     public int Int { get; set; }
     public uint UInt { get; set; }
     public float Float { get; set; }
-    public ComplexEnum Enum { get; set; }
+
     public long Long { get; set; }
     public ulong ULong { get; set; }
     public double Double { get; set; }
@@ -104,6 +104,7 @@ public struct ComplexStruct
     public decimal Decimal { get; set; }
     public string String { get; set; }
 #if IS_COMPLEX
+    public ComplexEnum Enum { get; set; }
     public ComplexSubClass Class { get; set; }
     public ComplexSubStruct Struct { get; set; }
     public ComplexArrayObject[] Array { get; set; }
@@ -125,7 +126,6 @@ public struct ComplexStruct
             Int = Macro.Random.Next(int.MinValue, int.MaxValue),
             UInt = UInt32.MaxValue - (uint)Macro.Random.Next(byte.MaxValue, short.MaxValue),
             Float = float.MaxValue / Macro.Random.Next(short.MinValue, short.MaxValue),
-            Enum = Macro.Random.Next(-100, 100) > 0 ? ComplexEnum.Value1 : ComplexEnum.Value3,
             Long = Macro.Random.NextInt64(long.MinValue, long.MaxValue),
             ULong = ulong.MaxValue - (ulong)Macro.Random.Next(0, 255),
             Double = double.MaxValue - Macro.Random.Next(0, 255),
@@ -133,6 +133,7 @@ public struct ComplexStruct
             Decimal = Decimal.MaxValue / Macro.Random.Next(-255, 255),
             String = Guid.NewGuid().ToString(),
 #if IS_COMPLEX
+            Enum = Macro.Random.Next(-100, 100) > 0 ? ComplexEnum.Value1 : ComplexEnum.Value3,
             Class = ComplexSubClass.GetRandom(),
             Struct = ComplexSubStruct.GetRandom(),
             Array = ComplexArrayObject.GetRandomArray(),
