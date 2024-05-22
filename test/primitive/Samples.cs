@@ -48,6 +48,90 @@ public class ComplexClass
     public List<ComplexListObject> List { get; set; }
     public BigInteger BigInteger { get; set; }
     public Byte[] Bytes { get; set; }
+
+    public static ComplexClass GetRandom()
+    {
+        return new ComplexClass()
+        {
+            Bool = Macro.Random.Next(-100, 100) > 0,
+            Byte = (byte)Macro.Random.Next(0, 255),
+            SByte = (sbyte)Macro.Random.Next(-127, 127),
+            Char = Macro.Random.Next(-100, 100) > 0 ? 'A' : 'B',
+            Short = (short)Macro.Random.Next(short.MinValue, short.MaxValue),
+            UShort = (ushort)Macro.Random.Next(ushort.MinValue, ushort.MaxValue),
+            Int = Macro.Random.Next(int.MinValue, int.MaxValue),
+            UInt = UInt32.MaxValue - (uint)Macro.Random.Next(byte.MaxValue, short.MaxValue),
+            Float = float.MaxValue / Macro.Random.Next(short.MinValue, short.MaxValue),
+            Enum = Macro.Random.Next(-100, 100) > 0 ? ComplexEnum.Value1 : ComplexEnum.Value3,
+            Long = Macro.Random.NextInt64(long.MinValue, long.MaxValue),
+            ULong = ulong.MaxValue - (ulong)Macro.Random.Next(0, 255),
+            Double = double.MaxValue - Macro.Random.Next(0, 255),
+            DateTime = DateTime.Now.AddMilliseconds(Macro.Random.Next(int.MinValue, int.MaxValue)),
+            Decimal = Decimal.MaxValue / Macro.Random.Next(-255, 255),
+            String = Guid.NewGuid().ToString(),
+            Class = ComplexSubClass.GetRandom(),
+            Struct = ComplexSubStruct.GetRandom(),
+            Array = ComplexArrayObject.GetRandomArray(),
+            List = ComplexListObject.GetRandomList(),
+            BigInteger = BigInteger.Parse(long.MaxValue.ToString() + int.MaxValue.ToString()),
+            Bytes = Guid.NewGuid().ToString().GetBytes(),
+        };
+    }
+}
+
+public struct ComplexStruct
+{
+    public bool Bool { get; set; }
+    public byte Byte { get; set; }
+    public sbyte SByte { get; set; }
+    public char Char { get; set; }
+    public short Short { get; set; }
+    public ushort UShort { get; set; }
+    public int Int { get; set; }
+    public uint UInt { get; set; }
+    public float Float { get; set; }
+    public ComplexEnum Enum { get; set; }
+    public long Long { get; set; }
+    public ulong ULong { get; set; }
+    public double Double { get; set; }
+    public DateTime DateTime { get; set; }
+    public decimal Decimal { get; set; }
+    public string String { get; set; }
+    public ComplexSubClass Class { get; set; }
+    public ComplexSubStruct Struct { get; set; }
+    public ComplexArrayObject[] Array { get; set; }
+    public List<ComplexListObject> List { get; set; }
+    public BigInteger BigInteger { get; set; }
+    public Byte[] Bytes { get; set; }
+
+    public static ComplexStruct GetRandom()
+    {
+        return new ComplexStruct()
+        {
+            Bool = Macro.Random.Next(-100, 100) > 0,
+            Byte = (byte)Macro.Random.Next(0, 255),
+            SByte = (sbyte)Macro.Random.Next(-127, 127),
+            Char = Macro.Random.Next(-100, 100) > 0 ? 'A' : 'B',
+            Short = (short)Macro.Random.Next(short.MinValue, short.MaxValue),
+            UShort = (ushort)Macro.Random.Next(ushort.MinValue, ushort.MaxValue),
+            Int = Macro.Random.Next(int.MinValue, int.MaxValue),
+            UInt = UInt32.MaxValue - (uint)Macro.Random.Next(byte.MaxValue, short.MaxValue),
+            Float = float.MaxValue / Macro.Random.Next(short.MinValue, short.MaxValue),
+            Enum = Macro.Random.Next(-100, 100) > 0 ? ComplexEnum.Value1 : ComplexEnum.Value3,
+            Long = Macro.Random.NextInt64(long.MinValue, long.MaxValue),
+            ULong = ulong.MaxValue - (ulong)Macro.Random.Next(0, 255),
+            Double = double.MaxValue - Macro.Random.Next(0, 255),
+            DateTime = DateTime.Now.AddMilliseconds(Macro.Random.Next(int.MinValue, int.MaxValue)),
+            Decimal = Decimal.MaxValue / Macro.Random.Next(-255, 255),
+            String = Guid.NewGuid().ToString(),
+            Class = ComplexSubClass.GetRandom(),
+            Struct = ComplexSubStruct.GetRandom(),
+            Array = ComplexArrayObject.GetRandomArray(),
+            List = ComplexListObject.GetRandomList(),
+            BigInteger = BigInteger.Parse(long.MaxValue.ToString() + int.MaxValue.ToString()),
+            Bytes = Guid.NewGuid().ToString().GetBytes(),
+        };
+    }
 }
 
 public enum ComplexEnum
@@ -79,7 +163,7 @@ public class ComplexListObject
     {
         int round = Macro.Random.Next(5, byte.MaxValue);
         List<ComplexListObject> list = new();
-        
+
         for (int i = 0; i < round; i++)
         {
             list.Add(GetRandom());
@@ -109,7 +193,7 @@ public struct ComplexArrayObject
     {
         int round = Macro.Random.Next(5, byte.MaxValue);
         List<ComplexArrayObject> list = new();
-        
+
         for (int i = 0; i < round; i++)
         {
             list.Add(GetRandom());
@@ -156,7 +240,7 @@ public struct ComplexSubStruct
     public ComplexArrayObject[] Array { get; set; }
     public List<ComplexListObject> List { get; set; }
     public Byte[] Bytes { get; set; }
-    
+
     public static ComplexSubStruct GetRandom()
     {
         return new ComplexSubStruct
