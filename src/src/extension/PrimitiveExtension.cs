@@ -103,7 +103,7 @@ namespace Byter
             }
             else if (value is ICollection)
             {
-                primitive.Add.List(value as List<object>);
+                primitive.Add.List(value);
             }
             else if (type.IsClass)
             {

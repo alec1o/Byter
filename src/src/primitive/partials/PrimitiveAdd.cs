@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -254,6 +255,35 @@ namespace Byter
                     var collection = new List<byte>();
 
                     foreach (var x in value) collection.AddRange(x.ToPrimitive());
+
+                    Vault.AddRange(BitConverter.GetBytes(size)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
+                    Vault.AddRange(collection); // buffer
+                }
+                else
+                {
+                    Vault.AddRange(BitConverter.GetBytes(0)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(0)); // buffer
+                }
+            }
+
+            public void List(object value)
+            {
+                if (value == null || !(value is ICollection list)) return;
+                var type = value.GetType();
+                if (!type.IsGenericType) return;
+                var args = type.GetGenericArguments();
+                if (args.Length != 1) return; // is empty or multi args e.g. Example<object, object?...>
+
+                Vault.Add(Prefix.List);
+
+                var size = list?.Count ?? 0;
+
+                if (size > 0)
+                {
+                    var collection = new List<byte>();
+
+                    foreach (var x in list) collection.AddRange(x.ToPrimitive());
 
                     Vault.AddRange(BitConverter.GetBytes(size)); // objects count
                     Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
