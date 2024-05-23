@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Numerics;
 using System.Text;
 using Byter;
@@ -548,6 +549,42 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         Terminate(ref primitive);
     }
 
+    public class ListFromClass
+    {
+        public List<int> List { get; set; }
+    }
+
+
+    [Fact]
+    public void TestListFromClass()
+    {
+        var real = new ListFromClass
+        {
+            List = new List<int>
+            {
+                { 1 },
+                { 2 },
+                { 3 },
+            }
+        };
+
+        Primitive p = new();
+
+        p.Add.Class(real);
+
+        var clone = p.Get.Class<ListFromClass>();
+
+        Assert.True(p.IsValid);
+        Assert.NotNull(clone);
+        Assert.NotNull(clone.List);
+        Assert.Equal(real.List.Count, clone.List.Count);
+        for (int i = 0; i < real.List.Count; i++)
+        {
+            Assert.Equal(real.List[i], clone.List[i]);
+        }
+
+        Terminate(ref p);
+    }
     #region Unused
 
     public T? Enum<T>()
