@@ -554,6 +554,15 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         public List<int> List { get; set; }
     }
 
+    public class ListFromClass2
+    {
+        public class SubClass
+        {
+            public int Number { get; set; }
+        }
+
+        public List<SubClass> List { get; set; }
+    }
 
     [Fact]
     public void TestListFromClass()
@@ -585,6 +594,38 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
 
         Terminate(ref p);
     }
+
+    [Fact]
+    public void TestListFromClass2()
+    {
+        var real2 = new ListFromClass2
+        {
+            List = new List<ListFromClass2.SubClass>
+            {
+                new ListFromClass2.SubClass { Number = 7 },
+                new ListFromClass2.SubClass { Number = 17 },
+                new ListFromClass2.SubClass { Number = 27 }
+            }
+        };
+
+        Primitive p = new();
+
+        p.Add.Class(real2);
+
+        var clone = p.Get.Class<ListFromClass2>();
+
+        Assert.True(p.IsValid);
+        Assert.NotNull(clone);
+        Assert.NotNull(clone.List);
+        Assert.Equal(real2.List.Count, clone.List.Count);
+        for (int i = 0; i < real2.List.Count; i++)
+        {
+            Assert.Equal(real2.List[i].Number, clone.List[i].Number);
+        }
+
+        Terminate(ref p);
+    }
+
     #region Unused
 
     public T? Enum<T>()
