@@ -136,7 +136,7 @@ namespace Byter
                 const int defaultCount = 0;
                 const int defaultBuffer = 0;
 
-                var type = typeof(T);
+                var type = value.GetType();
 
                 if (!type.IsClass) throw new InvalidOperationException("Only class is accepted");
                 // if (!type.IsSerializable) throw new InvalidOperationException("Only serialized class is accepted");
