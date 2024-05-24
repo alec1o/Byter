@@ -629,6 +629,21 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         }
 
         Terminate(ref p);
+        
+        // test 2
+
+        Primitive p2 = new();
+
+        var real1 = ComplexListObject.GetRandomList();
+        
+        p2.Add.List(real1);
+
+        var clone1 = p2.Get.List<ComplexListObject>();
+        
+        Assert.True(p2.IsValid);
+        Assert.NotNull(clone1);
+        
+        Terminate(ref p2);
     }
 
     #region Unused
