@@ -569,6 +569,48 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         public List<SubClass> List { get; set; }
     }
 
+    public class ArrayFromStruct
+    {
+        public class SubStruct
+        {
+            public int Number { get; set; }
+        }
+
+        public SubStruct[] List { get; set; }
+    }
+
+    [Fact]
+    public void TestArrayFromClass()
+    {
+        var real = new ArrayFromStruct
+        {
+            List = new List<ArrayFromStruct.SubStruct>()
+            {
+                { new() { Number = 14 } },
+                { new() { Number = 13 } },
+                { new() { Number = 12 } },
+            }.ToArray()
+        };
+
+        Primitive p = new();
+
+        p.Add.Class(real);
+
+        var clone = p.Get.Class<ArrayFromStruct>();
+
+        Assert.True(p.IsValid);
+        Assert.NotNull(clone);
+        Assert.NotNull(clone.List);
+        Assert.Equal(real.List.Length, clone.List.Length);
+        for (int i = 0; i < real.List.Length; i++)
+        {
+            Assert.Equal(real.List[i].Number, clone.List[i].Number);
+        }
+
+        Terminate(ref p);
+    }
+
+
     [Fact]
     public void TestListFromClass()
     {
@@ -629,20 +671,20 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         }
 
         Terminate(ref p);
-        
+
         // test 2
 
         Primitive p2 = new();
 
         var real1 = ComplexListObject.GetRandomList();
-        
+
         p2.Add.List(real1);
 
         var clone1 = p2.Get.List<ComplexListObject>();
-        
+
         Assert.True(p2.IsValid);
         Assert.NotNull(clone1);
-        
+
         Terminate(ref p2);
     }
 
