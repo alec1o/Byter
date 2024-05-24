@@ -343,6 +343,68 @@ namespace Byter
                 }
             }
 
+
+            public object Class(Type type)
+            {
+                try
+                {
+                    if (!type.IsClass) throw new InvalidOperationException("Only class is accepted");
+
+                    if (!IsValidPrefix(Prefix.Class)) throw new InvalidDataException();
+
+                    var objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    var collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    if
+                    (
+                        // objects count lower than zero
+                        objectCount < 0 ||
+                        // buffer size lower than zero
+                        collectionBuffer < 0 ||
+                        // if zero objects count is zero, buffer size must be zero too
+                        (objectCount == 0 && collectionBuffer != 0) ||
+                        // if have object(s), the buffer size must not be zero
+                        (objectCount != 0 && collectionBuffer == 0)
+                    )
+                        throw new InvalidConstraintException();
+
+                    var instance = Activator.CreateInstance(type);
+
+                    if (objectCount > 0 && collectionBuffer > 0)
+                    {
+                        var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
+
+                        Position += collectionBuffer;
+
+                        var props = type.GetProperties();
+
+                        if (props.Length <= 0) return default;
+
+                        foreach (var prop in props)
+                            if (prop.CanRead && prop.CanWrite)
+                            {
+                                var result = PrimitiveExtension.FromPrimitive(prop.PropertyType, primitive);
+
+                                if (result.IsError) throw new InvalidDataException();
+
+                                prop.SetValue(instance, result.Value);
+                            }
+
+                        return instance;
+                    }
+
+                    return instance;
+                }
+                catch
+                {
+                    return SetError<object>();
+                }
+            }
+
+
             public T Class<T>()
             {
                 try

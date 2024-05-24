@@ -288,6 +288,11 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         return default;
     }
 
+    public object Class(Type type)
+    {
+        throw new NotImplementedException();
+    }
+
     [Fact] // DONE
     public string? String()
     {

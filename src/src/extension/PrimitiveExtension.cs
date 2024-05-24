@@ -218,8 +218,7 @@ namespace Byter
             }
             else if (type.IsClass)
             {
-                // TODO: impl this...
-                //value = primitive.Get.Class(value);
+                value = primitive.Get.Class(type);
             }
             else if (type.IsValueType && !type.IsEnum && !type.IsPrimitive)
             {

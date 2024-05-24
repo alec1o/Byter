@@ -41,5 +41,6 @@ namespace Byter
         BigInteger BigInteger();
         byte[] Bytes();
         object List(Type type);
+        object Class(Type type);
     }
 }
