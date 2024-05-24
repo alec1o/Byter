@@ -213,8 +213,7 @@ namespace Byter
             }
             else if (type.IsArray)
             {
-                // TODO: impl this...
-                //value = primitive.Get.Array(value);
+                value = primitive.Get.Array(type);
             }
             else if (type.IsClass)
             {

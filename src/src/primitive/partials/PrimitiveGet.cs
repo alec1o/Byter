@@ -572,6 +572,62 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                     return SetError<T>();
                 }
             }
+            
+            public object Array(Type type)
+            {
+                if (type == null) return null;
+                if (!type.IsArray) return null;
+                Type childrenType = type.GetElementType();
+
+                try
+                {
+                    if (!IsValidPrefix(Prefix.Array)) throw new InvalidDataException();
+
+                    var list = new List<object>();
+
+                    var objectCount = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    var collectionBuffer = BitConverter.ToInt32(VaultArray, Position);
+                    Position += sizeof(int);
+
+                    if
+                    (
+                        // objects count lower than zero
+                        objectCount < 0 ||
+                        // buffer size lower than zero
+                        collectionBuffer < 0 ||
+                        // if zero objects count is zero, buffer size must be zero too
+                        (objectCount == 0 && collectionBuffer != 0) ||
+                        // if have object(s), the buffer size must not be zero
+                        (objectCount != 0 && collectionBuffer == 0)
+                    )
+                        throw new InvalidConstraintException();
+
+                    if (objectCount > 0 && collectionBuffer > 0)
+                    {
+                        var primitive = new Primitive(Vault.GetRange(Position, collectionBuffer).ToArray());
+
+                        Position += collectionBuffer;
+
+                        for (var i = 0; i < objectCount; i++)
+                        {
+                            var result = PrimitiveExtension.FromPrimitive(childrenType, primitive);
+
+                            if (result.IsError) throw new InvalidDataException();
+
+                            list.Add(result.Value);
+                        }
+                    }
+
+                    return list.ToArray();
+                }
+                catch
+                {
+                    return SetError<object>();
+                }
+            }
+            
 
             public T[] Array<T>()
             {

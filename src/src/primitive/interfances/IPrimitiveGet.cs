@@ -21,7 +21,6 @@ namespace Byter
         uint UInt();
         float Float();
         T Enum<T>();
-        object Enum(Type type);
 
         // 8 bytes (4)
         long Long();
@@ -40,7 +39,11 @@ namespace Byter
         List<T> List<T>();
         BigInteger BigInteger();
         byte[] Bytes();
+        
+        // overhead
+        object Enum(Type type);
         object List(Type type);
         object Class(Type type);
+        object Array(Type type);
     }
 }
