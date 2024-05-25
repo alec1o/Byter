@@ -572,7 +572,7 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                     return SetError<T>();
                 }
             }
-            
+
             public object Array(Type type)
             {
                 if (type == null) return null;
@@ -601,8 +601,7 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                         (objectCount == 0 && collectionBuffer != 0) ||
                         // if have object(s), the buffer size must not be zero
                         (objectCount != 0 && collectionBuffer == 0)
-                    )
-                        throw new InvalidConstraintException();
+                    ) throw new InvalidConstraintException();
 
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
@@ -627,7 +626,7 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                     return SetError<object>();
                 }
             }
-            
+
 
             public T[] Array<T>()
             {
