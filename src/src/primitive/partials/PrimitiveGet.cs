@@ -578,12 +578,13 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                 if (type == null) return null;
                 if (!type.IsArray) return null;
                 Type childrenType = type.GetElementType();
+                Type listType = typeof(List<>).MakeGenericType(childrenType);
 
                 try
                 {
                     if (!IsValidPrefix(Prefix.Array)) throw new InvalidDataException();
 
-                    var list = new List<object>();
+                    var list = (List<dynamic>)Activator.CreateInstance(listType);
 
                     var objectCount = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
