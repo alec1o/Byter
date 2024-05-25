@@ -192,7 +192,7 @@ namespace Byter
                 const int defaultCount = 0;
                 const int defaultBuffer = 0;
 
-                var type = typeof(T);
+                var type = value.GetType();
 
                 if (!(type.IsValueType && !type.IsEnum && !type.IsPrimitive))
                     throw new InvalidOperationException($"Only struct is accepted. {type} isn't allowed");
