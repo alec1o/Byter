@@ -138,7 +138,7 @@ namespace Byter
 
                 var type = value.GetType();
 
-                if (!type.IsClass) throw new InvalidOperationException("Only class is accepted");
+                if (!type.IsClass) throw new InvalidOperationException($"Only class is accepted. {type} isn't allowed");
                 // if (!type.IsSerializable) throw new InvalidOperationException("Only serialized class is accepted");
 
                 Vault.Add(Prefix.Class);
@@ -195,7 +195,7 @@ namespace Byter
                 var type = typeof(T);
 
                 if (!(type.IsValueType && !type.IsEnum && !type.IsPrimitive))
-                    throw new InvalidOperationException("Only struct is accepted");
+                    throw new InvalidOperationException($"Only struct is accepted. {type} isn't allowed");
                 // if (!type.IsSerializable) throw new InvalidOperationException("Only serialized class is accepted");
 
                 Vault.Add(Prefix.Struct);
