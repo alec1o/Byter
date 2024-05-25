@@ -566,7 +566,7 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
 
     public struct ArrayFromStruct2
     {
-        public int[] List { get; set; }
+        public int[] Array { get; set; }
     }
 
     [Fact]
@@ -574,7 +574,7 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
     {
         var real = new ArrayFromStruct2
         {
-            List = new List<int>
+            Array = new List<int>
             {
                 10,
                 20,
@@ -589,10 +589,10 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         var clone = p.Get.Struct<ArrayFromStruct2>();
 
         Assert.True(p.IsValid);
-        Assert.Equal(real.List, clone.List);
-        for (int i = 0; i < real.List.Length; i++)
+        Assert.Equal(real.Array, clone.Array);
+        for (int i = 0; i < real.Array.Length; i++)
         {
-            Assert.Equal(real.List[i], clone.List[i]);
+            Assert.Equal(real.Array[i], clone.Array[i]);
         }
         
         Terminate(ref p);
