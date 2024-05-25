@@ -467,9 +467,13 @@ namespace Byter
 
             public T Struct<T>()
             {
-                return (T)Struct(typeof(T));
+                var value = Struct(typeof(T));
+
+                if (value == null) return default;
+
+                return (T)value;
             }
-            
+
             public object Struct(Type type)
             {
                 if (type == null) return null;
