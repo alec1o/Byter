@@ -298,6 +298,11 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         throw new NotImplementedException();
     }
 
+    public object Struct(Type type)
+    {
+        throw new NotImplementedException();
+    }
+
     [Fact] // DONE
     public string? String()
     {

@@ -467,7 +467,12 @@ namespace Byter
 
             public T Struct<T>()
             {
-                var type = typeof(T);
+                return (T)Struct(typeof(T));
+            }
+            
+            public object Struct(Type type)
+            {
+                if (type == null) return null;
 
                 try
                 {
@@ -495,7 +500,7 @@ namespace Byter
                     )
                         throw new InvalidConstraintException();
 
-                    var instance = (T)Activator.CreateInstance(typeof(T));
+                    var instance = Activator.CreateInstance(type);
 
                     if (objectCount > 0 && collectionBuffer > 0)
                     {
@@ -503,7 +508,7 @@ namespace Byter
 
                         Position += collectionBuffer;
 
-                        var props = typeof(T).GetProperties();
+                        var props = type.GetProperties();
 
                         foreach (var prop in props)
                             if (prop.CanRead && prop.CanWrite)
@@ -559,7 +564,7 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
                                 prop.SetValue(dto, result.Value);
 
-                                instance = (T)dto;
+                                instance = dto;
                             }
 
                         return instance;
@@ -569,7 +574,7 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                 }
                 catch
                 {
-                    return SetError<T>();
+                    return SetError<object>();
                 }
             }
 
@@ -627,7 +632,6 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                     return SetError<object>();
                 }
             }
-
 
             public T[] Array<T>()
             {

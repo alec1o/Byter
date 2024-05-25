@@ -221,8 +221,7 @@ namespace Byter
             }
             else if (type.IsValueType && !type.IsEnum && !type.IsPrimitive)
             {
-                // TODO: impl this...
-                //value = primitive.Get.Struct(value);
+                value = primitive.Get.Struct(type);
             }
 
             if (primitive.IsValid)

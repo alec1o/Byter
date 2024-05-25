@@ -45,5 +45,6 @@ namespace Byter
         object List(Type type);
         object Class(Type type);
         object Array(Type type);
+        object Struct(Type type);
     }
 }
