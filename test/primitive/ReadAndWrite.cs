@@ -564,6 +564,40 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         public List<int> List { get; set; }
     }
 
+    public struct ArrayFromStruct2
+    {
+        public int[] List { get; set; }
+    }
+
+    [Fact]
+    public void TestArrayFromStruct2()
+    {
+        var real = new ArrayFromStruct2
+        {
+            List = new List<int>
+            {
+                10,
+                20,
+                30,
+            }.ToArray()
+        };
+
+        Primitive p = new();
+
+        p.Add.Struct(real);
+
+        var clone = p.Get.Struct<ArrayFromStruct2>();
+
+        Assert.True(p.IsValid);
+        Assert.Equal(real.List, clone.List);
+        for (int i = 0; i < real.List.Length; i++)
+        {
+            Assert.Equal(real.List[i], clone.List[i]);
+        }
+        
+        Terminate(ref p);
+    }
+
     public class ListFromClass2
     {
         public class SubClass
