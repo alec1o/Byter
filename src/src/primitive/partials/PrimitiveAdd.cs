@@ -274,9 +274,8 @@ namespace Byter
                 if (!type.IsArray) return;
                 var childrenType = type.GetElementType();
                 if (childrenType == null) return;
-                var genericType = typeof(List<>).MakeGenericType(childrenType);
-                var list = Activator.CreateInstance(genericType) as IList<object>;
-                if (list == null) return;
+
+                var list = (IList)value;
 
                 Vault.Add(Prefix.Array);
 
@@ -286,7 +285,11 @@ namespace Byter
                 {
                     var collection = new List<byte>();
 
-                    foreach (var x in list) collection.AddRange(x.ToPrimitive());
+                    foreach (var x in list)
+                    {
+                        var result = x.ToPrimitive(childrenType);
+                        collection.AddRange(result);
+                    }
 
                     Vault.AddRange(BitConverter.GetBytes(size)); // objects count
                     Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
