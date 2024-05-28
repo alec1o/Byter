@@ -591,15 +591,18 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
 
         p.Add.Struct(real);
 
+        Assert.Equal(0, p.Position);
+
+
         var clone = p.Get.Struct<ArrayFromStruct2>();
 
-        Assert.True(p.IsValid);
         Assert.Equal(real.Array, clone.Array);
         for (int i = 0; i < real.Array.Length; i++)
         {
             Assert.Equal(real.Array[i], clone.Array[i]);
         }
-        
+
+        Assert.True(p.IsValid);
         Terminate(ref p);
     }
 

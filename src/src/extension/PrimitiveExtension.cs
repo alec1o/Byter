@@ -98,8 +98,7 @@ namespace Byter
             }
             else if (type.IsArray || value is T[])
             {
-                // TODO: array
-                // primitive.Add.Array(value);
+                primitive.Add.Array(value);
             }
             else if (value is ICollection)
             {

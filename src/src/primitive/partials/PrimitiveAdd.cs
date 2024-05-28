@@ -267,6 +267,41 @@ namespace Byter
                 }
             }
 
+            public void Array(object value)
+            {
+                if (value == null) return;
+                var type = value.GetType();
+                if (!type.IsArray) return;
+                var childrenType = type.GetElementType();
+                if (childrenType == null) return;
+
+                var list = (IList)value;
+
+                Vault.Add(Prefix.Array);
+
+                var size = list.Count;
+
+                if (size > 0)
+                {
+                    var collection = new List<byte>();
+
+                    foreach (var x in list)
+                    {
+                        var result = x.ToPrimitive(childrenType);
+                        collection.AddRange(result);
+                    }
+
+                    Vault.AddRange(BitConverter.GetBytes(size)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
+                    Vault.AddRange(collection); // buffer
+                }
+                else
+                {
+                    Vault.AddRange(BitConverter.GetBytes(0)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(0)); // buffer
+                }
+            }
+
             public void List(object value)
             {
                 if (value == null || !(value is ICollection list)) return;
