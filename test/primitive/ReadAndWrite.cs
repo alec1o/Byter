@@ -591,6 +591,16 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
 
         p.Add.Struct(real);
 
+        Assert.Equal(0, p.Position);
+        
+        // 1 struct prefix
+        // 1 array prefix
+        // 4 array elements
+        // 4 array buffer size
+        // 12 array buffer (4*3) 
+        // total 22
+        // Assert.Equal(22, p.Data.Length);
+        
         var clone = p.Get.Struct<ArrayFromStruct2>();
 
         Assert.True(p.IsValid);
