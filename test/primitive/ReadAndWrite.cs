@@ -599,7 +599,7 @@ public class ReadAndWrite(ITestOutputHelper output) : IPrimitiveGet
         // 4 array buffer size
         // 12 array buffer (4*3) 
         // total 22
-        // Assert.Equal(22, p.Data.Length);
+        Assert.Equal(22, p.Data.Length);
         
         var clone = p.Get.Struct<ArrayFromStruct2>();
 

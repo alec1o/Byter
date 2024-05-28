@@ -243,7 +243,7 @@ namespace Byter
                     Vault.AddRange(cache);
                 }
             }
-            
+
             public void Array<T>(T[] value)
             {
                 Vault.Add(Prefix.Array);
@@ -269,14 +269,18 @@ namespace Byter
 
             public void Array(object value)
             {
-                if (value == null || !(value is IList list)) return;
+                if (value == null) return;
                 var type = value.GetType();
                 if (!type.IsArray) return;
                 var childrenType = type.GetElementType();
+                if (childrenType == null) return;
+                var genericType = typeof(List<>).MakeGenericType(childrenType);
+                var list = Activator.CreateInstance(genericType) as IList<object>;
+                if (list == null) return;
 
                 Vault.Add(Prefix.Array);
 
-                var size = list?.Count ?? 0;
+                var size = list.Count;
 
                 if (size > 0)
                 {
