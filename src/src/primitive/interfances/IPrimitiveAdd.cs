@@ -36,9 +36,12 @@ namespace Byter
         void Class<T>(T value);
         void Struct<T>(T value);
         void Array<T>(T[] value);
-        void List(object value);
         void List<T>(List<T> value);
         void BigInteger(BigInteger value);
         void Bytes(byte[] value);
+        
+        // overhead
+        void Array(object value);
+        void List(object value);
     }
 }
