@@ -243,7 +243,7 @@ namespace Byter
                     Vault.AddRange(cache);
                 }
             }
-
+            
             public void Array<T>(T[] value)
             {
                 Vault.Add(Prefix.Array);
@@ -255,6 +255,34 @@ namespace Byter
                     var collection = new List<byte>();
 
                     foreach (var x in value) collection.AddRange(x.ToPrimitive());
+
+                    Vault.AddRange(BitConverter.GetBytes(size)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
+                    Vault.AddRange(collection); // buffer
+                }
+                else
+                {
+                    Vault.AddRange(BitConverter.GetBytes(0)); // objects count
+                    Vault.AddRange(BitConverter.GetBytes(0)); // buffer
+                }
+            }
+
+            public void Array(object value)
+            {
+                if (value == null || !(value is IList list)) return;
+                var type = value.GetType();
+                if (!type.IsArray) return;
+                var childrenType = type.GetElementType();
+
+                Vault.Add(Prefix.Array);
+
+                var size = list?.Count ?? 0;
+
+                if (size > 0)
+                {
+                    var collection = new List<byte>();
+
+                    foreach (var x in list) collection.AddRange(x.ToPrimitive());
 
                     Vault.AddRange(BitConverter.GetBytes(size)); // objects count
                     Vault.AddRange(BitConverter.GetBytes(collection.Count)); // buffer size
