@@ -56,6 +56,7 @@ using Byter
 > Constructor
 
 -
+
 ```cs
 _ = new Writer();                          // Create default instance
 _ = new Writer(new Writer());              // Create instance and copy from existing Writer
@@ -142,6 +143,7 @@ _ = new Writer(ref new Writer());          // Create instance and copy from exis
 > Constructor
 
 -
+
 ```cs
 _ = new Reader(new Writer());               // Create instance and copy buffer from existing Writer
 _ = new Reader(ref new Writer());           // Create instance and copy buffer from existing Writer (ref Writer)

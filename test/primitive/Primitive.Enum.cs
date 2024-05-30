@@ -7,6 +7,5 @@ public partial class Primitives
     [Fact]
     public void _Enun()
     {
-        
     }
 }

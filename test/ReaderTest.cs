@@ -12,10 +12,6 @@ public class ReaderTest
     private const float FLOAT_Z = 1024 * 6;
     private const float FLOAT_W = 1024 * 8;
 
-    public ReaderTest()
-    {
-    }
-
     [Fact]
     public void ReadByte()
     {
@@ -98,7 +94,7 @@ public class ReaderTest
     [Fact]
     public void ReadInt()
     {
-        var target = (int)-255;
+        var target = -255;
 
         Writer writer = new();
         writer.Write(target);
@@ -158,7 +154,7 @@ public class ReaderTest
     [Fact]
     public void ReadFloat()
     {
-        var target = (float)255.255f;
+        var target = 255.255f;
 
         Writer writer = new();
         writer.Write(target);
@@ -173,7 +169,7 @@ public class ReaderTest
     [Fact]
     public void ReadDouble()
     {
-        var target = (double)255.255d;
+        var target = 255.255d;
 
         Writer writer = new();
         writer.Write(target);
@@ -188,7 +184,7 @@ public class ReaderTest
     [Fact]
     public void ReadChar()
     {
-        var target = (char)'A';
+        var target = 'A';
 
         Writer writer = new();
         writer.Write(target);
@@ -231,7 +227,7 @@ public class ReaderTest
 
         var result2 = reader.Read<long>();
         Assert.NotEqual(2, result2);
-        Assert.Equal((long)default, result2);
+        Assert.Equal(default, result2);
         Assert.False(reader.Success);
     }
 
@@ -298,7 +294,7 @@ public class ReaderTest
     [Fact]
     public void ReadFromEmptyBuffer()
     {
-        Reader r = new Reader(Array.Empty<byte>());
+        var r = new Reader(Array.Empty<byte>());
 
         Assert.True(r.Success);
 
@@ -310,7 +306,7 @@ public class ReaderTest
     [Fact]
     public void ReadFromNullBuffer()
     {
-        Reader r = new Reader(null);
+        var r = new Reader(null);
 
         Assert.True(r.Success);
 
@@ -322,7 +318,7 @@ public class ReaderTest
     [Fact]
     public void ReadFromOneByteBuffer()
     {
-        Reader r = new Reader([0]);
+        var r = new Reader([0]);
 
         Assert.True(r.Success);
 
