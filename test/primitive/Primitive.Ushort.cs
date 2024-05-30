@@ -1,6 +1,7 @@
 using Xunit;
+using Byter;
 
-namespace Tests.Primitive;
+namespace Test.Primitives;
 
 public partial class Primitives
 {
