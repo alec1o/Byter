@@ -21,7 +21,7 @@ public partial class Primitives
 
         Assert.Equal(a, primitive.Get.Enum<TypeCode>());
         Assert.Equal(b, primitive.Get.Enum<TypeCode>());
-        Assert.Equal(b, primitive.Get.Enum<TypeCode>());
+        Assert.Equal(c, primitive.Get.Enum<TypeCode>());
         Assert.True(primitive.IsValid);
     }
 }
