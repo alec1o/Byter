@@ -77,18 +77,23 @@ Byter is a C# serializer. It can serialize and deserialize from primitive type e
 <td valign="top" align="left">
 <sub>
 <i>Main (Reader & Writer)</i> Types:
+<br>
 &nbsp; <code>byte</code>
 &nbsp; <code>bool</code>
 &nbsp; <code>byte[]</code>
+<br>
 &nbsp; <code>short</code>
 &nbsp; <code>ushort</code>
 &nbsp; <code>int</code>
+<br>
 &nbsp; <code>uint</code>
 &nbsp; <code>long</code>
 &nbsp; <code>ulong</code>
+<br>
 &nbsp; <code>float</code>
 &nbsp; <code>double</code>
 &nbsp; <code>char</code>
+<br>
 &nbsp; <code>string</code>
 </sub>
 </td>
@@ -106,27 +111,35 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <br><br>Support: <i><strong>*Primitive</strong></i>
 <br><br>New usage paradigms <i><strong>*Primitive</strong></i>
 <br><br>*Primitive Types:
+<br>
 &nbsp; <code>bool</code>
 &nbsp; <code>byte</code>
 &nbsp; <code>sbyte*</code>
+<br>
 &nbsp; <code>char</code>
 &nbsp; <code>short</code>
 &nbsp; <code>ushort</code>
+<br>
 &nbsp; <code>int</code>
 &nbsp; <code>uint</code>
 &nbsp; <code>float</code>
+<br>
 &nbsp; <code>enum*</code>
 &nbsp; <code>long</code>
 &nbsp; <code>ulong</code>
+<br>
 &nbsp; <code>double</code>
 &nbsp; <code>DateTime*</code>
 &nbsp; <code>decimal*</code>
+<br>
 &nbsp; <code>string</code>
 &nbsp; <code>class*</code>
 &nbsp; <code>struct*</code>
+<br>
 &nbsp; <code>array*</code>
 &nbsp; <code>list*</code>
 &nbsp; <code>BigInteger*</code>
+<br>
 &nbsp; <code>byte[]</code>
 </sub></td>
 </tr>
