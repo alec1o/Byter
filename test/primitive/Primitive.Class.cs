@@ -1,4 +1,3 @@
-#define ARRAY_IGNORE
 using System;
 using System.Collections.Generic;
 using Byter;
@@ -37,7 +36,6 @@ public partial class Primitives
                 MyComplexClass.MySubClass.Random(),
                 MyComplexClass.MySubClass.Random(),
             ],
-#if !ARRAY_IGNORE
             StringArray =
             [
                 Guid.NewGuid().ToString(),
@@ -56,7 +54,6 @@ public partial class Primitives
                 MyComplexClass.MySubClass.Random(),
                 MyComplexClass.MySubClass.Random(),
             ],
-#endif
             SubClass = MyComplexClass.MySubClass.Random(),
             SubStruct = MyComplexClass.MySubStruct.Random()
         };
@@ -86,7 +83,7 @@ public partial class Primitives
             Assert.Equal(real.SubStructList[i].Number, clone.SubStructList[i].Number);
             Assert.Equal(real.SubStructList[i].String, clone.SubStructList[i].String);
         }
-#if !ARRAY_IGNORE
+
         for (int i = 0; i < real.StringArray.Length; i++)
         {
             Assert.Equal(real.StringArray[i], clone.StringArray[i]);
@@ -103,7 +100,7 @@ public partial class Primitives
             Assert.Equal(real.SubStructArray[i].Number, clone.SubStructArray[i].Number);
             Assert.Equal(real.SubStructArray[i].String, clone.SubStructArray[i].String);
         }
-#endif
+
         {
             Assert.Equal(real.SubClass.Number, clone.SubClass.Number);
             Assert.Equal(real.SubClass.String, clone.SubClass.String);
@@ -124,11 +121,11 @@ public partial class Primitives
         public List<string> StringList { get; set; }
         public List<MySubClass> SubClassList { get; set; }
         public List<MySubStruct> SubStructList { get; set; }
-#if !ARRAY_IGNORE
+
         public string[] StringArray { get; set; }
         public MySubClass[] SubClassArray { get; set; }
         public MySubStruct[] SubStructArray { get; set; }
-#endif
+
         public MySubClass SubClass { get; set; }
         public MySubStruct SubStruct { get; set; }
 
