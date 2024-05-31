@@ -23,7 +23,7 @@ public partial class Primitives
         {
             Guid.NewGuid().ToString(),
             Guid.NewGuid().ToString(),
-            Guid.NewGuid().ToString(),
+            Guid.NewGuid().ToString()
         };
 
         primitive.Add.List(list);
@@ -42,30 +42,27 @@ public partial class Primitives
             {
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
-                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
             },
             new()
             {
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
-                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
             },
             new()
             {
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
-                Guid.NewGuid().ToString(),
-            },
+                Guid.NewGuid().ToString()
+            }
         };
 
         primitive.Add.List(list);
 
         var myList = primitive.Get.List<List<string>>();
         Assert.Equal(list, myList);
-        for (int i = 0; i < list.Count; i++)
-        {
-            Assert.Equal(list[i], myList[i]);
-        }
+        for (var i = 0; i < list.Count; i++) Assert.Equal(list[i], myList[i]);
 
         Assert.True(primitive.IsValid);
     }
@@ -94,7 +91,7 @@ public partial class Primitives
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString()
                 ],
-                SubClass = new()
+                SubClass = new List3Info.Sub
                 {
                     String = Guid.NewGuid().ToString()
                 }
@@ -118,7 +115,7 @@ public partial class Primitives
                     Guid.NewGuid().ToString()
                 ],
 
-                SubClass = new()
+                SubClass = new List3Info.Sub
                 {
                     String = Guid.NewGuid().ToString()
                 }
@@ -131,7 +128,7 @@ public partial class Primitives
 
         Assert.NotNull(myList);
 
-        for (int i = 0; i < list.Count; i++)
+        for (var i = 0; i < list.Count; i++)
         {
             Assert.Equal(list[i].Number, myList[i].Number);
             Assert.Equal(list[i].String, myList[i].String);

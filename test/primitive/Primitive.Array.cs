@@ -28,7 +28,7 @@ public partial class Primitives
         [
             Guid.NewGuid().ToString(),
             Guid.NewGuid().ToString(),
-            Guid.NewGuid().ToString(),
+            Guid.NewGuid().ToString()
         ];
 
         primitive.Add.Array(list);
@@ -41,36 +41,33 @@ public partial class Primitives
     {
         Primitive primitive = new();
 
-        List<string>[] list = new List<List<string>>
+        var list = new List<List<string>>
         {
             new()
             {
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
-                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
             },
             new()
             {
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
-                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
             },
             new()
             {
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
-                Guid.NewGuid().ToString(),
-            },
+                Guid.NewGuid().ToString()
+            }
         }.ToArray();
 
         primitive.Add.Array(list);
 
         var myList = primitive.Get.Array<List<string>>();
         Assert.Equal(list, myList);
-        for (int i = 0; i < list.Length; i++)
-        {
-            Assert.Equal(list[i], myList[i]);
-        }
+        for (var i = 0; i < list.Length; i++) Assert.Equal(list[i], myList[i]);
 
         Assert.True(primitive.IsValid);
     }
@@ -79,7 +76,7 @@ public partial class Primitives
     {
         Primitive primitive = new();
 
-        Array3Info[] list = new List<Array3Info>
+        var list = new List<Array3Info>
         {
             new()
             {
@@ -98,7 +95,7 @@ public partial class Primitives
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString()
                 ],
-                SubClass = new()
+                SubClass = new Array3Info.Sub
                 {
                     String = Guid.NewGuid().ToString()
                 }
@@ -120,7 +117,7 @@ public partial class Primitives
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString()
                 ],
-                SubClass = new()
+                SubClass = new Array3Info.Sub
                 {
                     String = Guid.NewGuid().ToString()
                 }
@@ -133,7 +130,7 @@ public partial class Primitives
 
         Assert.NotNull(myList);
 
-        for (int i = 0; i < list.Length; i++)
+        for (var i = 0; i < list.Length; i++)
         {
             Assert.Equal(list[i].Number, myList[i].Number);
             Assert.Equal(list[i].String, myList[i].String);

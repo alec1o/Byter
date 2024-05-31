@@ -12,7 +12,7 @@ public partial class Primitives
     {
         Primitive primitive = new();
 
-        var real = new MyComplexClass()
+        var real = new MyComplexClass
         {
             Number = int.MinValue,
             String = Guid.NewGuid().ToString(),
@@ -22,37 +22,37 @@ public partial class Primitives
             [
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
-                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
             ],
             SubStructList =
             [
                 MyComplexClass.MySubStruct.Random(),
                 MyComplexClass.MySubStruct.Random(),
-                MyComplexClass.MySubStruct.Random(),
+                MyComplexClass.MySubStruct.Random()
             ],
             SubClassList =
             [
                 MyComplexClass.MySubClass.Random(),
                 MyComplexClass.MySubClass.Random(),
-                MyComplexClass.MySubClass.Random(),
+                MyComplexClass.MySubClass.Random()
             ],
             StringArray =
             [
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString(),
-                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
             ],
             SubStructArray =
             [
                 MyComplexClass.MySubStruct.Random(),
                 MyComplexClass.MySubStruct.Random(),
-                MyComplexClass.MySubStruct.Random(),
+                MyComplexClass.MySubStruct.Random()
             ],
             SubClassArray =
             [
                 MyComplexClass.MySubClass.Random(),
                 MyComplexClass.MySubClass.Random(),
-                MyComplexClass.MySubClass.Random(),
+                MyComplexClass.MySubClass.Random()
             ],
             SubClass = MyComplexClass.MySubClass.Random(),
             SubStruct = MyComplexClass.MySubStruct.Random()
@@ -67,35 +67,29 @@ public partial class Primitives
         Assert.Equal(real.Bool, clone.Bool);
         Assert.Equal(real.ByteArray, clone.ByteArray);
 
-        for (int i = 0; i < real.StringList.Count; i++)
-        {
-            Assert.Equal(real.StringList[i], clone.StringList[i]);
-        }
+        for (var i = 0; i < real.StringList.Count; i++) Assert.Equal(real.StringList[i], clone.StringList[i]);
 
-        for (int i = 0; i < real.SubClassList.Count; i++)
+        for (var i = 0; i < real.SubClassList.Count; i++)
         {
             Assert.Equal(real.SubClassList[i].Number, clone.SubClassList[i].Number);
             Assert.Equal(real.SubClassList[i].String, clone.SubClassList[i].String);
         }
 
-        for (int i = 0; i < real.SubStructList.Count; i++)
+        for (var i = 0; i < real.SubStructList.Count; i++)
         {
             Assert.Equal(real.SubStructList[i].Number, clone.SubStructList[i].Number);
             Assert.Equal(real.SubStructList[i].String, clone.SubStructList[i].String);
         }
 
-        for (int i = 0; i < real.StringArray.Length; i++)
-        {
-            Assert.Equal(real.StringArray[i], clone.StringArray[i]);
-        }
+        for (var i = 0; i < real.StringArray.Length; i++) Assert.Equal(real.StringArray[i], clone.StringArray[i]);
 
-        for (int i = 0; i < real.SubClassArray.Length; i++)
+        for (var i = 0; i < real.SubClassArray.Length; i++)
         {
             Assert.Equal(real.SubClassArray[i].Number, clone.SubClassArray[i].Number);
             Assert.Equal(real.SubClassArray[i].String, clone.SubClassArray[i].String);
         }
 
-        for (int i = 0; i < real.SubStructArray.Length; i++)
+        for (var i = 0; i < real.SubStructArray.Length; i++)
         {
             Assert.Equal(real.SubStructArray[i].Number, clone.SubStructArray[i].Number);
             Assert.Equal(real.SubStructArray[i].String, clone.SubStructArray[i].String);
@@ -136,7 +130,7 @@ public partial class Primitives
 
             public static MySubStruct Random()
             {
-                return new()
+                return new MySubStruct
                 {
                     Number = new Random().Next(int.MinValue, int.MaxValue),
                     String = Guid.NewGuid().ToString()
@@ -151,7 +145,7 @@ public partial class Primitives
 
             public static MySubClass Random()
             {
-                return new()
+                return new MySubClass
                 {
                     Number = new Random().Next(int.MinValue, int.MaxValue),
                     String = Guid.NewGuid().ToString()
