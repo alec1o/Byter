@@ -1,18 +1,17 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Numerics;
 
 namespace Byter
 {
-    public static class PrimitiveExtension
+    internal static class PrimitiveExtension
     {
-        internal static byte[] ToPrimitive<T>(this T value)
+        public static byte[] ToPrimitive<T>(this T value)
         {
             return ToPrimitive(value, typeof(T));
         }
 
-        internal static byte[] ToPrimitive<T>(this T value, Type type)
+        public static byte[] ToPrimitive<T>(this T value, Type type)
         {
             var primitive = new Primitive();
 
@@ -116,13 +115,13 @@ namespace Byter
             return primitive.Data;
         }
 
-        internal static (T Value, bool IsError) FromPrimitive<T>(Primitive primitive)
+        public static (T Value, bool IsError) FromPrimitive<T>(Primitive primitive)
         {
             var result = FromPrimitive(typeof(T), primitive);
             return ((T)result.Value, result.IsError);
         }
 
-        internal static (object Value, bool IsError) FromPrimitive(Type type, Primitive primitive)
+        public static (object Value, bool IsError) FromPrimitive(Type type, Primitive primitive)
         {
             if (type == null || primitive == null) return (default, true);
 
