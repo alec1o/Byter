@@ -1,3 +1,222 @@
+<h1 align="center"><a href="https://github.com/alec1o/Byter">Byter</a></h1>
+
+<h6 align="center"><sub>
+powered by <a href="https://github.com/alec1o">ALEC1O</a><sub/>
+</h6>
+
+<div align="center">
+  <a href="#">
+    <img align="center" src="static/logo/byter-logo-3.png" width="128px" alt="byter logo">
+  </a>
+</div>
+
+##### Project
+
+> <sub>Get basic information about this project called [Byter](https://github.com/alec1o/Byter)</sub>
+
+<table>
+<tr>
+  <th align="center" valign="center"><sub><strong>Overview</strong></sub></th>
+<td>
+<br>
+<sub>About
+Byter is a C# serializer. It can serialize and deserialize from primitive type e.g (class, struct, list, array, string, int, long, double, ...), It can serialize complex data fast and easy.</sub>
+<br>
+<br>
+</td>
+</tr>
+<tr>
+  <th align="center" valign="center"><sub><strong>Website</strong></sub></th>
+<td>
+<br>
+<sub>Repository: <a href="https://github.com/alec1o/Byter"><i>github.com/alec1o/byter</i></a></sub><br>
+<br>
+</td>
+</tr>
+</table>
+
+<br>
+
+##### Installing
+
+> <sub>Official publisher</sub>
+
+| <sub>Nuget</sub>                                                    |
+|---------------------------------------------------------------------|
+| <sub>Install on [Nuget](https://www.nuget.org/packages/Byter)</sub> |
+
+<br>
+
+##### Versions
+
+> <sub>Notable changes</sub>
+
+<table>
+<tr> <!-- title -->
+<th><sub>v1.x.x</sub></th>
+<th><sub>v2.x.x</sub></th>
+<th><sub>v3.x.x</sub></th>
+</tr>
+<tr> <!-- status -->
+<td valign="center" align="center"><sup><sub><i>Stable</i></sub></sup></td>
+<td valign="center" align="center"><sup><sub><i>Stable</i></sub></sup></td>
+<td valign="center" align="center"><sup><sub><i>Stable</i></sub></sup></td>
+</tr>
+<tr> <!-- row #1 -->
+<td valign="top" align="left">
+<sub>
+<i>Main (Reader & Writer)</i> Types:
+<br>&emsp; - <code>byte</code>
+<br>&emsp; - <code>bool</code>
+<br>&emsp; - <code>byte[]</code>
+<br>&emsp; - <code>short</code>
+<br>&emsp; - <code>ushort</code>
+<br>&emsp; - <code>int</code>
+<br>&emsp; - <code>uint</code>
+<br>&emsp; - <code>long</code>
+<br>&emsp; - <code>ulong</code>
+<br>&emsp; - <code>float</code>
+<br>&emsp; - <code>double</code>
+<br>&emsp; - <code>char</code>
+<br>&emsp; - <code>string</code>
+</sub>
+</td>
+<td valign="top" align="left">
+<sub>
+New <i>(Reader & Writer)</i> Types:
+<br>&emsp; - <code>Float2</code> (Vector2)
+<br>&emsp; - <code>Float3</code> (Vector3)
+<br>&emsp; - <code>Float4</code> (Vector4 / Quaternion)
+</sub>
+</td>
+<td valign="top" align="left">
+<sub>
+Bug Fix. <i><strong>(Reader & Writer)</strong></i>
+<br><br>Support: <i><strong>*Primitive</strong></i>
+<br><br>New usage paradigms <i><strong>*Primitive</strong></i>
+<br><br>*Primitive Types:
+<br>&emsp; - <code>bool</code>
+<br>&emsp; - <code>byte</code>
+<br>&emsp; - <code>sbyte</code> *
+<br>&emsp; - <code>char</code>
+<br>&emsp; - <code>short</code>
+<br>&emsp; - <code>ushort</code>
+<br>&emsp; - <code>int</code>
+<br>&emsp; - <code>uint</code>
+<br>&emsp; - <code>float</code>
+<br>&emsp; - <code>enum</code> *
+<br>&emsp; - <code>long</code>
+<br>&emsp; - <code>ulong</code>
+<br>&emsp; - <code>double</code>
+<br>&emsp; - <code>DateTime</code> *
+<br>&emsp; - <code>decimal</code> *
+<br>&emsp; - <code>string</code>
+<br>&emsp; - <code>class</code> *
+<br>&emsp; - <code>struct</code> *
+<br>&emsp; - <code>array</code> *
+<br>&emsp; - <code>list</code> *
+<br>&emsp; - <code>BigInteger</code> *
+<br>&emsp; - <code>byte[]</code>
+</sub></td>
+</tr>
+<tr> <!-- row #2 -->
+<td valign="top" align="left"><sub>Used by. <a href="https://github.com/alec1o/Netly">Netly v2</a></sub></td>
+<td valign="top" align="left"><sub>Used by. <a href="https://github.com/alec1o/Netly">Netly v3</a></sub></td>
+<td valign="top" align="left"><sub>Used by. <a href="https://github.com/alec1o/Netly">Netly v4</a></sub></td>
+</tr>
+</table>
+
+<br>
+
+##### Usage
+
+> <sub>Integration and interaction example codes</sub>
+
+
+<table>
+
+<tr>
+<th align="center" valign="top"><sub><strong>v1.x.x</strong></sub></th>
+<td>
+<details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+<details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+<details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+</td>
+</tr>
+
+<tr><th></th></tr>
+
+<tr>
+<th align="center" valign="top"><sub><strong>v2.x.x</strong></sub></th>
+<td>
+<details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+<details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+<details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+</td>
+</tr>
+
+<tr><th></th></tr>
+
+<tr>
+<th align="center" valign="top"><sub><strong>v3.x.x</strong></sub></th>
+<td>
+<details><summary>📄 <strong><sup><sub>Primitive</sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+<details><summary>📄 <strong><sup><sub>Writer & Reader <i>(namespace)</i></sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+<details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
+
+```csharp
+```
+</details>
+</td>
+</tr>
+
+<tr><th></th></tr>
+
+</table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 # Byter
 
 Byter is a bytes serializer. It can serialize and deserialize from primitive type.
@@ -30,22 +249,22 @@ using Byter
 
 ```ts
 [
-  `byte`,
-  `bool`,
-  `byte[]`,
-  `short`,
-  `ushort`,
-  `int`,
-  `uint`,
-  `long`,
-  `ulong`,
-  `float`,
-  `double`,
-  `char`,
-  `string`,
-  `Float2` (Vector2),
-  `Float3` (Vector3),
-  `Float4` (Vector4 / Quaternion),
+    `byte`,
+    `bool`,
+    `byte[]`,
+    `short`,
+    `ushort`,
+    `int`,
+    `uint`,
+    `long`,
+    `ulong`,
+    `float`,
+    `double`,
+    `char`,
+    `string`,
+    `Float2`(Vector2),
+    `Float3`(Vector3),
+    `Float4`(Vector4 / Quaternion),
 ]
 ```
 
