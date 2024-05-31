@@ -17,6 +17,8 @@ namespace Byter
 
             object blackbox = value;
 
+            var xType = value.GetType();
+
             // 1 byte (3)
             if (value is bool)
             {
@@ -103,14 +105,15 @@ namespace Byter
             {
                 primitive.Add.List(value);
             }
-            else if (type.IsClass)
-            {
-                primitive.Add.Class(value);
-            }
-            else if (type.IsValueType && !type.IsEnum && !type.IsPrimitive)
+            else if (xType.IsValueType && !xType.IsEnum && !xType.IsPrimitive)
             {
                 primitive.Add.Struct(value);
             }
+            else if (xType.IsClass)
+            {
+                primitive.Add.Class(value);
+            }
+            
 
             return primitive.Data;
         }
