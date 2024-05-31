@@ -36,5 +36,10 @@ namespace Byter
             IsValid = true;
             if (data != null && data.Length > 0) _bytes.AddRange(data);
         }
+
+        public byte[] GetBytes()
+        {
+            return Data;
+        }
     }
 }
