@@ -141,6 +141,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 &nbsp; <code>BigInteger*</code>
 <br>
 &nbsp; <code>byte[]</code>
+<br>
 </sub></td>
 </tr>
 <tr> <!-- row #2 -->
