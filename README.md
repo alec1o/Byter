@@ -142,6 +142,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <br>
 &nbsp; <code>byte[]</code>
 <br>
+<br>
 </sub></td>
 </tr>
 <tr> <!-- row #2 -->
