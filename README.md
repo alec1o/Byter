@@ -130,7 +130,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <br>
 &nbsp; <code>string</code>
 <br>
-&nbsp;&nbsp;&nbsp;<i>New</i>
+&nbsp;&nbsp;&nbsp;<i>*highlights</i>
 <br>
 &nbsp; <code>enum*</code>
 &nbsp; <code>sbyte*</code>
