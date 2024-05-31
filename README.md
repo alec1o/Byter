@@ -114,7 +114,6 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <br>
 &nbsp; <code>bool</code>
 &nbsp; <code>byte</code>
-&nbsp; <code>sbyte*</code>
 <br>
 &nbsp; <code>char</code>
 &nbsp; <code>short</code>
@@ -124,25 +123,26 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 &nbsp; <code>uint</code>
 &nbsp; <code>float</code>
 <br>
-&nbsp; <code>enum*</code>
 &nbsp; <code>long</code>
+&nbsp; <code>byte[]</code>
 &nbsp; <code>ulong</code>
-<br>
 &nbsp; <code>double</code>
-&nbsp; <code>DateTime*</code>
-&nbsp; <code>decimal*</code>
 <br>
 &nbsp; <code>string</code>
+<br>
+&nbsp;&nbsp;&nbsp;<i>New</i>
+<br>
+&nbsp; <code>enum*</code>
+&nbsp; <code>sbyte*</code>
+&nbsp; <code>DateTime*</code>
+<br>
+&nbsp; <code>decimal*</code>
 &nbsp; <code>class*</code>
 &nbsp; <code>struct*</code>
 <br>
 &nbsp; <code>array*</code>
 &nbsp; <code>list*</code>
 &nbsp; <code>BigInteger*</code>
-<br>
-&nbsp; <code>byte[]</code>
-<br>
-<br>
 </sub></td>
 </tr>
 <tr> <!-- row #2 -->
