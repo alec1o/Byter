@@ -210,6 +210,10 @@ namespace Byter
             {
                 value = primitive.Get.List(type);
             }
+            else if (type.IsValueType && !type.IsEnum && !type.IsPrimitive)
+            {
+                value = primitive.Get.Struct(type);
+            }
             else if (type.IsArray)
             {
                 value = primitive.Get.Array(type);
@@ -217,10 +221,6 @@ namespace Byter
             else if (type.IsClass)
             {
                 value = primitive.Get.Class(type);
-            }
-            else if (type.IsValueType && !type.IsEnum && !type.IsPrimitive)
-            {
-                value = primitive.Get.Struct(type);
             }
 
             if (primitive.IsValid)
