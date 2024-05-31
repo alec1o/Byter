@@ -12,6 +12,11 @@ public partial class Primitives
     {
         _Array1();
         _Array2();
+    }
+
+    [Fact]
+    public void _ArrayOfObject()
+    {
         _Array3();
     }
 
@@ -21,14 +26,13 @@ public partial class Primitives
 
         string[] list =
         [
-
             Guid.NewGuid().ToString(),
             Guid.NewGuid().ToString(),
             Guid.NewGuid().ToString(),
         ];
-        
+
         primitive.Add.Array(list);
-        
+
         Assert.Equal(list, primitive.Get.Array<string>());
         Assert.True(primitive.IsValid);
     }
