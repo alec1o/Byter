@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Byter
 {
     internal interface IPrimitive
@@ -8,5 +10,6 @@ namespace Byter
         IPrimitiveGet Get { get; }
         void Reset(byte[] data = null);
         byte[] GetBytes();
+        List<byte> GetList();
     }
 }

@@ -41,5 +41,10 @@ namespace Byter
         {
             return Data;
         }
+
+        public List<byte> GetList()
+        {
+            return _bytes;
+        }
     }
 }
