@@ -231,14 +231,9 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+<details>
+<summary>Legacy Docs <i>(v1.x.x - v2.x.x)</i></summary>
 
 # Byter
 
@@ -595,3 +590,7 @@ reader.Dispose(); // Destroy Reader
   # Rebuild dependencies to be linked in the project
   dotnet restore
   ```
+
+</details>
+
+<br>
