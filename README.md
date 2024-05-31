@@ -1,3 +1,14 @@
+<div align="right">
+<table>
+<td aligh="right">
+<p></p>
+<sup>⭐ Your star is the light at the end of our tunnel.<br> Lead us out of the darkness by starring <a href="https://github.com/alec1o/Byter">Byter on GitHub</a>.<br> Star me please, I beg you! 💙</sup>
+</td>
+</table>
+</div>
+
+<br>
+
 <h1 align="center"><a href="https://github.com/alec1o/Byter">Byter</a></h1>
 
 <h6 align="center"><sub>
