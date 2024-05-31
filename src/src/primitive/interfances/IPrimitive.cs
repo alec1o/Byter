@@ -4,7 +4,7 @@ namespace Byter
 {
     internal interface IPrimitive
     {
-        int Position { get; }
+        long Position { get; }
         bool IsValid { get; }
         IPrimitiveAdd Add { get; }
         IPrimitiveGet Get { get; }

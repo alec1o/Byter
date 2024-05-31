@@ -23,7 +23,7 @@ namespace Byter
             Reset(data);
         }
 
-        public int Position { get; private set; }
+        public long Position { get; private set; }
         public bool IsValid { get; private set; }
         internal byte[] Data => _bytes.ToArray();
         public IPrimitiveAdd Add { get; }
