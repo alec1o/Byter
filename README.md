@@ -227,9 +227,6 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 </details>
 </td>
 </tr>
-
-<tr><th></th></tr>
-
 </table>
 
 <br>
