@@ -17,7 +17,7 @@ powered by <a href="https://github.com/alec1o">ALEC1O</a><sub/>
 
 <div align="center">
   <a href="#">
-    <img align="center" src="static/logo/byter-logo-3.png" width="128px" alt="byter logo">
+    <img align="center" src="static/logo/Byter-logo-512/sprite_1.png.png" width="128px" alt="byter logo">
   </a>
 </div>
 
