@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
 
 namespace Byter
@@ -398,7 +399,7 @@ namespace Byter
 
                     return instance;
                 }
-                catch
+                catch (Exception e)
                 {
                     return SetError<object>();
                 }
@@ -584,6 +585,8 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
             public object Array(Type type)
             {
+                const List<byte> listName = null;
+
                 if (type == null) return null;
                 if (!type.IsArray) return null;
                 Type childrenType = type.GetElementType();
@@ -593,7 +596,13 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
                 {
                     if (!IsValidPrefix(Prefix.Array)) throw new InvalidDataException();
 
-                    var list = (List<dynamic>)Activator.CreateInstance(listType);
+
+                    var list = Activator.CreateInstance(listType);
+                    var addMethod = list.GetType().GetMethod(nameof(listName.Add));
+                    var toArrayMethod = list.GetType().GetMethod(nameof(listName.ToArray));
+
+                    if (addMethod == null) throw new NullReferenceException(nameof(addMethod));
+                    if (toArrayMethod == null) throw new NullReferenceException(nameof(toArrayMethod));
 
                     var objectCount = BitConverter.ToInt32(VaultArray, Position);
                     Position += sizeof(int);
@@ -625,13 +634,13 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
                             if (result.IsError) throw new InvalidDataException();
 
-                            list.Add(result.Value);
+                            addMethod.Invoke(list, new[] { result.Value });
                         }
                     }
 
-                    return list.ToArray();
+                    return toArrayMethod.Invoke(list, null);
                 }
-                catch
+                catch (Exception e)
                 {
                     return SetError<object>();
                 }
