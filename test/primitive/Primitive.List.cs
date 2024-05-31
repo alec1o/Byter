@@ -1,4 +1,3 @@
-#define ARRAY_IGNORE
 using System;
 using System.Collections.Generic;
 using Byter;
@@ -88,14 +87,13 @@ public partial class Primitives
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString()
                 ],
-#if !ARRAY_IGNORE
+
                 Array =
                 [
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString()
                 ],
-#endif
                 SubClass = new()
                 {
                     String = Guid.NewGuid().ToString()
@@ -112,14 +110,14 @@ public partial class Primitives
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString()
                 ],
-#if !ARRAY_IGNORE
+
                 Array =
                 [
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString()
                 ],
-#endif
+
                 SubClass = new()
                 {
                     String = Guid.NewGuid().ToString()
@@ -139,9 +137,9 @@ public partial class Primitives
             Assert.Equal(list[i].String, myList[i].String);
             Assert.Equal(list[i].Bool, myList[i].Bool);
             Assert.Equal(list[i].List, myList[i].List);
-#if !ARRAY_IGNORE
+
             Assert.Equal(list[i].Array, myList[i].Array);
-#endif
+
             Assert.Equal(list[i].SubClass?.String, myList[i].SubClass?.String);
         }
 
@@ -154,9 +152,9 @@ public partial class Primitives
         public string? String { get; set; }
         public bool Bool { get; set; }
         public List<string>? List { get; set; }
-#if !ARRAY_IGNORE
+
         public string[]? Array { get; set; }
-#endif
+
         public Sub? SubClass { get; set; }
 
         public class Sub
