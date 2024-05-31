@@ -77,19 +77,19 @@ Byter is a C# serializer. It can serialize and deserialize from primitive type e
 <td valign="top" align="left">
 <sub>
 <i>Main (Reader & Writer)</i> Types:
-<br>&emsp; - <code>byte</code>
-<br>&emsp; - <code>bool</code>
-<br>&emsp; - <code>byte[]</code>
-<br>&emsp; - <code>short</code>
-<br>&emsp; - <code>ushort</code>
-<br>&emsp; - <code>int</code>
-<br>&emsp; - <code>uint</code>
-<br>&emsp; - <code>long</code>
-<br>&emsp; - <code>ulong</code>
-<br>&emsp; - <code>float</code>
-<br>&emsp; - <code>double</code>
-<br>&emsp; - <code>char</code>
-<br>&emsp; - <code>string</code>
+&nbsp; <code>byte</code>
+&nbsp; <code>bool</code>
+&nbsp; <code>byte[]</code>
+&nbsp; <code>short</code>
+&nbsp; <code>ushort</code>
+&nbsp; <code>int</code>
+&nbsp; <code>uint</code>
+&nbsp; <code>long</code>
+&nbsp; <code>ulong</code>
+&nbsp; <code>float</code>
+&nbsp; <code>double</code>
+&nbsp; <code>char</code>
+&nbsp; <code>string</code>
 </sub>
 </td>
 <td valign="top" align="left">
@@ -106,28 +106,28 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <br><br>Support: <i><strong>*Primitive</strong></i>
 <br><br>New usage paradigms <i><strong>*Primitive</strong></i>
 <br><br>*Primitive Types:
-<br>&emsp; - <code>bool</code>
-<br>&emsp; - <code>byte</code>
-<br>&emsp; - <code>sbyte</code> *
-<br>&emsp; - <code>char</code>
-<br>&emsp; - <code>short</code>
-<br>&emsp; - <code>ushort</code>
-<br>&emsp; - <code>int</code>
-<br>&emsp; - <code>uint</code>
-<br>&emsp; - <code>float</code>
-<br>&emsp; - <code>enum</code> *
-<br>&emsp; - <code>long</code>
-<br>&emsp; - <code>ulong</code>
-<br>&emsp; - <code>double</code>
-<br>&emsp; - <code>DateTime</code> *
-<br>&emsp; - <code>decimal</code> *
-<br>&emsp; - <code>string</code>
-<br>&emsp; - <code>class</code> *
-<br>&emsp; - <code>struct</code> *
-<br>&emsp; - <code>array</code> *
-<br>&emsp; - <code>list</code> *
-<br>&emsp; - <code>BigInteger</code> *
-<br>&emsp; - <code>byte[]</code>
+&nbsp; <code>bool</code>
+&nbsp; <code>byte</code>
+&nbsp; <code>sbyte*</code>
+&nbsp; <code>char</code>
+&nbsp; <code>short</code>
+&nbsp; <code>ushort</code>
+&nbsp; <code>int</code>
+&nbsp; <code>uint</code>
+&nbsp; <code>float</code>
+&nbsp; <code>enum*</code>
+&nbsp; <code>long</code>
+&nbsp; <code>ulong</code>
+&nbsp; <code>double</code>
+&nbsp; <code>DateTime*</code>
+&nbsp; <code>decimal*</code>
+&nbsp; <code>string</code>
+&nbsp; <code>class*</code>
+&nbsp; <code>struct*</code>
+&nbsp; <code>array*</code>
+&nbsp; <code>list*</code>
+&nbsp; <code>BigInteger*</code>
+&nbsp; <code>byte[]</code>
 </sub></td>
 </tr>
 <tr> <!-- row #2 -->
