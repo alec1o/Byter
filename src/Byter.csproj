@@ -1,36 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
-        <None Include="..\README.md" Pack="true" PackagePath="\"/>
-        <None Include="..\LICENSE.md" Pack="true" PackagePath="\"/>
+        <None Include="../static/nuget/README.md" Pack="true" PackagePath="/"/>
+        <None Include="../LICENSE.md" Pack="true" PackagePath="/"/>
     </ItemGroup>
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageId>Byter</PackageId>
-        <Version>2.0.0</Version>
+        <Version>3.0.0</Version>
         <Authors>alec1o</Authors>
         <Company>alec1o</Company>
         <Copyright>alec1o</Copyright>
         <RepositoryType>GitHub</RepositoryType>
-        <PackageTags>Byte, Bytes, Array, Encode, Decode</PackageTags>
+        <PackageTags>c-sharp, serialization, parser, csharp, dotnet, object, serializer, primitive, serialize, deserializer, byter, encode, decode</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/alec1o/Byter</RepositoryUrl>
         <PackageProjectUrl>https://github.com/alec1o/Byter</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageReleaseNotes>
-            + Add Float2 struct (Vector2)
-            + Add Float3 struct (Vector3)
-            + Add Float4 struct (Vector4 / Quaternion)
-            + Downgrade .NET standard 2.1 to 2.0
-            + New docs
+            + Primitive support.
+            + Optimize overhead 2 bytes for 1 byte.
+            + Class, Struct, Enum, Array and List is supported.
+            + Documentation improved.
         </PackageReleaseNotes>
         <Description>
-            Byte parse. Convert byte to object and object to byte
-
-            Docs: https://github.com/alec1o/Byter/blob/main/README.md
-            Sample: https://github.com/alec1o/Byter/blob/main/README.md
-            Fork me: https://github.com/alec1o/Byter
+            Byter is a C# serializer. It can serialize and deserialize from primitive type e.g (class, struct, list, array, string, int, long, double, ...), It can serialize complex data fast and easy.
+            
+            *Know more
+                Documentation: https://github.com/alec1o/Byter/blob/main/README.md
+                Sample: https://github.com/alec1o/Byter/blob/main/README.md
+                Fork me: https://github.com/alec1o/Byter
         </Description>
         <Title>Byter</Title>
     </PropertyGroup>
