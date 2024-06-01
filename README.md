@@ -167,30 +167,30 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
 
 ### Constructor
-- ###### (``byte[]`` buffer) :     ``Reader`` <br><sub>Create instance using <i>(Byte[])</i> as internal buffer</sub>
-- ###### (``Writer`` writer) :     ``Reader`` <br><sub>Create instance using <i>(Writer)</i> as internal buffer</sub>
-- ###### (ref ``Writer`` writer) : ``Reader`` <br><sub>Create instance using <i>(ref Writer)</i> as internal buffer</sub>
+
+- ###### () :                      ``Writer`` <br><sub>Create instance with empty internal buffer</sub>
+- ###### (``Writer`` writer) :     ``Writer`` <br><sub>Create instance and copy buffer of <i>(Writer)</i> as internal buffer</sub>
+- ###### (ref ``Writer`` writer) : ``Writer`` <br><sub>Create instance and copy buffer of <i>(ref Writer)</i> as internal buffer</sub>
 
 ### Proprieties
 
-- ###### Success : ``bool`` <br><sub>Return true if deserialized successful.</sub>
-- ###### Position : ``int`` <br><sub>Return current read index.</sub>
 - ###### Length :   ``int`` <br><sub>Return buffer length.</sub>
 
 ### Methods
 
-- ###### Seek(``int`` position) :                    ``void`` <br><sub>Move position (internal buffer index)</sub>
-- ###### Read<``T``>() :                                ``T`` <br><sub>Read content from iternal buffer.</sub>
-- ###### Read<``string``>(``Encoding`` encoding) : ``string`` <br><sub>Read custom encoding string.</sub>
-
+- ###### Write(T value) :   ``void`` <br><sub>Write content in internal buffer</sub>
+- ###### GetBytes() :     ``byte[]`` <br><sub>Return buffer from <i>(Writer)</i> instance as <i>byte[])</i> </sub>
+- ###### GetList() :      ``byte[]`` <br><sub>Return buffer from <i>(Writer)</i> instance as <i>List&lt;byte&gt;</i> </sub>
+- ###### Clear():           ``void`` <br><sub>Clear internal buffer from <i>(Writer)</i> instance</sub>
 
 </details>
 <details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
 
 ### Constructor
-- ###### (``byte[]`` buffer) :     ``Reader``
-- ###### (``Writer`` writer) :     ``Reader``
-- ###### (ref ``Writer`` writer) : ``Reader``
+
+- ###### (``byte[]`` buffer) :     ``Reader`` <br><sub>Create instance using <i>(Byte[])</i> as internal buffer</sub>
+- ###### (``Writer`` writer) :     ``Reader`` <br><sub>Create instance using <i>(Writer)</i> as internal buffer</sub>
+- ###### (ref ``Writer`` writer) : ``Reader`` <br><sub>Create instance using <i>(ref Writer)</i> as internal buffer</sub>
 
 ### Proprieties
 
