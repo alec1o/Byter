@@ -52,9 +52,32 @@ Byter is a C# serializer. It can serialize and deserialize from primitive type e
 
 > <sub>Official publisher</sub>
 
-| <sub>Nuget</sub>                                                    |
-|---------------------------------------------------------------------|
-| <sub>Install on [Nuget](https://www.nuget.org/packages/Byter)</sub> |
+<table>
+<tr>
+<th valign="center" align="center"><sub>Nuget</sub></th>
+<th valign="center" align="center"><sub>.NET CLI</sub></th>
+<th valign="center" align="center"><sub>Netly</sub></th>
+</tr>
+<tr>
+<td valign="top" align="left">
+
+<sup>Install on [Nuget](https://www.nuget.org/packages/Byter)</sup>
+
+</td>
+<td valign="top" align="left">
+
+```rb
+dotnet add package Byter --version 3.0.0
+```
+
+</td>
+<td valign="top" align="left">
+
+<sup>Embedded. [Since version 2.x.x <sup><i><sup>*</sup>of Netly</i></sup>](https://github.com/alec1o/Netly)</sup>
+
+</td>
+</tr>
+</table>
 
 <br>
 
