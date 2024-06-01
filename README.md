@@ -169,7 +169,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 ### Constructor
 - ###### (``byte[]`` buffer) :     ``Reader`` <br><sub>Create instance using <i>(Byte[])</i> as internal buffer</sub>
 - ###### (``Writer`` writer) :     ``Reader`` <br><sub>Create instance using <i>(Writer)</i> as internal buffer</sub>
-- ###### (ref ``Writer`` writer) : ``Reader`` <br><sub>Create instance using <i>(Writer)</i> as internal buffer</sub>
+- ###### (ref ``Writer`` writer) : ``Reader`` <br><sub>Create instance using <i>(ref Writer)</i> as internal buffer</sub>
 
 ### Proprieties
 
