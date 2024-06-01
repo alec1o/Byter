@@ -169,23 +169,29 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 </details>
 <details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
 
-
 ### Proprieties
-- ##### <sub><sup>Success : ``bool``</sup></sub><br><sup>Return true if deserialized successful.</sup>
-- ##### <sub><sup>Position : ``int``</sup></sub><br><sup>Return current read index.</sup>
-- ##### <sub><sup>Length : ``int``</sup></sub><br><sup>Return buffer length.</sup>
+
+- ###### Success : ``bool`` <br><sub>Return true if deserialized successful.</sub>
+- ###### Position : ``int`` <br><sub>Return current read index.</sub>
+- ###### Length : ``int``   <br><sub>Return buffer length.</sub>
 
 ### Methods
 
-- ##### <sub><sup>Seek(``int`` position) : ``void``</sup></sub><br><sup>Move position (internal buffer index)</sup>
-- ##### <sub><sup>Read&lt;T&gt;() : ``T``</sup></sub><br><sup>Read content from iternal buffer.</sup>
-- ##### <sub><sup>Read&lt;T&gt;(``Encoding`` encoding) : ``T``</sup></sub><br><sup>Read custom encoding string.</sup>
+> <sub>Move position (internal buffer index)</sub>
+- ###### Seek(``int`` position) : ``void``
+
+> <sub>Read content from iternal buffer.</sub>
+- ###### Read&lt;T&gt;() : ``T``      
+
+> <sub>Read custom encoding string.</sub>
+- ###### Read&lt;T&gt;(``Encoding`` encoding) : ``T`` 
 
 </details>
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
 
 ```csharp
 ```
+
 </details>
 </td>
 </tr>
@@ -199,16 +205,19 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 
 ```csharp
 ```
+
 </details>
 <details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
 
 ```csharp
 ```
+
 </details>
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
 
 ```csharp
 ```
+
 </details>
 </td>
 </tr>
@@ -222,16 +231,19 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 
 ```csharp
 ```
+
 </details>
 <details><summary>📄 <strong><sup><sub>Writer & Reader <i>(namespace)</i></sub></sup></strong></summary>
 
 ```csharp
 ```
+
 </details>
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
 
 ```csharp
 ```
+
 </details>
 </td>
 </tr>
