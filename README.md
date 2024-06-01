@@ -414,6 +414,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 - ###### List<``T``>()   ``List<T>`` <br><sub>(Read/Get) element typeof(List<T) from in internal buffer</sub>
 - ###### BigInteger() ``BigInteger`` <br><sub>(Read/Get) element typeof(BigInteger) from internal buffer</sub>
 - ###### Bytes()          ``byte[]`` <br><sub>(Read/Get) element typeof(byte[]) from internal buffer</sub>
+
 </details>
 
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
@@ -506,7 +507,51 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 </table>
 
 <br>
+
+##### Overhead
+
+> <sub>Byter overhead information</sub>
+
+| <sub>Type</sub>       | <sub>Primitive <i>(overhead + size = total )</i></sub>                                | <sub>Writer/Reader <i>(overhead / size / total )</i></sub>                           |
+|-----------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
+| <sub>Bool</sub>       | ✔️  <i>(1 + 1 = 2 bytes)</i>                                                          | ✔️ <i>(2 + 1 = 3 bytes)</i>                                                          |
+| <sub>Byte</sub>       | ✔️  <i>(1 + 1 = 2 bytes)</i>                                                          | ✔️ <i>(2 + 1 = 3 bytes)</i>                                                          |
+| <sub>SByte</sub>      | ✔️  <i>(1 + 2 = 2 bytes)</i>                                                          | 🚫                                                                                   |
+| <sub>Char</sub>       | ✔️  <i>(1 + 2 = 3 bytes)</i>                                                          | ✔️ <i>(2 + 2 = 4 bytes)</i>                                                          |
+| <sub>Short</sub>      | ✔️  <i>(1 + 2 = 3 bytes)</i>                                                          | ✔️ <i>(2 + 2 = 4 bytes)</i>                                                          |
+| <sub>UShort</sub>     | ✔️  <i>(1 + 2 = 3 bytes)</i>                                                          | ✔️ <i>(2 + 2 = 4 bytes)</i>                                                          |
+| <sub>Int</sub>        | ✔️  <i>(1 + 4 = 5 bytes)</i>                                                          | ✔️ <i>(2 + 4 = 6 bytes)</i>                                                          |
+| <sub>UInt</sub>       | ✔️  <i>(1 + 4 = 5 bytes)</i>                                                          | ✔️ <i>(2 + 4 = 6 bytes)</i>                                                          |
+| <sub>Float</sub>      | ✔️  <i>(1 + 4 = 5 bytes)</i>                                                          | ✔️ <i>(2 + 4 = 6 bytes)</i>                                                          |
+| <sub>Enum</sub>       | ✔️  <i>(1 + 4 = 5 bytes)</i>                                                          | 🚫                                                                                   |
+| <sub>Long</sub>       | ✔️  <i>(1 + 8 = 9 bytes)</i>                                                          | ✔️ <i>(2 + 8 = 10 bytes)</i>                                                         |
+| <sub>ULong</sub>      | ✔️  <i>(1 + 8 = 9 bytes)</i>                                                          | ✔️ <i>(2 + 8 = 10 bytes)</i>                                                         |
+| <sub>Double</sub>     | ✔️  <i>(1 + 8 = 9 bytes)</i>                                                          | ✔️ <i>(2 + 8 = 10 bytes)</i>                                                         |
+| <sub>DateTime</sub>   | ✔️  <i>(1 + 8 = 9 bytes)</i>                                                          | 🚫                                                                                   |
+| <sub>Decimal</sub>    | ✔️  <i>(1 + 16 = 17 bytes)</i>                                                        | 🚫                                                                                   |
+| <sub>String</sub>     | ✔️  <i>(5 + ? = <sup>+</sup>5 bytes)</i> <sup>*UTF8</sup>                             | ✔️ <i>(5 + ? = <sup>+</sup>5 bytes)</i>                                              |
+| <sub>Class</sub>      | ✔️  <i>(1 + ? = <sup>+</sup>1 byte)</i>                                               | 🚫                                                                                   |
+| <sub>Struct</sub>     | ✔️  <i>(1 + ? = <sup>+</sup>1 byte)</i>                                               | 🚫                                                                                   |
+| <sub>Array</sub>      | ✔️  <i>(3 + ? = <sup>+</sup>3 bytes)</i>  <sup>*Max. 65535</sup>                      | 🚫                                                                                   |
+| <sub>List</sub>       | ✔️  <i>(3 + ? = <sup>+</sup>3 bytes)</i>  <sup>*Max. 65535</sup>                      | 🚫                                                                                   |
+| <sub>BigInteger</sub> | ✔️  <i>(3 + ? = <sup>+</sup>3 bytes)</i>                                              | 🚫                                                                                   |
+| <sub>Bytes</sub>      | ✔️  <i>(5 + ? = <sup>+</sup>5 bytes)</i> <sup>*Max. 4.294.967.295 *(~4billions)</sup> | ✔️ <i>(6 + ? = <sup>+</sup>5 bytes)</i> <sup>*Max. 2.147.483.647 *(~2billions)</sup> |
+
 <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <details>
 <summary>Legacy Docs <i>(v1.x.x - v2.x.x)</i></summary>
