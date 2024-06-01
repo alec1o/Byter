@@ -166,6 +166,24 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <td>
 <details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
 
+### Constructor
+- ###### (``byte[]`` buffer) :     ``Reader`` <br><sub>Create instance using <i>(Byte[])</i> as internal buffer</sub>
+- ###### (``Writer`` writer) :     ``Reader`` <br><sub>Create instance using <i>(Writer)</i> as internal buffer</sub>
+- ###### (ref ``Writer`` writer) : ``Reader`` <br><sub>Create instance using <i>(Writer)</i> as internal buffer</sub>
+
+### Proprieties
+
+- ###### Success : ``bool`` <br><sub>Return true if deserialized successful.</sub>
+- ###### Position : ``int`` <br><sub>Return current read index.</sub>
+- ###### Length :   ``int`` <br><sub>Return buffer length.</sub>
+
+### Methods
+
+- ###### Seek(``int`` position) :                    ``void`` <br><sub>Move position (internal buffer index)</sub>
+- ###### Read<``T``>() :                                ``T`` <br><sub>Read content from iternal buffer.</sub>
+- ###### Read<``string``>(``Encoding`` encoding) : ``string`` <br><sub>Read custom encoding string.</sub>
+
+
 </details>
 <details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
 
