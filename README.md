@@ -100,9 +100,9 @@ Byter is a C# serializer. It can serialize and deserialize from primitive type e
 <td valign="top" align="left">
 <sub>
 New <i>(Reader & Writer)</i> Types:
-<br>&emsp; - <code>Float2</code> (Vector2)
-<br>&emsp; - <code>Float3</code> (Vector3)
-<br>&emsp; - <code>Float4</code> (Vector4 / Quaternion)
+<br>&emsp;<code>Float2</code> (Vector2)
+<br>&emsp;<code>Float3</code> (Vector3)
+<br>&emsp;<code>Float4</code> (Vector4 / Quaternion)
 </sub>
 </td>
 <td valign="top" align="left">
