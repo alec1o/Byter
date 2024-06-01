@@ -188,8 +188,6 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <th align="center" valign="top"><sub><strong>v1.x.x<br>v2.x.x</strong></sub></th>
 <td>
 
-> <h6>Supported type list in version 1.x.x and 2.x.x (Notable changes)</h6>
-
 <details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
 
 ### Constructor
@@ -334,8 +332,6 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <tr>
 <th align="center" valign="top"><sub><strong>v3.x.x</strong></sub></th>
 <td>
-
-> <h6>Supported type list in version 3.x.x (Notable changes)</h6>
 
 <details><summary>📄 <strong><sup><sub>Primitive</sub></sup></strong></summary>
 
@@ -508,7 +504,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 
 <br>
 
-##### Overhead
+##### Overhead <sup><i>(supported types list)</i></sup>
 
 > <sub>Byter overhead information</sub>
 
