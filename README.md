@@ -162,7 +162,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <table>
 
 <tr>
-<th align="center" valign="top"><sub><strong>v1.x.x</strong></sub></th>
+<th align="center" valign="top"><sub><strong>v1.x.x<br>v2.x.x</strong></sub></th>
 <td>
 <details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
 
@@ -207,34 +207,97 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 </details>
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
 
-```csharp
-```
+- ###### Writer
+    ```csharp
+    using Byter;
+    
+    Writer w = new();
+    
+    // write data
+  
+    w.Write("Powered by ALEC1O");
+    w.Write("由 ALEC1O 提供支持", Encoding.UTF32);
+    w.Write((int)1000000);` // 1.000.000
+    w.Write((char)'A');
+    w.Write((long)-1000000000); // -100.0000.000
+    w.Write((byte[])[0, 1, 2, 3]);
+    
+    // Float(1|2|3) only available in version 2
+    w.Write(new Float2(-100F, 300F));
+    w.Write(new Float3(-100F, 300F, 600F));
+    w.Write(new Float4(-100F, 300F, 600F, 900F));
+    
+    // get buffer
+    
+    byte[] buffer = w.GetBytes();
+    
+    // example send buffer
+    Magic.Send(buffer);
+    ```
+- ###### Reader
+    ```csharp
+    using Byter;
+    
+    // example receive buffer
+    byte[] buffer = Magic.Receive();
+    
+    // create instance
+    Reader r = new()
+        
+    // read data
+    
+    string noticeInEnglish = r.Read<string>(); // Powered by ALEC1O
+    string noticeInChinese = r.Read<string>(Encoding.UTF32); // 由 ALEC1O 提供支持
+    int myInt = r.Read<int>(); // 1.000.000
+    char myChar = r.Read<char>(); // 'A'
+    long myLong = r.Read<long>(); // -100.0000.000
+    byte[] myBytes = r.Read<byte[]>(); // [0, 1, 2, 3]
+    
+    // Float(1|2|3) only available in version 2
+    Float2 myFloat2 = r.Read<Float2>(); // [x: -100F] [y: 300F]
+    Float3 myFloat3 = r.Read<Float3>(); // [x: -100F] [y: 300F] [z: 600F]
+    Float4 myFloat4 = r.Read<Float4>(); // [x: -100F] [y: 300F] [z: 600F] [w: 900F]
+    
+    if (r.Sucess)
+    {
+        // sucess on read all data
+    }
+    else
+    {
+        // one or more data isn't found when deserialize. Might ignore this buffer!
+    }
+    ```
 
-</details>
-</td>
-</tr>
-
-<tr><th></th></tr>
-
-<tr>
-<th align="center" valign="top"><sub><strong>v2.x.x</strong></sub></th>
-<td>
-<details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
-
-```csharp
-```
-
-</details>
-<details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
-
-```csharp
-```
-
-</details>
-<details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
-
-```csharp
-```
+- ###### Dynamic Read Technical
+    ```csharp
+    var r = new Reader(...);
+    
+    var topic = r.Read<string>(Encoding.ASCII);
+    
+    if(!r.Sucess) return; // ignore this 
+    
+    if (topic == "login")
+    {
+        string username = r.Read<string>(Encoding.UTF32);
+        string password = r.Read<string>(Encoding.ASCII);
+        
+        if (!r.Sucess) return; // ignore this
+        // login user...
+    }
+    else if(topic == "get user address")
+    {
+        ulong userId  = r.Read<ulong>();
+        string token = r.Read<string>(Encoding.ASCII);
+        
+        if (!r.Sucess) return; // ignore this
+        // get user adress...
+    }
+    ...
+    else
+    {
+        // ignore this. (Topic not found)
+    }
+    ```
 
 </details>
 </td>
