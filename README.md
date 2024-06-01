@@ -169,6 +169,11 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 </details>
 <details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
 
+### Constructor
+- ###### (``byte[]`` buffer) :     ``Reader``
+- ###### (``Writer`` writer) :     ``Reader``
+- ###### (ref ``Writer`` writer) : ``Reader``
+
 ### Proprieties
 
 - ###### Success : ``bool`` <br><sub>Return true if deserialized successful.</sub>
