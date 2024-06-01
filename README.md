@@ -187,6 +187,9 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <tr>
 <th align="center" valign="top"><sub><strong>v1.x.x<br>v2.x.x</strong></sub></th>
 <td>
+
+> <h6>Supported type list in version 1.x.x and 2.x.x (Notable changes)</h6>
+
 <details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
 
 ### Constructor
@@ -203,7 +206,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 
 - ###### Write(T value) :   ``void`` <br><sub>Write content in internal buffer</sub>
 - ###### GetBytes() :     ``byte[]`` <br><sub>Return buffer from <i>(Writer)</i> instance as <i>byte[])</i> </sub>
-- ###### GetList() :      ``byte[]`` <br><sub>Return buffer from <i>(Writer)</i> instance as <i>List&lt;byte&gt;</i> </sub>
+- ###### GetList() :  ``List<byte>`` <br><sub>Return buffer from <i>(Writer)</i> instance as <i>List&lt;byte&gt;</i> </sub>
 - ###### Clear():           ``void`` <br><sub>Clear internal buffer from <i>(Writer)</i> instance</sub>
 
 </details>
@@ -331,15 +334,171 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <tr>
 <th align="center" valign="top"><sub><strong>v3.x.x</strong></sub></th>
 <td>
+
+> <h6>Supported type list in version 3.x.x (Notable changes)</h6>
+
 <details><summary>📄 <strong><sup><sub>Primitive</sub></sup></strong></summary>
 
-TODO:
+### Constructor
 
+- ###### () :                      ``Primitive`` <br><sub>Create instance with empty internal buffer</sub>
+- ###### (``byte[]`` buffer) :     ``Primitive`` <br><sub>Create instance using (Byte[]) as internal buffer</sub>
+
+### Proprieties
+
+- ###### Position :      ``int`` <br><sub>Return internal reading index/position.</sub>
+- ###### IsValid :      ``bool`` <br><sub>Return (true) if data was read successful. otherwise (false)</sub>
+- ###### Add : ``IPrimitiveAdd`` <br><sub>Object used to (read/get) content from internal (Primitive) buffer</sub>
+- ###### Get : ``IPrimitiveGet`` <br><sub>Object used to (write/add) content in internal (Primitive) buffer</sub>
+
+### Methods
+
+- ###### GetBytes() :     ``byte[]`` <br><sub>Return buffer from <i>(Primitive)</i> instance as <i>byte[])</i> </sub>
+- ###### GetList() :  ``List<byte>`` <br><sub>Return buffer from <i>(Primitive)</i> instance as <i>List&lt;byte&gt;</i> </sub>
+- ###### Reset():           ``void`` <br><sub>Clear internal buffer from <i>(Primitive)</i> instance</sub>
+
+</details>
+
+<details><summary>📄 <strong><sup><sub>IPrimitiveAdd</sub></sup></strong></summary>
+
+### Methods
+
+- ###### Bool(``bool`` value)             ``void`` <br><sub>(Write/Add) element typeof(bool) in internal buffer</sub>
+- ###### Byte(``byte`` value)             ``void`` <br><sub>(Write/Add) element typeof(byte) in internal buffer</sub>
+- ###### SByte(``sbyte`` value)           ``void`` <br><sub>(Write/Add) element typeof(sbyte) in internal buffer</sub>
+- ###### Char(``char`` value)             ``void`` <br><sub>(Write/Add) element typeof(char) in internal buffer</sub>
+- ###### Short(``short`` value)           ``void`` <br><sub>(Write/Add) element typeof(short) in internal buffer</sub>
+- ###### UShort(``ushort`` value)         ``void`` <br><sub>(Write/Add) element typeof(ushort) in internal buffer</sub>
+- ###### Int(``int`` value)               ``void`` <br><sub>(Write/Add) element typeof(int) in internal buffer</sub>
+- ###### UInt(``uint`` value)             ``void`` <br><sub>(Write/Add) element typeof(uint) in internal buffer</sub>
+- ###### Float(``float`` value)           ``void`` <br><sub>(Write/Add) element typeof(float) in internal buffer</sub>
+- ###### Enum<``T``>(``T`` value)         ``void`` <br><sub>(Write/Add) element typeof(enum) in internal buffer</sub>
+- ###### Long(``long`` value)             ``void`` <br><sub>(Write/Add) element typeof(long) in internal buffer</sub>
+- ###### ULong(``ulong`` value)           ``void`` <br><sub>(Write/Add) element typeof(ulong) in internal buffer</sub>
+- ###### Double(``double`` value)         ``void`` <br><sub>(Write/Add) element typeof(double) in internal buffer</sub>
+- ###### DateTime(``DateTime`` value)     ``void`` <br><sub>(Write/Add) element typeof(DateTime) in internal buffer</sub>
+- ###### Decimal(``decimal`` value)       ``void`` <br><sub>(Write/Add) element typeof(decimal) in internal buffer</sub>
+- ###### String(``string`` value)         ``void`` <br><sub>(Write/Add) element typeof(string) in internal buffer</sub>
+- ###### Class<``T``>(``T`` value)        ``void`` <br><sub>(Write/Add) element typeof(T) in internal buffer</sub>
+- ###### Struct<``T``>(``T`` value)       ``void`` <br><sub>(Write/Add) element typeof(T) in internal buffer</sub>
+- ###### Array<``T``>(``T`` value)        ``void`` <br><sub>(Write/Add) element typeof(T[]) in internal buffer</sub>
+- ###### List<``T``>(``List<T>`` value)   ``void`` <br><sub>(Write/Add) element typeof(List<T>) in internal buffer</sub>
+- ###### BigInteger(``BigInteger`` value) ``void`` <br><sub>(Write/Add) element typeof(BigInteger) in internal buffer</sub>
+- ###### Bytes(``byte[]`` value)          ``void`` <br><sub>(Write/Add) element typeof(byte[]) in internal buffer</sub>
+
+</details>
+
+<details><summary>📄 <strong><sup><sub>IPrimitiveGet</sub></sup></strong></summary>
+
+### Methods
+
+- ###### Bool()             ``bool`` <br><sub>(Read/Get) element typeof(bool) from internal buffer</sub>
+- ###### Byte()             ``byte`` <br><sub>(Read/Get) element typeof(byte) from internal buffer</sub>
+- ###### SByte()           ``sbyte`` <br><sub>(Read/Get) element typeof(sbyte) from internal buffer</sub>
+- ###### Char()             ``char`` <br><sub>(Read/Get) element typeof(char) from internal buffer</sub>
+- ###### Short()           ``short`` <br><sub>(Read/Get) element typeof(short) from internal buffer</sub>
+- ###### UShort()         ``ushort`` <br><sub>(Read/Get) element typeof(ushort) from internal buffer</sub>
+- ###### Int()               ``int`` <br><sub>(Read/Get) element typeof(int) from internal buffer</sub>
+- ###### UInt()             ``uint`` <br><sub>(Read/Get) element typeof(uint) from internal buffer</sub>
+- ###### Float()           ``float`` <br><sub>(Read/Get) element typeof(float) from internal buffer</sub>
+- ###### Enum<``T``>()         ``T`` <br><sub>(Read/Get) element typeof(enum) from internal buffer</sub>
+- ###### Long()             ``long`` <br><sub>(Read/Get) element typeof(long) from internal buffer</sub>
+- ###### ULong()           ``ulong`` <br><sub>(Read/Get) element typeof(ulong) from internal buffer</sub>
+- ###### Double()         ``double`` <br><sub>(Read/Get) element typeof(double) from internal buffer</sub>
+- ###### DateTime()     ``DateTime`` <br><sub>(Read/Get) element typeof(DateTime) from internal buffer</sub>
+- ###### Decimal()       ``decimal`` <br><sub>(Read/Get) element typeof(decimal) from internal buffer</sub>
+- ###### String()         ``string`` <br><sub>(Read/Get) element typeof(string) from internal buffer</sub>
+- ###### Class<``T``> ()       ``T`` <br><sub>(Read/Get) element typeof(T) from internal buffer</sub>
+- ###### Struct<``T``>()       ``T`` <br><sub>(Read/Get) element typeof(T) from internal buffer</sub>
+- ###### Array<``T``>()      ``T[]`` <br><sub>(Read/Get) element typeof(T[]) from internal buffer</sub>
+- ###### List<``T``>()   ``List<T>`` <br><sub>(Read/Get) element typeof(List<T) from in internal buffer</sub>
+- ###### BigInteger() ``BigInteger`` <br><sub>(Read/Get) element typeof(BigInteger) from internal buffer</sub>
+- ###### Bytes()          ``byte[]`` <br><sub>(Read/Get) element typeof(byte[]) from internal buffer</sub>
 </details>
 
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
 
-TODO:
+- ###### Add Element
+    ```csharp
+    using Byter;
+    
+    Primitive primitive = new();
+    
+    // write elements
+  
+    primitive.Add.Class(myCharacterInfoClass);
+    primitive.Add.Array(myCharacterArray);
+    primitive.Add.List(myLogList);
+    primitive.Add.Struct(myDeviceStruct);
+    primitive.Add.DateTime(DateTime.UtcNow);
+    primitive.Add.Enum(MyEnum.Option1);
+    primitive.Add.Bytes(myImageBuffer);
+    
+    // send buffer
+  
+    byte[] buffer = primitive.GetBytes();
+    Magic.Send(buffer); // EXAMPLE!
+    ```
+
+- ###### Get Element
+    ```csharp
+    using Byter;
+    
+    // receive bugger
+    
+    byte[] buffer = Magic.Receive(); // EXAMPLE!
+    
+    Primitive primitive = new(buffer);
+    
+    // read elements
+    
+    var myCharacterInfoClass = primitive.Get.Class<CharacterInfoClass>();
+    var myCharacterArray = primitive.Get.Array<Character>();
+    var myLogList = primitive.Get.List<string>();
+    var myDeviceStruct = primitive.Get.Struct<DeviceStruct>();
+    var myTime = primitive.Get.DateTime();
+    var myEnum = primitive.Get.Enum<MyEnum>();
+    var myImageBuffer = primitive.Get.Bytes();
+    
+    if (primitive.IsValid)
+    {
+        // sucess on read all data
+    }
+    else
+    {
+        // one or more data isn't found when deserialize. Might ignore this buffer!
+    }
+    
+    ```
+
+- ###### Dynamic Read Technical
+    ```csharp
+    Primitive primitive = new(...);
+    
+    var topic = primitive.Get.String();
+    
+    if(!primitive.IsValid) return; // ignore this 
+    
+    if (topic == "login")
+    {
+        var loginInfo = primitive.Get.Class<LoginInfo>();
+        
+        if (!primitive.IsValid) return; // ignore this
+        // login user...
+    }
+    else if (topic == "get user address")
+    {
+        var getUserAddressInfo = primitive.Get.Class<GetUserAddressInfo>();
+        
+        if (!primitive.IsValid) return; // ignore this
+        // get user adress...
+    }
+    ...
+    else
+    {
+        // ignore this. (Topic not found)
+    }
+    ```
 
 </details>
 </td>
