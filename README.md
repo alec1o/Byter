@@ -173,18 +173,13 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 
 - ###### Success : ``bool`` <br><sub>Return true if deserialized successful.</sub>
 - ###### Position : ``int`` <br><sub>Return current read index.</sub>
-- ###### Length : ``int``   <br><sub>Return buffer length.</sub>
+- ###### Length :   ``int`` <br><sub>Return buffer length.</sub>
 
 ### Methods
 
-> <sub>Move position (internal buffer index)</sub>
-- ###### Seek(``int`` position) : ``void``
-
-> <sub>Read content from iternal buffer.</sub>
-- ###### Read&lt;T&gt;() : ``T``      
-
-> <sub>Read custom encoding string.</sub>
-- ###### Read&lt;T&gt;(``Encoding`` encoding) : ``T`` 
+- ###### Seek(``int`` position) :                    ``void`` <br><sub>Move position (internal buffer index)</sub>
+- ###### Read<``T``>() :                                ``T`` <br><sub>Read content from iternal buffer.</sub>
+- ###### Read<``string``>(``Encoding`` encoding) : ``string`` <br><sub>Read custom encoding string.</sub>
 
 </details>
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
