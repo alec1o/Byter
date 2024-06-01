@@ -166,13 +166,25 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <td>
 <details><summary>📄 <strong><sup><sub>Writer</sub></sup></strong></summary>
 
-```csharp
-```
 </details>
 <details><summary>📄 <strong><sup><sub>Reader</sub></sup></strong></summary>
 
-```csharp
-```
+
+### Proprieties
+- <sub><sup>Success : ``bool``</sup></sub><br><sup>Return true if deserialized successful.</sup>
+
+- <sub><sup>Position : ``int``</sup></sub><br><sup>Return current read index.</sup>
+
+- <sub><sup>Length : ``int``</sup></sub><br><sup>Return buffer length.</sup>
+
+### Methods
+
+- <sub><sup>Seek(``int`` position) : ``void``</sup></sub><br><sup>Move position (internal buffer index)</sup>
+
+- <sub><sup>Read&lt;T&gt;() : ``T``</sup></sub><br><sup>Read content from iternal buffer.</sup>
+
+- <sub><sup>Read&lt;T&gt;(``Encoding`` encoding) : ``T``</sup></sub><br><sup>Read custom encoding string.</sup>
+
 </details>
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
 
