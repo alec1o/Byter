@@ -512,7 +512,7 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 
 > <sub>Byter overhead information</sub>
 
-| <sub>Type</sub>       | <sub>Primitive <i>(overhead + size = total )</i></sub>                                | <sub>Writer/Reader <i>(overhead / size / total )</i></sub>                           |
+| <sub>Type</sub>       | <sub>Primitive <i>(overhead + size = total)</i></sub>                                 | <sub>Writer/Reader <i>(overhead + size = total)</i></sub>                            |
 |-----------------------|---------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
 | <sub>Bool</sub>       | ✔️  <i>(1 + 1 = 2 bytes)</i>                                                          | ✔️ <i>(2 + 1 = 3 bytes)</i>                                                          |
 | <sub>Byte</sub>       | ✔️  <i>(1 + 1 = 2 bytes)</i>                                                          | ✔️ <i>(2 + 1 = 3 bytes)</i>                                                          |
