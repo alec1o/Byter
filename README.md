@@ -310,20 +310,13 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 <td>
 <details><summary>📄 <strong><sup><sub>Primitive</sub></sup></strong></summary>
 
-```csharp
-```
+TODO:
 
 </details>
-<details><summary>📄 <strong><sup><sub>Writer & Reader <i>(namespace)</i></sub></sup></strong></summary>
 
-```csharp
-```
-
-</details>
 <details><summary>📄 <strong><sup><sub>Example</sub></sup></strong></summary>
 
-```csharp
-```
+TODO:
 
 </details>
 </td>

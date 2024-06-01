@@ -3,7 +3,7 @@ using System.Text;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Byter.Legacy
+namespace Byter
 {
     public class Writer : IWriter, IDisposable
     {
@@ -140,13 +140,13 @@ namespace Byter.Legacy
             Save(prefix, BitConverter.GetBytes(bytes.Length), bytes);
         }
 
-        public void Write(ByFloat2 value)
+        public void Write(Float2 value)
         {
             char prefix = GetPrefix(value);
             Save(prefix, BitConverter.GetBytes(value.X), BitConverter.GetBytes(value.Y));
         }
 
-        public void Write(ByFloat3 value)
+        public void Write(Float3 value)
         {
             char prefix = GetPrefix(value);
             Save
@@ -158,7 +158,7 @@ namespace Byter.Legacy
             );
         }
 
-        public void Write(ByFloat4 value)
+        public void Write(Float4 value)
         {
             char prefix = GetPrefix(value);
             Save
@@ -255,9 +255,9 @@ namespace Byter.Legacy
             else if (type == typeof(char))      /*  char    */ return 'K';
             else if (type == typeof(string))    /*  string  */ return 'L';
             else if (type == typeof(bool))      /*  bool    */ return 'M';
-            else if (type == typeof(ByFloat2))    /*  Float2  */ return 'N';
-            else if (type == typeof(ByFloat3))    /*  Float3  */ return 'O';
-            else if (type == typeof(ByFloat4))    /*  Float4  */ return 'P';
+            else if (type == typeof(Float2))    /*  Float2  */ return 'N';
+            else if (type == typeof(Float3))    /*  Float3  */ return 'O';
+            else if (type == typeof(Float4))    /*  Float4  */ return 'P';
             else                                /*  null    */ return '0';
         }
 
