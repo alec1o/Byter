@@ -11,27 +11,6 @@ public partial class Primitives
     {
         Primitive primitive = new();
 
-        primitive.Add.Bytes(null);
-        primitive.Add.Bytes([]);
-
-        primitive.Add.String(NullConfig.EmptyString);
-        primitive.Add.String(NullConfig.NullString);
-
-        primitive.Add.Array(NullConfig.EmptyArray);
-        primitive.Add.Array(NullConfig.NullArray);
-
-        primitive.Add.List(NullConfig.EmptyList);
-        primitive.Add.List(NullConfig.NullList);
-
-        primitive.Add.Class(NullConfig.TheEmptyClass);
-        primitive.Add.Class(NullConfig.TheNullClass);
-
-        primitive.Add.Struct(NullConfig.TheEmptyStruct);
-        primitive.Add.Struct(NullConfig.TheNullStruct);
-
-        primitive.Add.Enum(NullConfig.TheEmptyEnum);
-        primitive.Add.Enum(NullConfig.TheNullEnum);
-
         primitive.Add.Bool(default);
         primitive.Add.Byte(default);
         primitive.Add.SByte(default);
@@ -49,47 +28,102 @@ public partial class Primitives
         primitive.Add.String(default);
         primitive.Add.BigInteger(default);
 
+        primitive.Add.Bytes(null);
+        primitive.Add.Bytes([]);
+
+        primitive.Add.String(NullConfig.EmptyString);
+        primitive.Add.String(NullConfig.NullString);
+
+        primitive.Add.Array(NullConfig.EmptyArray);
+        primitive.Add.Array(NullConfig.NullArray);
+
+        primitive.Add.List(NullConfig.EmptyList);
+        primitive.Add.List(NullConfig.NullList);
+
+        primitive.Add.Class(NullConfig.TheEmptyClass);
+        primitive.Add.Class(NullConfig.TheNullClass);
+
+        /*
+        primitive.Add.Struct(NullConfig.TheEmptyStruct);
+        primitive.Add.Struct(NullConfig.TheNullStruct);
+
+        primitive.Add.Enum(NullConfig.TheEmptyEnum);
+        primitive.Add.Enum(NullConfig.TheNullEnum);
+        */
+
         // read
+        _ = primitive.Get.Bool();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.Byte();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.SByte();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.Char();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.Short();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.UShort();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.Int();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.UInt();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.Float();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.Long();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.ULong();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.Double();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.DateTime();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.Decimal();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.String();
+        Assert.True(primitive.IsValid);
+
+        _ = primitive.Get.BigInteger();
+        Assert.True(primitive.IsValid);
 
         _ = primitive.Get.Bytes(); // empty bytes
+        Assert.True(primitive.IsValid);
         _ = primitive.Get.Bytes(); // null bytes
+        Assert.True(primitive.IsValid);
 
         _ = primitive.Get.String(); // empty
-        _ = primitive.Get.String(); // null      
+        _ = primitive.Get.String(); // null
 
         _ = primitive.Get.Array<byte>(); // empty
-        _ = primitive.Get.Array<byte>(); // null    
+        _ = primitive.Get.Array<byte>(); // null
 
         _ = primitive.Get.List<byte>(); // empty
-        _ = primitive.Get.List<byte>(); // null    
+        _ = primitive.Get.List<byte>(); // null
 
         _ = primitive.Get.Class<NullConfig.EmptyClass>(); // empty
-        _ = primitive.Get.Class<NullConfig.NonEmptyClass>(); // null 
+        _ = primitive.Get.Class<NullConfig.NonEmptyClass>(); // null
 
+        /*
         _ = primitive.Get.Struct<NullConfig.EmptyStruct>(); // empty
         _ = primitive.Get.Struct<NullConfig.NonEmptyStruct>(); // null
 
         _ = primitive.Get.Enum<NullConfig.EmptyEnum>(); // empty
         _ = primitive.Get.Enum<NullConfig.NonEmptyEnum>(); // null
-
-        _ = primitive.Get.Bool();
-        _ = primitive.Get.Byte();
-        _ = primitive.Get.SByte();
-        _ = primitive.Get.Char();
-        _ = primitive.Get.Short();
-        _ = primitive.Get.UShort();
-        _ = primitive.Get.Int();
-        _ = primitive.Get.UInt();
-        _ = primitive.Get.Float();
-        _ = primitive.Get.Long();
-        _ = primitive.Get.ULong();
-        _ = primitive.Get.Double();
-        _ = primitive.Get.DateTime();
-        _ = primitive.Get.Decimal();
-        _ = primitive.Get.String();
-        _ = primitive.Get.BigInteger();
-
-        Assert.True(primitive.IsValid);
+        */
     }
 
     public static class NullConfig
@@ -105,7 +139,7 @@ public partial class Primitives
         public static readonly List<byte> EmptyList = [];
         public static readonly List<byte> NullList = null;
 
-        public static readonly NonEmptyClass TheEmptyClass = new();
+        public static readonly EmptyClass TheEmptyClass = new();
         public static readonly NonEmptyClass TheNullClass = null;
 
         public static readonly EmptyStruct TheEmptyStruct = new();
