@@ -328,13 +328,13 @@ namespace Byter
 
             public void Bytes(byte[] value)
             {
-                var bytes = value ?? System.Array.Empty<byte>();
-
                 Vault.Add(Prefix.Bytes);
 
-                uint size = (uint)bytes.LongLength;
+                var bytes = value ?? System.Array.Empty<byte>();
 
-                Vault.AddRange(BitConverter.GetBytes(size));
+                var length = (uint)bytes.LongLength;
+
+                Vault.AddRange(BitConverter.GetBytes(length));
 
                 if (bytes.Length > 0) Vault.AddRange(bytes);
             }

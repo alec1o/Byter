@@ -331,7 +331,7 @@ namespace Byter
                     Position += sizeof(uint);
 
                     if (valueSize == 0) return default;
-                    
+
                     if (valueSize > Vault.Count - Position) throw new InvalidDataException();
 
                     var value = Vault.GetRange((int)Position, (int)valueSize).ToArray();
@@ -681,7 +681,9 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
                     Position += sizeof(uint);
 
-                    if (valueSize <= 0 || valueSize > Vault.Count - Position) throw new InvalidDataException();
+                    if (valueSize == 0) return System.Array.Empty<byte>();
+
+                    if (valueSize > Vault.Count - Position) throw new InvalidDataException();
 
                     var value = Vault.GetRange((int)Position, (int)valueSize).ToArray();
 
