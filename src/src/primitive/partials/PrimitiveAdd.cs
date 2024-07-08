@@ -173,17 +173,25 @@ namespace Byter
 
             public void Struct<T>(T value)
             {
-                var type = value.GetType();
+                var type = value == null ? typeof(T) : value.GetType();
 
                 if (!(type.IsValueType && !type.IsEnum && !type.IsPrimitive))
                     throw new InvalidOperationException($"Only struct is accepted. {type} isn't allowed");
                 // if (!type.IsSerializable) throw new InvalidOperationException("Only serialized class is accepted");
 
                 Vault.Add(Prefix.Struct);
-                var cache = new List<byte>();
-
 
                 var props = type.GetProperties();
+
+                if (props.Length <= 0 || value == null)
+                {
+                    Vault.Add(1); // error
+                    return;
+                }
+
+                Vault.Add(0); // success
+
+                var cache = new List<byte>();
 
                 if (props.Length <= 0)
                 {

@@ -43,13 +43,12 @@ public partial class Primitives
         primitive.Add.Class(NullConfig.TheEmptyClass);
         primitive.Add.Class(NullConfig.TheNullClass);
 
-        /*
         primitive.Add.Struct(NullConfig.TheEmptyStruct);
         primitive.Add.Struct(NullConfig.TheNullStruct);
 
         primitive.Add.Enum(NullConfig.TheEmptyEnum);
         primitive.Add.Enum(NullConfig.TheNullEnum);
-        */
+
 
         // read
         _ = primitive.Get.Bool();
@@ -117,13 +116,11 @@ public partial class Primitives
         _ = primitive.Get.Class<NullConfig.EmptyClass>(); // empty
         _ = primitive.Get.Class<NullConfig.NonEmptyClass>(); // null
 
-        /*
         _ = primitive.Get.Struct<NullConfig.EmptyStruct>(); // empty
         _ = primitive.Get.Struct<NullConfig.NonEmptyStruct>(); // null
 
         _ = primitive.Get.Enum<NullConfig.EmptyEnum>(); // empty
         _ = primitive.Get.Enum<NullConfig.NonEmptyEnum>(); // null
-        */
     }
 
     public static class NullConfig

@@ -433,7 +433,8 @@ namespace Byter
                         throw new InvalidOperationException("Only struct is accepted");
 
                     if (!IsValidPrefix(Prefix.Struct)) throw new InvalidDataException();
-
+                    if (!IsValidObject()) return default; // empty or null data
+                    
                     var instance = Activator.CreateInstance(type);
 
                     var props = type.GetProperties();
