@@ -6,6 +6,7 @@ namespace Byter
     {
         private static readonly IPrimitivePrefix Prefix;
         private readonly List<byte> _bytes = new List<byte>();
+        private readonly byte[] _nullPrefix = { 0, 9 }; // 0 mean begin - 9 mean end. (from begin to end)
 
         static Primitive()
         {

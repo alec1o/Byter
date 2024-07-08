@@ -125,12 +125,11 @@ namespace Byter
                 Vault.Add(Prefix.String);
 
                 var bytes = Encoding.UTF8.GetBytes(value ?? string.Empty);
+                var length = (uint)bytes.LongLength;
 
-                uint size = (uint)bytes.LongLength;
+                Vault.AddRange(BitConverter.GetBytes(length));
 
-                Vault.AddRange(BitConverter.GetBytes(size));
-
-                if (bytes.Length > 0) Vault.AddRange(bytes);
+                if (length > 0) Vault.AddRange(bytes);
             }
 
             public void Class<T>(T value)
@@ -189,7 +188,7 @@ namespace Byter
                 }
 
                 uint size = 0;
-                
+
                 foreach (var prop in props)
                     if (prop.CanRead && prop.CanWrite)
                     {
