@@ -359,13 +359,12 @@ v3.x.x
 | Double     | ✔️  (1 + 8 = 9 bytes)                                    | ✔️ (2 + 8 = 10 bytes)                                   |
 | DateTime   | ✔️  (1 + 8 = 9 bytes)                                    | 🚫                                                      |
 | Decimal    | ✔️  (1 + 16 = 17 bytes)                                  | 🚫                                                      |
-| String     | ✔️  (5 + ? = +5 bytes) *UTF8                             | ✔️ (5 + ? = +5 bytes)                                   |
-| Class      | ✔️  (1 + ? = +1 byte)                                    | 🚫                                                      |
-| Struct     | ✔️  (1 + ? = +1 byte)                                    | 🚫                                                      |
+| String     | ✔️  (5 + ? = +5 bytes) *UTF8                             | ✔️ (6 + ? = +6 bytes)                                   |
+| Class      | ✔️  (2 + 0 = 2 bytes)                                    | 🚫                                                      |
+| Struct     | ✔️  (2 + 0 = 2 bytes)                                    | 🚫                                                      |
 | Array      | ✔️  (3 + ? = +3 bytes)  *Max. 65535                      | 🚫                                                      |
 | List       | ✔️  (3 + ? = +3 bytes)  *Max. 65535                      | 🚫                                                      |
 | BigInteger | ✔️  (3 + ? = +3 bytes)                                   | 🚫                                                      |
-| Bytes      | ✔️  (5 + ? = +5 bytes) *Max. 4.294.967.295 *(~4billions) | ✔️ (6 + ? = +5 bytes) *Max. 2.147.483.647 *(~2billions) |
-
+| Bytes      | ✔️  (5 + ? = +5 bytes) *Max. 4.294.967.295 *(~4billions) | ✔️ (6 + ? = +6 bytes) *Max. 2.147.483.647 *(~2billions) |
 
 !Content removed: [Need better documentation? READ THIS IN GITHUB ___(click me)___](https://github.com/alec1o/Byter)
