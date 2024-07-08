@@ -134,7 +134,7 @@ namespace Byter
 
             public void Class<T>(T value)
             {
-                var type = value.GetType();
+                var type = value == null ? typeof(T) : value.GetType();
 
                 if (!type.IsClass) throw new InvalidOperationException($"Only class is accepted. {type} isn't allowed");
 
@@ -143,10 +143,13 @@ namespace Byter
 
                 var props = type.GetProperties();
 
-                if (props.Length <= 0)
+                if (props.Length <= 0 || value == null)
                 {
+                    Vault.Add(1); // error
                     return;
                 }
+
+                Vault.Add(0); // success
 
                 uint size = 0;
 

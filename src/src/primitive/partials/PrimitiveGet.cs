@@ -354,6 +354,7 @@ namespace Byter
                     if (!type.IsClass) throw new InvalidOperationException("Only class is accepted");
 
                     if (!IsValidPrefix(Prefix.Class)) throw new InvalidDataException();
+                    if (!IsValidObject()) return default; // empty or null data
 
                     var instance = Activator.CreateInstance(type);
 
@@ -387,9 +388,10 @@ namespace Byter
                     if (!typeof(T).IsClass) throw new InvalidOperationException("Only class is accepted");
 
                     if (!IsValidPrefix(Prefix.Class)) throw new InvalidDataException();
+                    if (!IsValidObject()) return default; // empty or null data
 
                     var instance = (T)Activator.CreateInstance(typeof(T));
-
+                    
                     var props = typeof(T).GetProperties();
 
                     if (props.Length <= 0) return default;
@@ -708,6 +710,20 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
             {
                 IsValid = false;
                 return default;
+            }
+
+            private bool IsValidObject()
+            {
+                var value = Vault[(int)Position];
+
+                Position += sizeof(byte);
+
+                switch (value)
+                {
+                    case 0: return true;
+                    case 1: return false;
+                    default: throw new Exception();
+                }
             }
         }
     }
