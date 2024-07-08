@@ -94,24 +94,27 @@ public partial class Primitives
 
     public static class NullConfig
     {
-        public static string EmptyString = "";
-        public static string NullString = "";
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+        public static readonly string EmptyString = "";
+        public static readonly string NullString = null;
 
-        public static byte[] EmptyArray = [];
-        public static byte[] NullArray = null;
+        public static readonly byte[] EmptyArray = [];
 
-        public static List<byte> EmptyList = [];
-        public static List<byte> NullList = null;
+        public static readonly byte[] NullArray = null;
 
-        public static NonEmptyClass TheEmptyClass = new();
-        public static NonEmptyClass TheNullClass = null;
+        public static readonly List<byte> EmptyList = [];
+        public static readonly List<byte> NullList = null;
 
-        public static EmptyStruct TheEmptyStruct = new();
-        public static NonEmptyStruct TheNullStruct = default;
+        public static readonly NonEmptyClass TheEmptyClass = new();
+        public static readonly NonEmptyClass TheNullClass = null;
 
-        public static EmptyEnum TheEmptyEnum = new();
-        public static NonEmptyEnum TheNullEnum = default;
+        public static readonly EmptyStruct TheEmptyStruct = new();
+        public static readonly NonEmptyStruct TheNullStruct = default;
 
+        public static readonly EmptyEnum TheEmptyEnum = new();
+        public static readonly NonEmptyEnum TheNullEnum = default;
+
+        // ReSharper disable once ClassNeverInstantiated.Global
         public class EmptyClass
         {
         }
@@ -132,11 +135,12 @@ public partial class Primitives
 
         public enum NonEmptyEnum
         {
-            Byter
+            Unique
         }
 
         public enum EmptyEnum
         {
         }
+#pragma warning restore CS8625 // Cannot convert null literal to non-nullable reference type.
     }
 }
