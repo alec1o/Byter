@@ -525,15 +525,83 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 | <sub>Double</sub>     | ✔️  <i>(1 + 8 = 9 bytes)</i>                                                          | ✔️ <i>(2 + 8 = 10 bytes)</i>                                                         |
 | <sub>DateTime</sub>   | ✔️  <i>(1 + 8 = 9 bytes)</i>                                                          | 🚫                                                                                   |
 | <sub>Decimal</sub>    | ✔️  <i>(1 + 16 = 17 bytes)</i>                                                        | 🚫                                                                                   |
-| <sub>String</sub>     | ✔️  <i>(5 + ? = <sup>+</sup>5 bytes)</i> <sup>*UTF8</sup>                             | ✔️ <i>(5 + ? = <sup>+</sup>5 bytes)</i>                                              |
-| <sub>Class</sub>      | ✔️  <i>(1 + ? = <sup>+</sup>1 byte)</i>                                               | 🚫                                                                                   |
-| <sub>Struct</sub>     | ✔️  <i>(1 + ? = <sup>+</sup>1 byte)</i>                                               | 🚫                                                                                   |
+| <sub>String</sub>     | ✔️  <i>(5 + ? = <sup>+</sup>5 bytes)</i> <sup>*UTF8</sup>                             | ✔️ <i>(6 + ? = <sup>+</sup>6 bytes)</i>                                              |
+| <sub>Class</sub>      | ✔️  <i>(2 + 0 = 2 bytes)</i>                                                          | 🚫                                                                                   |
+| <sub>Struct</sub>     | ✔️  <i>(2 + 0 = 2 bytes)</i>                                                          | 🚫                                                                                   |
 | <sub>Array</sub>      | ✔️  <i>(3 + ? = <sup>+</sup>3 bytes)</i>  <sup>*Max. 65535</sup>                      | 🚫                                                                                   |
 | <sub>List</sub>       | ✔️  <i>(3 + ? = <sup>+</sup>3 bytes)</i>  <sup>*Max. 65535</sup>                      | 🚫                                                                                   |
 | <sub>BigInteger</sub> | ✔️  <i>(3 + ? = <sup>+</sup>3 bytes)</i>                                              | 🚫                                                                                   |
-| <sub>Bytes</sub>      | ✔️  <i>(5 + ? = <sup>+</sup>5 bytes)</i> <sup>*Max. 4.294.967.295 *(~4billions)</sup> | ✔️ <i>(6 + ? = <sup>+</sup>5 bytes)</i> <sup>*Max. 2.147.483.647 *(~2billions)</sup> |
+| <sub>Bytes</sub>      | ✔️  <i>(5 + ? = <sup>+</sup>5 bytes)</i> <sup>*Max. 4.294.967.295 *(~4billions)</sup> | ✔️ <i>(6 + ? = <sup>+</sup>6 bytes)</i> <sup>*Max. 2.147.483.647 *(~2billions)</sup> |
 
 <br>
+
+### Encoding Extension
+```csharp
+using Byter;
+```
+
+- <strong><sub>Global Default
+  Encoding</sub></strong> [<i><sub>(source code spec)</sub></i>](https://github.com/alec1o/Byter/blob/main/src/src/extension/StringExtension.cs#L8)
+   ```csharp
+   // update global defaut encoding. Default is UTF8
+   StringExtension.Default = Encoding.Unicode; // Unicode is UTF16
+   ```
+
+- <strong><sub>Convert string to byte[]</sub></strong>
+    ```csharp
+    // using global encoding (*UTF8)
+    byte[] username  = "@alec1o".GetBytes(); 
+    
+    // using UNICODE (*UTF16) encoding
+    byte[] message = "Hello 👋 World 🌎".GetBytes(Encoding.Unicode); 
+    
+    // using UTF32 encoding
+    string secreatWord = "I'm not human, I'm  a concept.";
+    byte[] secreat = secreatWord.GetBytes(Encoding.UTF32);
+    ```
+
+- <strong><sub>Convert byte[] to string</sub></strong>
+    ```csharp
+    // using global encoding (*UTF8)
+    string username  = new byte[] { ... }.GetString(); 
+    
+    // using UNICODE (*UTF16) encoding
+    string message = new byte[] { ... }.GetString(Encoding.Unicode); 
+    
+    // using UTF32 encoding
+    byte[] secreat = new byte[] { ... };
+    string secreatWord = secreat.GetString(Encoding.UTF32);
+    ```
+
+- <strong><sub>Capitalize string</sub></strong>
+    ```rb
+    string name = "alECio furanZE".ToCapitalize();
+    # Alecio Furanze
+    
+    string title = "i'M noT humAn";
+    title = title.ToCapitalize();
+    # I'm Not Human
+    ```
+
+- <strong><sub>UpperCase string</sub></strong>
+    ```rb
+    string name = "alECio furanZE".ToUpperCase();
+    # ALECIO FURANZE
+    
+    string title = "i'M noT humAn";
+    title = title.ToUpperCase();
+    # I'M NOT HUMAN
+    ```
+
+- <strong><sub>LowerCase string</sub></strong>
+    ```rb
+    string name = "ALEciO FUraNZE".ToLowerCase();
+    # alecio furanze
+    
+    string title = "i'M Not huMAN";
+    title = title.ToLowerCase();
+    # i'm not human
+    ```
 
 
 

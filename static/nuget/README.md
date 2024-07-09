@@ -367,4 +367,72 @@ v3.x.x
 | BigInteger | ✔️  (3 + ? = +3 bytes)                                   | 🚫                                                      |
 | Bytes      | ✔️  (5 + ? = +5 bytes) *Max. 4.294.967.295 *(~4billions) | ✔️ (6 + ? = +6 bytes) *Max. 2.147.483.647 *(~2billions) |
 
+### Encoding Extension
+```csharp
+using Byter;
+```
+
+- Global Default Encoding [(source code spec)](https://github.com/alec1o/Byter/blob/main/src/src/extension/StringExtension.cs#L8)
+   ```csharp
+   // update global defaut encoding. Default is UTF8
+   StringExtension.Default = Encoding.Unicode; // Unicode is UTF16
+   ```
+
+- Convert string to byte[]
+    ```csharp
+    // using global encoding (*UTF8)
+    byte[] username  = "@alec1o".GetBytes(); 
+    
+    // using UNICODE (*UTF16) encoding
+    byte[] message = "Hello 👋 World 🌎".GetBytes(Encoding.Unicode); 
+    
+    // using UTF32 encoding
+    string secreatWord = "I'm not human, I'm  a concept.";
+    byte[] secreat = secreatWord.GetBytes(Encoding.UTF32);
+    ```
+
+- Convert byte[] to string
+    ```csharp
+    // using global encoding (*UTF8)
+    string username  = new byte[] { ... }.GetString(); 
+    
+    // using UNICODE (*UTF16) encoding
+    string message = new byte[] { ... }.GetString(Encoding.Unicode); 
+    
+    // using UTF32 encoding
+    byte[] secreat = new byte[] { ... };
+    string secreatWord = secreat.GetString(Encoding.UTF32);
+    ```
+
+- Capitalize string
+    ```rb
+    string name = "alECio furanZE".ToCapitalize();
+    # Alecio Furanze
+    
+    string title = "i'M noT humAn";
+    title = title.ToCapitalize();
+    # I'm Not Human
+    ```
+
+- UpperCase string
+    ```rb
+    string name = "alECio furanZE".ToUpperCase();
+    # ALECIO FURANZE
+    
+    string title = "i'M noT humAn";
+    title = title.ToUpperCase();
+    # I'M NOT HUMAN
+    ```
+
+- LowerCase string
+    ```rb
+    string name = "ALEciO FUraNZE".ToLowerCase();
+    # alecio furanze
+    
+    string title = "i'M Not huMAN";
+    title = title.ToLowerCase();
+    # i'm not human
+    ```
+
 !Content removed: [Need better documentation? READ THIS IN GITHUB ___(click me)___](https://github.com/alec1o/Byter)
+
