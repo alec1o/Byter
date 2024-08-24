@@ -30,8 +30,7 @@ powered by <a href="https://github.com/alec1o">ALEC1O</a><sub/>
   <th align="center" valign="center"><sub><strong>Overview</strong></sub></th>
 <td>
 <br>
-<sub>About
-Byter is a C# serializer. It can serialize and deserialize from primitive type e.g (class, struct, list, array, string, int, long, double, ...), It can serialize complex data fast and easy.</sub>
+<sub><i><strong>Byter</strong></i> is a C# serialization library for primitive data types, including booleans, numbers, chars, enums, strings, DateTime, BigInteger, bytes, and complex types like classes, structs, arrays, and lists, supporting unlimited complexity and depth.</sub>
 <br>
 <br>
 </td>
