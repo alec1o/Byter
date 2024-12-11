@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <ItemGroup>
         <None Include="../static/nuget/README.md" Pack="true" PackagePath="/"/>
+        <None Include="../static/logo/Byter-logo-1024/sprite_1.png" Pack="true" PackagePath="/"/>
         <None Include="../LICENSE.md" Pack="true" PackagePath="/"/>
     </ItemGroup>
 
@@ -12,7 +13,9 @@
         <Company>alec1o</Company>
         <Copyright>alec1o</Copyright>
         <RepositoryType>GitHub</RepositoryType>
-        <PackageTags>c-sharp, serialization, parser, csharp, dotnet, object, serializer, primitive, serialize, deserializer, byter, encode, decode</PackageTags>
+        <PackageIcon>sprite_1.png</PackageIcon>
+        <PackageIconUrl>sprite_1.png</PackageIconUrl>
+        <PackageTags>c-sharp, serialization, parser, csharp, dotnet, object, serializer, primitive, serialize, deserializer, byter, encode, decode, json, block, string, byte, bytes, encoder, encoding, decoder, decoding, formatting, open-source, alec1o, alec1o-furanze, furanze, alecio, alecio-furanze</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/alec1o/Byter</RepositoryUrl>
         <PackageProjectUrl>https://github.com/alec1o/Byter</PackageProjectUrl>
