@@ -43,6 +43,24 @@ powered by <a href="https://github.com/alec1o">ALEC1O</a><sub/>
 <br>
 </td>
 </tr>
+<tr>
+<th align="center" valign="center"><sub><strong>Contributions</strong></sub></th>
+<td>
+<br>
+<sub>
+
+Thanks a lot <3 
+<br><br>
+<div>
+  <img src="https://github.com/vanhaodev.png" width="24" height="24"> <a href="https://github.com/vanhaodev">@vanhaodev</a>
+  &nbsp;
+  <img src="https://github.com/nvh2001.png" width="24" height="24" style="border-radius:50%"> <a href="https://github.com/nvh2001">@nvh2001</a>
+</div>
+
+</sup>
+<br>
+</td>
+</tr>
 </table>
 
 <br>
