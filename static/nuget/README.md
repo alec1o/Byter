@@ -403,7 +403,39 @@ using Byter;
     byte[] secreat = new byte[] { ... };
     string secreatWord = secreat.GetString(Encoding.UTF32);
     ```
-
+- Concat bytes (byte[])
+  ```csharp
+  byte[] part1 = [ 1, 1, 1 ];
+  byte[] part2 = [ 4, 4, 4 ];
+  
+  /* 
+      ..          ..      ..      ..      ..      ..      ..      ..      ..      .. 
+      
+      Concat part1 and part2 
+      
+      ..          ..      ..      ..      ..      ..      ..      ..      ..      .. 
+      
+      --- `byte[].Concat` Used concat bytes normally.
+      --- `byte[].ConcatInverse` Used concat bytes inversed (first is last and last is first).
+      --- `byte[].Concat(invert: true|false, ....)` Generic way to concat `Inversed` and `Normal` direction.
+      
+      ..          ..      ..      ..      ..      ..      ..      ..      ..      .. 
+  */
+  
+  
+  // Normal >>>
+  byte[] normal = part1.Concat(part2); //... [ 1, 1, 1, 4, 4, 4 ]
+  byte[] normal = part2.Concat(invert: true, part1); //... [ 1, 1, 1, 4, 4, 4 ]
+  byte[] normal = byte[].Concat(invert: true, part2, part1); //... [ 1, 1, 1, 4, 4, 4 ]
+  byte[] normal = byte[].Concat(invert: false, part1, part2); //... [ 1, 1, 1, 4, 4, 4 ]  
+  
+  // Inversed <<<
+  byte[] inversed = part1.ConcatInverse(part2); //... [ 4, 4, 4, 1, 1, 1 ]
+  byte[] inversed = part2.Concat(invert: false, part1); //... [ 4, 4, 4, 1, 1, 1 ]
+  byte[] inversed = byte[].Concat(invert: false, part2, part1); //... [ 4, 4, 4, 1, 1, 1 ]
+  byte[] inversed = byte[].Concat(invert: true, part1, part2); //... [ 4, 4, 4, 1, 1, 1 ]
+  ```
+  
 - Capitalize string
     ```rb
     string name = "alECio furanZE".ToCapitalize();

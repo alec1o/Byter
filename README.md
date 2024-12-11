@@ -66,7 +66,7 @@ powered by <a href="https://github.com/alec1o">ALEC1O</a><sub/>
 <td valign="top" align="left">
 
 ```rb
-dotnet add package Byter --version 3.0.0
+dotnet add package Byter --version 4.0.0
 ```
 
 </td>
@@ -89,8 +89,10 @@ dotnet add package Byter --version 3.0.0
 <th><sub>v1.x.x</sub></th>
 <th><sub>v2.x.x</sub></th>
 <th><sub>v3.x.x</sub></th>
+<th><sub>v4x.x</sub></th>
 </tr>
 <tr> <!-- status -->
+<td valign="center" align="center"><sup><sub><i>Stable</i></sub></sup></td>
 <td valign="center" align="center"><sup><sub><i>Stable</i></sub></sup></td>
 <td valign="center" align="center"><sup><sub><i>Stable</i></sub></sup></td>
 <td valign="center" align="center"><sup><sub><i>Stable</i></sub></sup></td>
@@ -165,11 +167,20 @@ Bug Fix. <i><strong>(Reader & Writer)</strong></i>
 &nbsp; <code>array*</code>
 &nbsp; <code>list*</code>
 &nbsp; <code>BigInteger*</code>
-</sub></td>
+</sub>
+</td>
+<td valign="top" align="left">
+<sub>
+Bug Fix. <i><strong>(Primitive & Extension)</strong></i>
+<br><br>Support: <i><strong>*Concat Bytes</strong></i>
+<br><br>Fix. <i>Compilation warning.</i>
+</sub>
+</td>
 </tr>
 <tr> <!-- row #2 -->
 <td valign="top" align="left"><sub>Used by. <a href="https://github.com/alec1o/Netly">Netly v2</a></sub></td>
 <td valign="top" align="left"><sub>Used by. <a href="https://github.com/alec1o/Netly">Netly v3</a></sub></td>
+<td valign="top" align="left"><sub>Used by. <a href="https://github.com/alec1o/Netly">Netly v4</a></sub> <sup><i>(under dev stage)</i></sup></td>
 <td valign="top" align="left"><sub>Used by. <a href="https://github.com/alec1o/Netly">Netly v4</a></sub></td>
 </tr>
 </table>
