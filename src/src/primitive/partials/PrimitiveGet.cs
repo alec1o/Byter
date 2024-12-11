@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Numerics;
-using System.Reflection;
 using System.Text;
 
 namespace Byter
@@ -374,7 +374,7 @@ namespace Byter
 
                     return instance;
                 }
-                catch (Exception e)
+                catch
                 {
                     return SetError<object>();
                 }
@@ -391,7 +391,7 @@ namespace Byter
                     if (!IsValidObject()) return default; // empty or null data
 
                     var instance = (T)Activator.CreateInstance(typeof(T));
-                    
+
                     var props = typeof(T).GetProperties();
 
                     if (props.Length <= 0) return default;
@@ -434,7 +434,7 @@ namespace Byter
 
                     if (!IsValidPrefix(Prefix.Struct)) throw new InvalidDataException();
                     if (!IsValidObject()) return default; // empty or null data
-                    
+
                     var instance = Activator.CreateInstance(type);
 
                     var props = type.GetProperties();
@@ -506,8 +506,6 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
             public object Array(Type type)
             {
-                const List<byte> listName = null;
-
                 if (type == null) return null;
                 if (!type.IsArray) return null;
                 Type childrenType = type.GetElementType();
@@ -519,8 +517,8 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
 
                     var list = Activator.CreateInstance(listType);
-                    var addMethod = list.GetType().GetMethod(nameof(listName.Add));
-                    var toArrayMethod = list.GetType().GetMethod(nameof(listName.ToArray));
+                    var addMethod = list.GetType().GetMethod(nameof(IList.Add));
+                    var toArrayMethod = list.GetType().GetMethod(nameof(Enumerable.ToArray));
 
                     if (addMethod == null) throw new NullReferenceException(nameof(addMethod));
                     if (toArrayMethod == null) throw new NullReferenceException(nameof(toArrayMethod));
@@ -542,7 +540,7 @@ https://stackoverflow.com/questions/9694404/propertyinfo-setvalue-not-working-bu
 
                     return toArrayMethod.Invoke(list, null);
                 }
-                catch (Exception e)
+                catch
                 {
                     return SetError<object>();
                 }

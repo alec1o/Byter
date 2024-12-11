@@ -106,23 +106,26 @@ public partial class Primitives
         Assert.True(primitive.IsValid);
     }
 
+    [Serializable]
     private class MyComplexClass
     {
         public int Number { get; set; }
-        public string String { get; set; }
+        public string String { get; set; } = null!;
         public bool Bool { get; set; }
-        public byte[] ByteArray { get; set; }
-        public List<string> StringList { get; set; }
-        public List<MySubClass> SubClassList { get; set; }
-        public List<MySubStruct> SubStructList { get; set; }
+        public byte[] ByteArray { get; set; } = null!;
+        public List<string> StringList { get; set; } = null!;
+        public List<MySubClass> SubClassList { get; set; } = null!;
+        public List<MySubStruct> SubStructList { get; set; } = null!;
 
-        public string[] StringArray { get; set; }
-        public MySubClass[] SubClassArray { get; set; }
-        public MySubStruct[] SubStructArray { get; set; }
+        public string[] StringArray { get; set; } = null!;
+        public MySubClass[] SubClassArray { get; set; } = null!;
+        public MySubStruct[] SubStructArray { get; set; } = null!;
 
-        public MySubClass SubClass { get; set; }
+        public MySubClass SubClass { get; set; } = null!;
         public MySubStruct SubStruct { get; set; }
 
+
+        [Serializable]
         public struct MySubStruct
         {
             public long Number { get; set; }
@@ -138,10 +141,11 @@ public partial class Primitives
             }
         }
 
+        [Serializable]
         public class MySubClass
         {
             public long Number { get; set; }
-            public string String { get; set; }
+            public string String { get; set; } = null!;
 
             public static MySubClass Random()
             {

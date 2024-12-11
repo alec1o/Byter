@@ -143,6 +143,7 @@ public partial class Primitives
         Assert.True(primitive.IsValid);
     }
 
+    [Serializable]
     private class Array3Info
     {
         public int Number { get; set; }
@@ -152,6 +153,7 @@ public partial class Primitives
         public string[]? Array { get; set; }
         public Sub? SubClass { get; set; }
 
+        [Serializable]
         public class Sub
         {
             public string? String { get; set; }

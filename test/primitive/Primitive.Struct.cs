@@ -108,6 +108,7 @@ public partial class Primitives
         Assert.True(primitive.IsValid);
     }
 
+    [Serializable]
     private struct MyComplexStruct
     {
         public int Number { get; set; }
@@ -125,6 +126,7 @@ public partial class Primitives
         public MySubClass SubClass { get; set; }
         public MySubStruct SubStruct { get; set; }
 
+        [Serializable]
         public struct MySubStruct
         {
             public long Number { get; set; }
@@ -140,10 +142,11 @@ public partial class Primitives
             }
         }
 
+        [Serializable]
         public class MySubClass
         {
             public long Number { get; set; }
-            public string String { get; set; }
+            public string String { get; set; } = null!;
 
             public static MySubClass Random()
             {
