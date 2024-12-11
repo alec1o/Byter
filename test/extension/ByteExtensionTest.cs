@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Byter;
 using Xunit;
@@ -11,12 +12,10 @@ public class ByteExtensionTest
     [Fact]
     public void GetString()
     {
-        byte[] defBytes = BaseText.GetBytes(StringExtension.Default);
-        byte[] utf8Bytes = BaseText.GetBytes(Encoding.UTF8);
-        byte[] utf16Bytes = BaseText.GetBytes(Encoding.Unicode);
-        byte[] utf32Bytes = BaseText.GetBytes(Encoding.UTF32);
-
-        Assert.Equal(BaseText, defBytes.GetString());
+        var utf8Bytes = BaseText.GetBytes(Encoding.UTF8);
+        var utf16Bytes = BaseText.GetBytes(Encoding.Unicode);
+        var utf32Bytes = BaseText.GetBytes(Encoding.UTF32);
+        
         Assert.Equal(BaseText, utf8Bytes.GetString(Encoding.UTF8));
         Assert.Equal(BaseText, utf16Bytes.GetString(Encoding.Unicode));
         Assert.Equal(BaseText, utf32Bytes.GetString(Encoding.UTF32));
@@ -24,5 +23,13 @@ public class ByteExtensionTest
         Assert.NotEqual(BaseText, utf16Bytes.GetString(Encoding.UTF8));
         Assert.NotEqual(BaseText, utf32Bytes.GetString(Encoding.Unicode));
         Assert.NotEqual(BaseText, utf8Bytes.GetString(Encoding.UTF32));
+    }
+    
+    [Fact]
+    public void Nullable()
+    {
+        var result = string.Empty;
+        Assert.Equal(result, Array.Empty<byte>().GetString());
+        Assert.Equal(result, ByteExtension.GetString(null!));
     }
 }

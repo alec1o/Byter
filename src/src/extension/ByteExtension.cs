@@ -1,4 +1,5 @@
 using System.Text;
+using ByEx = Byter.ByterExtension;
 
 namespace Byter
 {
@@ -6,14 +7,12 @@ namespace Byter
     {
         public static string GetString(this byte[] content)
         {
-            if (content == null || content.Length <= 0) return string.Empty;
-            return StringExtension.Default.GetString(content);
+            return ByEx.IsNull(content) ? ByEx.DEFAULT_STRING_VALUE : ByEx.DEFAULT_ENCODING.GetString(content);
         }
 
         public static string GetString(this byte[] content, Encoding encoding)
         {
-            if (content == null || content.Length <= 0) return string.Empty;
-            return encoding.GetString(content);
+            return ByEx.IsNull(content) ? ByEx.DEFAULT_STRING_VALUE : encoding.GetString(content);
         }
     }
 }

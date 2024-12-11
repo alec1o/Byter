@@ -1,38 +1,34 @@
 using System.Globalization;
 using System.Text;
+using ByEx = Byter.ByterExtension;
 
 namespace Byter
 {
     public static class StringExtension
     {
-        public static Encoding Default { get; set; } = Encoding.UTF8;
-
-        public static byte[] GetBytes(this string content)
+        public static byte[] GetBytes(this string value)
         {
-            return Default.GetBytes(content);
+            return ByEx.IsNull(value) ? ByEx.DEFAULT_BYTES_VALUE : ByEx.DEFAULT_ENCODING.GetBytes(value);
         }
 
-        public static byte[] GetBytes(this string content, Encoding encoding)
+        public static byte[] GetBytes(this string value, Encoding encoding)
         {
-            return encoding.GetBytes(content);
+            return ByEx.IsNull(value) ? ByEx.DEFAULT_BYTES_VALUE : encoding.GetBytes(value);
         }
 
-        public static string ToCapitalize(this string content)
+        public static string ToCapitalize(this string value)
         {
-            if (string.IsNullOrWhiteSpace(content)) return content;
-            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(content);
+            return ByEx.IsNull(value) ? string.Empty : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value);
         }
 
-        public static string ToUpperCase(this string content)
+        public static string ToUpperCase(this string value)
         {
-            if (string.IsNullOrWhiteSpace(content)) return content;
-            return CultureInfo.CurrentCulture.TextInfo.ToUpper(content);
+            return ByEx.IsNull(value) ? string.Empty : CultureInfo.CurrentCulture.TextInfo.ToUpper(value);
         }
 
-        public static string ToLowerCase(this string content)
+        public static string ToLowerCase(this string value)
         {
-            if (string.IsNullOrWhiteSpace(content)) return content;
-            return CultureInfo.CurrentCulture.TextInfo.ToLower(content);
+            return ByEx.IsNull(value) ? string.Empty : CultureInfo.CurrentCulture.TextInfo.ToLower(value);
         }
     }
 }

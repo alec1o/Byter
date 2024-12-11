@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Byter;
 using Xunit;
@@ -26,33 +27,34 @@ public class StringExtensionTest
     [Fact]
     public void GetBytesDefault()
     {
-        Encoding defaultEncoding = Encoding.UTF8;
-        byte[] defaultEncodingResult = defaultEncoding.GetBytes(BaseText);
-        byte[] internalDefaultEncodingResult = BaseText.GetBytes();
+        var utf8Encoded = Encoding.UTF8.GetBytes(BaseText);
+        var utf32Encoded = Encoding.UTF32.GetBytes(BaseText);
+        var defaultEncoded = BaseText.GetBytes();
 
-        Assert.Equal(defaultEncoding, StringExtension.Default);
-        Assert.Equal(defaultEncodingResult, internalDefaultEncodingResult);
-
-        Encoding newEncoding = Encoding.UTF32;
-        StringExtension.Default = newEncoding;
-        byte[] newEncodingResult = newEncoding.GetBytes(BaseText);
-        byte[] internalNewEncodingResult = BaseText.GetBytes();
-
-        Assert.NotEqual(defaultEncodingResult, internalNewEncodingResult);
-        Assert.Equal(newEncodingResult, internalNewEncodingResult);
+        {
+            Assert.Equal(utf8Encoded, defaultEncoded);
+            Assert.NotEqual(utf8Encoded, utf32Encoded);
+            Assert.NotEqual(utf32Encoded, defaultEncoded);
+            Assert.Equal(utf8Encoded.GetString(Encoding.UTF8), defaultEncoded.GetString());
+            Assert.Equal(utf8Encoded.GetString(Encoding.UTF8), utf32Encoded.GetString(Encoding.UTF32));
+            Assert.NotEqual(defaultEncoded.GetString(), utf32Encoded.GetString()); // need add Encoding.UTF32
+            Assert.NotEqual(utf8Encoded.GetString(), utf32Encoded.GetString()); // need add Encoding.UTF32
+            Assert.Equal(defaultEncoded.GetString(), utf32Encoded.GetString(Encoding.UTF32)); // Now is OKAY!
+            Assert.Equal(utf8Encoded.GetString(), utf32Encoded.GetString(Encoding.UTF32)); // Now is OKAY!
+        }
     }
 
     [Fact]
     public void TestText()
     {
-        Assert.Equal(BaseText.ToLower(), BaseTextLower);
-        Assert.Equal(BaseText.ToUpper(), BaseTextUpper);
+        Assert.Equal(BaseTextLower, BaseText.ToLower());
+        Assert.Equal(BaseTextUpper, BaseText.ToUpper());
 
-        Assert.NotEqual(BaseText.ToLower(), BaseText);
-        Assert.NotEqual(BaseText.ToUpper(), BaseText);
+        Assert.NotEqual(BaseText, BaseText.ToLower());
+        Assert.NotEqual(BaseText, BaseText.ToUpper());
 
-        Assert.NotEqual(BaseText.ToLower(), BaseTextCaptz);
-        Assert.NotEqual(BaseText.ToUpper(), BaseTextCaptz);
+        Assert.NotEqual(BaseTextCaptz, BaseText.ToLower());
+        Assert.NotEqual(BaseTextCaptz, BaseText.ToUpper());
     }
 
     [Fact]
@@ -74,5 +76,13 @@ public class StringExtensionTest
     {
         Assert.NotEqual(BaseTextCaptz, BaseText);
         Assert.Equal(BaseTextCaptz, BaseText.ToCapitalize());
+    }
+
+    [Fact]
+    public void Nullable()
+    {
+        var result = Array.Empty<byte>();
+        Assert.Equal(result, string.Empty.GetBytes());
+        Assert.Equal(result, StringExtension.GetBytes(null!));
     }
 }
