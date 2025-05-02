@@ -44,6 +44,20 @@ powered by <a href="https://github.com/alec1o">ALEC1O</a><sub/>
 </td>
 </tr>
 <tr>
+        <th align="center" valign="center"><sub><strong>Sponsor</strong></sub></th>
+<td>
+<br>
+<div>
+    <a href="https://www.buymeacoffee.com/alec1o">
+      <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=alec1o&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" />&nbsp;&nbsp;
+      <sup>Keep Byter alive – sponsor it on Buy Me a Coffee.</sup>
+    </a>
+    <br>
+</div>
+<br>
+</td>
+</tr>
+<tr>
 <th align="center" valign="center"><sub><strong>Contributions</strong></sub></th>
 <td>
 <br>
